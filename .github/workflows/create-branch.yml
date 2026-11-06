@@ -25,7 +25,7 @@ jobs:
 
             // 이슈 제목에서 작업 유형 추출
             const typeMap = {
-              Feat: "feature",
+              Feat: "feat",
               Fix: "fix",
               Refactor: "refactor",
               Chore: "chore",

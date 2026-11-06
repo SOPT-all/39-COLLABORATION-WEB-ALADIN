@@ -1,0 +1,76 @@
+
+name: Create Branch from Issue
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  contents: write
+  issues: read
+
+jobs:
+  create-branch:
+    if: contains(fromJSON('["OWNER","MEMBER","COLLABORATOR"]'), github.event.issue.author_association)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Create branch
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { owner, repo } = context.repo;
+            const issue = context.payload.issue;
+            const body = issue.body || "";
+
+            // 이슈 제목에서 작업 유형 추출
+            const typeMap = {
+              Feat: "feature",
+              Fix: "fix",
+              Refactor: "refactor",
+              Chore: "chore",
+              Docs: "docs"
+            };
+
+            const match = issue.title.match(
+              /^\[(Feat|Fix|Refactor|Chore|Docs)\]\s/
+            );
+
+            if (!match) {
+              core.info("자동 생성 대상 이슈가 아닙니다.");
+              return;
+            }
+
+            const type = typeMap[match[1]];
+
+            // 이슈 본문에서 브랜치명 추출
+            const section = body.split("### 🌿 브랜치명\n")[1];
+            const name = section
+              ?.split(/\n### /)[0]
+              ?.trim();
+
+            if (
+              !name ||
+              !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(name)
+            ) {
+              core.setFailed("브랜치명 형식이 올바르지 않습니다.");
+              return;
+            }
+
+            const branchName = `${type}/${issue.number}-${name}`;
+
+            // dev 브랜치 기준으로 생성
+            const { data: dev } = await github.rest.git.getRef({
+              owner,
+              repo,
+              ref: "heads/dev"
+            });
+
+            await github.rest.git.createRef({
+              owner,
+              repo,
+              ref: `refs/heads/${branchName}`,
+              sha: dev.object.sha
+            });
+
+            core.info(`Created: ${branchName}`);

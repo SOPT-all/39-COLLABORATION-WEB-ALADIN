@@ -5,8 +5,8 @@
   "scripts": {
     "lint": "eslint . --max-warnings=0",
     "lint:fix": "eslint . --fix --max-warnings=0",
-    "format": "prettier . --write",
-    "format:check": "prettier . --check"
+    "format": "prettier \"**/*.{js,jsx,ts,tsx,mjs,cjs,mts,cts}\" --write",
+    "format:check": "prettier \"**/*.{js,jsx,ts,tsx,mjs,cjs,mts,cts}\" --check"
   },
   "devDependencies": {
     "@eslint/js": "9.39.5",

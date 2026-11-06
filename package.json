@@ -1,0 +1,20 @@
+{
+  "name": "39-collaboration-web-aladin",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "lint": "eslint . --max-warnings=0",
+    "lint:fix": "eslint . --fix --max-warnings=0",
+    "format": "prettier \"**/*.{js,jsx,ts,tsx,mjs,cjs,mts,cts}\" --write",
+    "format:check": "prettier \"**/*.{js,jsx,ts,tsx,mjs,cjs,mts,cts}\" --check"
+  },
+  "devDependencies": {
+    "@eslint/js": "9.39.5",
+    "eslint": "9.39.5",
+    "eslint-config-prettier": "10.1.8",
+    "globals": "17.14.0",
+    "prettier": "3.9.10",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.72.1"
+  }
+}

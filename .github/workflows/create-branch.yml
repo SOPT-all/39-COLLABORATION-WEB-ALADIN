@@ -15,25 +15,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Create branch
+      - name: Prepare branch name
+        id: prepare
         uses: actions/github-script@v7
         with:
           script: |
-            const { owner, repo } = context.repo;
             const issue = context.payload.issue;
             const body = issue.body || "";
 
             // 이슈 제목에서 작업 유형 추출
             const typeMap = {
-              Feat: "feat",
-              Fix: "fix",
-              Refactor: "refactor",
-              Chore: "chore",
-              Docs: "docs"
+              feat: "feat",
+              fix: "fix",
+              refactor: "refactor",
+              chore: "chore",
+              docs: "docs"
             };
 
             const match = issue.title.match(
-              /^\[(Feat|Fix|Refactor|Chore|Docs)\]\s/
+              /^\[(Feat|Fix|Refactor|Chore|Docs)\]\s/i
             );
 
             if (!match) {
@@ -41,7 +41,7 @@ jobs:
               return;
             }
 
-            const type = typeMap[match[1]];
+            const type = typeMap[match[1].toLowerCase()];
 
             // 이슈 본문에서 브랜치명 추출
             const section = body.split("### 🌿 브랜치명\n")[1];
@@ -59,24 +59,35 @@ jobs:
 
             const branchName = `${type}/${issue.number}-${name}`;
 
-            // dev 브랜치 기준으로 생성
-            const { data: dev } = await github.rest.git.getRef({
-              owner,
-              repo,
-              ref: "heads/dev"
-            });
+            // 다음 단계로 브랜치 이름 전달
+            core.setOutput("branch_name", branchName);
 
-            await github.rest.git.createRef({
-              owner,
-              repo,
-              ref: `refs/heads/${branchName}`,
-              sha: dev.object.sha
-            });
+      # Issue에 연결된 개발 브랜치 생성
+      - name: Create linked development branch
+        if: steps.prepare.outputs.branch_name != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          BRANCH_NAME: ${{ steps.prepare.outputs.branch_name }}
+        run: |
+          gh issue develop "$ISSUE_NUMBER" \
+            --repo "$GH_REPO" \
+            --base dev \
+            --name "$BRANCH_NAME"
 
-            core.info(`Created: ${branchName}`);
+      # 브랜치 생성 후 Issue에 안내 댓글 작성
+      - name: Comment branch instructions
+        if: steps.prepare.outputs.branch_name != ''
+        uses: actions/github-script@v7
+        env:
+          BRANCH_NAME: ${{ steps.prepare.outputs.branch_name }}
+        with:
+          script: |
+            const { owner, repo } = context.repo;
+            const issue = context.payload.issue;
+            const branchName = process.env.BRANCH_NAME;
 
-            
-            // 생성된 브랜치로 이동하는 명령어 안내
             const comment = [
               "### 🌿 작업 브랜치가 생성되었습니다!",
               "",
@@ -100,4 +111,3 @@ jobs:
             });
 
             core.info("브랜치 이동 안내 댓글 작성 완료");
-

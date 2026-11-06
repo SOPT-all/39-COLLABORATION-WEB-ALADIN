@@ -32,6 +32,23 @@ jobs:
 
             const number = item.number;
             const author = item.user.login.toLowerCase();
+            
+            // Issue 및 PR 작성자를 Assignee로 자동 지정
+            const currentAssignees = item.assignees ?? [];
+
+            const alreadyAssigned = currentAssignees.some(
+              assignee =>
+                assignee.login.toLowerCase() === author
+            );
+
+            if (!alreadyAssigned) {
+              await github.rest.issues.addAssignees({
+                owner,
+                repo,
+                issue_number: number,
+                assignees: [item.user.login]
+              });
+            }
 
             // GitHub 아이디 → 실제 라벨 이름
             const members = {

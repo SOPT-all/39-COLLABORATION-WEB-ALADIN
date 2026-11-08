@@ -1,4 +1,3 @@
-
 name: Create Branch from Issue
 
 on:
@@ -14,12 +13,20 @@ jobs:
     if: contains(fromJSON('["OWNER","MEMBER","COLLABORATOR"]'), github.event.issue.author_association)
     runs-on: ubuntu-latest
 
+
     steps:
+      # Git 저장소 체크아웃
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: dev
+
       - name: Prepare branch name
         id: prepare
         uses: actions/github-script@v7
         with:
           script: |
+
             const issue = context.payload.issue;
             const body = issue.body || "";
 

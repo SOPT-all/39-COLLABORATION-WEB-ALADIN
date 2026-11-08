@@ -1,0 +1,46 @@
+:root {
+  /* Primary */
+  --color-pink-50: #ffeaf1;
+  --color-pink-100: #ffd8e4;
+  --color-pink-200: #ffb4cc;
+  --color-pink-300: #ff87b1;
+  --color-pink-400: #ff5a9a;
+  --color-pink-500: #eb217c;
+  --color-pink-600: #c00064;
+  --color-pink-700: #91004c;
+
+  /* Secondary */
+  --color-navy-50: #eaf0fd;
+  --color-navy-100: #cedaf8;
+  --color-navy-200: #a5b7e6;
+  --color-navy-300: #7d90d0;
+  --color-navy-400: #596ab5;
+  --color-navy-500: #3e4899;
+  --color-navy-600: #2a347f;
+  --color-navy-700: #192067;
+
+  /* Grayscale */
+  --color-gray-950: #1b1b1b;
+  --color-gray-700: #636363;
+  --color-gray-500: #999999;
+  --color-gray-300: #c2c2c2;
+  --color-gray-200: #dddddd;
+  --color-gray-100: #ececec;
+  --color-gray-50: #f3f3f3;
+  --color-white: #ffffff;
+
+  /* Sub */
+  --color-sky: #03a9f4;
+  --color-bluegray: #4e7085;
+  --color-light-blue: #eaf3fa;
+
+  /* Seller Tag */
+  --color-seller-professional: #af17c5;
+  --color-seller-professional-50: #fef2ff;
+  --color-seller-gold: #dd9e00;
+  --color-seller-gold-50: #fdf6e8;
+
+  /* Dim */
+  --color-dim-30: rgb(0 0 0 / 30%);
+  --color-dim-50: rgb(0 0 0 / 50%);
+}

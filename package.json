@@ -2,6 +2,7 @@
   "name": "39-collaboration-web-aladin",
   "version": "0.0.0",
   "private": true,
+  "packageManager": "pnpm@10.18.3",
   "scripts": {
     "lint": "eslint . --max-warnings=0",
     "lint:fix": "eslint . --fix --max-warnings=0",

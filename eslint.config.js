@@ -1,4 +1,5 @@
 import js from '@eslint/js';
+import stylistic from '@stylistic/eslint-plugin';
 import prettier from 'eslint-config-prettier';
 import globals from 'globals';
 import reactHooks from 'eslint-plugin-react-hooks';
@@ -23,6 +24,13 @@ export default defineConfig([
     files: ['**/*.{jsx,tsx}'],
     // Vite React 프로젝트에서 Hook 사용과 Fast Refresh 호환성 검사
     extends: [reactHooks.configs.flat.recommended, reactRefresh.configs.vite],
+    plugins: {
+      '@stylistic': stylistic,
+    },
+    rules: {
+      // children이 없는 JSX 요소는 self-closing 형태로 작성하고 자동 수정
+      '@stylistic/jsx-self-closing-comp': 'error',
+    },
   },
   // 코드 정리는 Prettier에 맡기고, ESLint와 겹치는 규칙은 마지막에 끄기
   prettier,

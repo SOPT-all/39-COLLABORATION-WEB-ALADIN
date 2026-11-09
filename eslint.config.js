@@ -21,9 +21,14 @@ export default defineConfig([
     },
   },
   {
+    files: ['**/*.{js,jsx,ts,tsx}'],
+    // .ts로 작성한 커스텀 Hook을 포함해 React Hook 사용 규칙 검사
+    extends: [reactHooks.configs.flat.recommended],
+  },
+  {
     files: ['**/*.{jsx,tsx}'],
-    // Vite React 프로젝트에서 Hook 사용과 Fast Refresh 호환성 검사
-    extends: [reactHooks.configs.flat.recommended, reactRefresh.configs.vite],
+    // JSX와 TSX에서 Vite Fast Refresh 호환성 및 self-closing 형식 검사
+    extends: [reactRefresh.configs.vite],
     plugins: {
       '@stylistic': stylistic,
     },

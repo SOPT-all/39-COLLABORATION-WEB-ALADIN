@@ -28,7 +28,6 @@
     "paths": {
       "@pages/*": ["./src/pages/*"],
       "@routes/*": ["./src/routes/*"],
-      "@store/*": ["./src/store/*"],
       "@shared/*": ["./src/shared/*"],
       "@apis/*": ["./src/shared/apis/*"],
       "@assets/*": ["./src/shared/assets/*"],

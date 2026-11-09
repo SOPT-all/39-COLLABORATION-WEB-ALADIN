@@ -1,4 +1,4 @@
-:root {
+@theme static {
   /* Corner Radius */
   --radius-4: 0.25rem;
   --radius-8: 0.5rem;
@@ -11,16 +11,18 @@
   --shadow-popup: 0 0.625rem 1.25rem 0 rgb(0 0 0 / 15%);
 
   /* Spacing */
-  --space-2: 0.125rem;
-  --space-4: 0.25rem;
-  --space-8: 0.5rem;
-  --space-12: 0.75rem;
-  --space-16: 1rem;
-  --space-24: 1.5rem;
-  --space-32: 2rem;
-  --space-40: 2.5rem;
-  --space-48: 3rem;
+  --spacing-2: 0.125rem;
+  --spacing-4: 0.25rem;
+  --spacing-8: 0.5rem;
+  --spacing-12: 0.75rem;
+  --spacing-16: 1rem;
+  --spacing-24: 1.5rem;
+  --spacing-32: 2rem;
+  --spacing-40: 2.5rem;
+  --spacing-48: 3rem;
+}
 
+:root {
   /* Mobile Layout Grid */
   --layout-column-count: 4;
   --layout-margin-x: 1rem;

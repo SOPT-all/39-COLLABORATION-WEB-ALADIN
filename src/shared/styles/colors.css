@@ -1,4 +1,4 @@
-:root {
+@theme static {
   /* Primary */
   --color-pink-50: #ffeaf1;
   --color-pink-100: #ffd8e4;

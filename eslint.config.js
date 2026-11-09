@@ -1,11 +1,12 @@
 import js from '@eslint/js';
 import stylistic from '@stylistic/eslint-plugin';
 import prettier from 'eslint-config-prettier';
-import globals from 'globals';
+import perfectionist from 'eslint-plugin-perfectionist';
 import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
-import tseslint from 'typescript-eslint';
 import { defineConfig, globalIgnores } from 'eslint/config';
+import globals from 'globals';
+import tseslint from 'typescript-eslint';
 
 export default defineConfig([
   // 설치한 패키지나 자동으로 만들어지는 파일은 검사하지 않기
@@ -18,6 +19,34 @@ export default defineConfig([
       // 브라우저와 Node.js 전역 변수를 모두 인식하도록 설정
       globals: { ...globals.browser, ...globals.node },
       parserOptions: { ecmaFeatures: { jsx: true } },
+    },
+    plugins: {
+      perfectionist,
+    },
+    rules: {
+      // 외부 패키지, path alias, 상대경로, 스타일 순서로 import 자동 정렬
+      'perfectionist/sort-imports': [
+        'error',
+        {
+          type: 'alphabetical',
+          order: 'asc',
+          newlinesBetween: 1,
+          groups: [
+            ['type-builtin', 'type-external'],
+            ['value-builtin', 'value-external'],
+            'tsconfig-path',
+            ['type-parent', 'type-sibling', 'type-index'],
+            ['value-parent', 'value-sibling', 'value-index'],
+            'side-effect-style',
+            'side-effect',
+            'unknown',
+          ],
+          tsconfig: {
+            rootDir: '.',
+            filename: 'tsconfig.app.json',
+          },
+        },
+      ],
     },
   },
   {

@@ -32,7 +32,7 @@ jobs:
 
             const number = item.number;
             const author = item.user.login.toLowerCase();
-            
+
             // Issue 및 PR 작성자를 Assignee로 자동 지정
             const currentAssignees = item.assignees ?? [];
 

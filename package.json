@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "svgr": "svgr --out-dir src/shared/assets/svg -- public/svg",
+    "svgr": "svgr --no-index --out-dir src/shared/assets/svg -- public/svg",
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",

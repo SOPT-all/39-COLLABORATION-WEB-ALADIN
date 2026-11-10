@@ -5,6 +5,7 @@
   "type": "module",
   "packageManager": "pnpm@10.18.3",
   "scripts": {
+    "svgr": "svgr --no-index --out-dir src/shared/assets/svg -- public/svg",
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint . --max-warnings=0",
@@ -22,6 +23,7 @@
   },
   "devDependencies": {
     "@eslint/js": "10.0.1",
+    "@svgr/cli": "^8.1.0",
     "@stylistic/eslint-plugin": "5.10.0",
     "@tanstack/react-query-devtools": "5.107.1",
     "@types/node": "24.19.2",

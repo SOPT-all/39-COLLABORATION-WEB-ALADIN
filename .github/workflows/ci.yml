@@ -1,24 +1,20 @@
-
-name: ESLint & Prettier Check
+name: CI
 
 on:
-  push:
-    branches:
-      - init/7-eslint-prettier
   pull_request:
-    branches:
-      - dev
-  workflow_dispatch:
+    branches: [dev, main]
 
-permissions:
-  contents: read
+concurrency:
+  group: ci-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
 
 jobs:
   check:
+    name: Lint · Format · Type Check · Build
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
 
       - name: Setup pnpm
@@ -27,14 +23,17 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: 24
           cache: pnpm
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Check ESLint
+      - name: Lint
         run: pnpm lint
 
-      - name: Check Prettier
+      - name: Format check
         run: pnpm format:check
+
+      - name: Type check & Build
+        run: pnpm build

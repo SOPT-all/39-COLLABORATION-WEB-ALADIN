@@ -1,0 +1,49 @@
+import type { SVGProps } from 'react';
+const SvgIcGenres = (props: SVGProps<SVGSVGElement>) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={32}
+    height={32}
+    fill="none"
+    viewBox="0 0 32 32"
+    {...props}
+  >
+    <rect
+      width={10.667}
+      height={10.667}
+      x={4}
+      y={4}
+      stroke="#1B1B1B"
+      strokeWidth={1.2}
+      rx={2}
+    />
+    <rect
+      width={10.667}
+      height={10.667}
+      x={4}
+      y={17.333}
+      stroke="#1B1B1B"
+      strokeWidth={1.2}
+      rx={2}
+    />
+    <rect
+      width={10.667}
+      height={10.667}
+      x={17.333}
+      y={4}
+      stroke="#1B1B1B"
+      strokeWidth={1.2}
+      rx={2}
+    />
+    <rect
+      width={10.667}
+      height={10.667}
+      x={17.333}
+      y={17.333}
+      stroke="#3E4899"
+      strokeWidth={1.2}
+      rx={2}
+    />
+  </svg>
+);
+export default SvgIcGenres;

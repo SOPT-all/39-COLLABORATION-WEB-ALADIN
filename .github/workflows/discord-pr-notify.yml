@@ -37,7 +37,7 @@ jobs:
       - name: Checkout trusted base branch
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.pull_request.base.sha || github.event.repository.default_branch }}
+          ref: ${{ github.event.repository.default_branch }}
           persist-credentials: false
 
       - name: Send Discord notification
@@ -45,7 +45,7 @@ jobs:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
           DISCORD_USER_MAP: ${{ vars.DISCORD_USER_MAP }}
           GITHUB_EVENT_PATH: ${{ github.event_path }}
-          GITHUB_EVENT_NAME: ${{ github.event_name }}
+          DISCORD_EVENT_NAME: ${{ github.event_name }}
         run: python3 "$GITHUB_WORKSPACE/.github/scripts/discordNotify.py"
 
   check-merge-conflicts:
@@ -71,7 +71,7 @@ jobs:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
           DISCORD_USER_MAP: ${{ vars.DISCORD_USER_MAP }}
           GITHUB_EVENT_PATH: ${{ github.event_path }}
-          GITHUB_EVENT_NAME: ${{ github.event_name }}
+          DISCORD_EVENT_NAME: ${{ github.event_name }}
           GITHUB_REPOSITORY: ${{ github.repository }}
           GITHUB_TOKEN: ${{ github.token }}
         run: python3 "$GITHUB_WORKSPACE/.github/scripts/discordNotify.py"

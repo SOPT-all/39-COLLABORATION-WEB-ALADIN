@@ -375,7 +375,7 @@ def main() -> int:
             return 0
 
         userMap = loadDiscordUserMap()
-        eventName = getRequiredEnvironmentVariable("GITHUB_EVENT_NAME")
+        eventName = getRequiredEnvironmentVariable("DISCORD_EVENT_NAME")
 
         if eventName in {"schedule", "workflow_dispatch"}:
             checkMergeConflicts(webhookUrl, userMap)

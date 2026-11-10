@@ -15,10 +15,12 @@ concurrency:
 jobs:
   notify:
     if: >-
-      (github.event_name != 'pull_request_review' ||
-      github.event.action == 'dismissed' ||
+      (github.event_name == 'pull_request_target' &&
+      github.event.pull_request.merged == true) ||
+      (github.event_name == 'pull_request_review' &&
+      (github.event.action == 'dismissed' ||
       github.event.review.state == 'approved' ||
-      github.event.review.state == 'changes_requested')
+      github.event.review.state == 'changes_requested'))
     runs-on: ubuntu-latest
     timeout-minutes: 5
     permissions:

@@ -137,11 +137,11 @@ def createReviewPayload(
     mention, allowedUserIds = getMention(author, userMap)
 
     if isDismissed:
-        title = "↩️ 리뷰 승인이 취소되었어요!"
+        title = "↩️ 리뷰가 취소되었어요!"
         body = [
             "지니가 리뷰 상태 변경 소식을 가져왔어요! 🪄",
             "",
-            "승인이 취소되어 다시 한번 확인이 필요해요.",
+            "등록된 리뷰가 취소되어 다시 한번 확인이 필요해요.",
             "",
             f"📖 PR #{pullRequest['number']} · 리뷰어: {getDisplayName(reviewer)}",
         ]
@@ -235,7 +235,7 @@ def main() -> int:
             payload = createReviewRequestPayload(event, userMap)
         elif eventName == "pull_request_review":
             payload = createReviewPayload(event, userMap)
-        elif event.get("action") == "closed":
+        elif eventName == "pull_request_target":
             payload = createMergedPayload(event)
         else:
             payload = None

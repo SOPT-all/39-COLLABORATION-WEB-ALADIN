@@ -247,7 +247,6 @@ jobs:
 
       - name: Send Discord review request
         if: steps.request-reviewers.outputs.reviewers != ''
-        continue-on-error: true
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
           DISCORD_USER_MAP: ${{ vars.DISCORD_USER_MAP }}

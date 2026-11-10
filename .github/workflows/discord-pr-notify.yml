@@ -5,24 +5,16 @@ on:
     types: [closed]
   pull_request_review:
     types: [submitted, dismissed]
-  workflow_run:
-    workflows: ["CI"]
-    types: [completed]
-  schedule:
-    - cron: "*/15 * * * *"
-  workflow_dispatch:
 
 permissions: {}
 
 concurrency:
-  group: discord-pr-notify-${{ github.event_name }}-${{ github.event.pull_request.number || github.event.workflow_run.id || 'merge-conflict-scan' }}-${{ github.event.action }}
+  group: discord-pr-notify-${{ github.event_name }}-${{ github.event.pull_request.number }}-${{ github.event.action }}
   cancel-in-progress: false
 
 jobs:
   notify:
     if: >-
-      github.event_name != 'schedule' &&
-      github.event_name != 'workflow_dispatch' &&
       (github.event_name != 'pull_request_review' ||
       github.event.action == 'dismissed' ||
       github.event.review.state == 'approved' ||
@@ -46,32 +38,4 @@ jobs:
           DISCORD_USER_MAP: ${{ vars.DISCORD_USER_MAP }}
           GITHUB_EVENT_PATH: ${{ github.event_path }}
           DISCORD_EVENT_NAME: ${{ github.event_name }}
-        run: python3 "$GITHUB_WORKSPACE/.github/scripts/discordNotify.py"
-
-  check-merge-conflicts:
-    if: >-
-      github.event_name == 'schedule' ||
-      github.event_name == 'workflow_dispatch'
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    permissions:
-      contents: read
-      issues: write
-      pull-requests: read
-
-    steps:
-      - name: Checkout default branch
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.repository.default_branch }}
-          persist-credentials: false
-
-      - name: Check merge conflicts
-        env:
-          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
-          DISCORD_USER_MAP: ${{ vars.DISCORD_USER_MAP }}
-          GITHUB_EVENT_PATH: ${{ github.event_path }}
-          DISCORD_EVENT_NAME: ${{ github.event_name }}
-          GITHUB_REPOSITORY: ${{ github.repository }}
-          GITHUB_TOKEN: ${{ github.token }}
         run: python3 "$GITHUB_WORKSPACE/.github/scripts/discordNotify.py"

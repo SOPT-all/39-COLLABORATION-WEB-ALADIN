@@ -10,9 +10,7 @@ from typing import Any
 GREEN = 0x2ECC71
 ORANGE = 0xE67E22
 PURPLE = 0x9B59B6
-RED = 0xE74C3C
 YELLOW = 0xF1C40F
-MERGE_CONFLICT_MARKER = "<!-- aladin-discord-merge-conflict -->"
 TEAM_NAMES = {
     "yumin-kim2": "김유민",
     "kimxeesoo": "김희수",
@@ -201,151 +199,6 @@ def createMergedPayload(event: dict[str, Any]) -> dict[str, Any] | None:
     )
 
 
-def createCiPayload(
-    event: dict[str, Any], userMap: dict[str, str]
-) -> dict[str, Any] | None:
-    workflowRun = event["workflow_run"]
-    pullRequests = workflowRun.get("pull_requests") or []
-    conclusion = workflowRun.get("conclusion")
-    if not pullRequests or conclusion not in {"success", "failure", "timed_out"}:
-        return None
-
-    pullRequest = pullRequests[0]
-    workflowName = workflowRun["name"]
-    if conclusion == "success":
-        description = "\n".join(
-            [
-                "지니의 마법 검사 통과! ✨",
-                "",
-                "모든 검사가 성공했어요. 코드가 깔끔하게 준비되었네요!",
-                "",
-                f"📖 PR #{pullRequest['number']} · {workflowName}",
-            ]
-        )
-        return createDiscordPayload(
-            "🎉 CI 검사를 통과했어요!",
-            description,
-            GREEN,
-            workflowRun["html_url"],
-        )
-
-    author = pullRequest["user"]["login"]
-    mention, allowedUserIds = getMention(author, userMap)
-    description = "\n".join(
-        [
-            "앗, 지니의 마법 검사에서 작은 문제가 발견됐어요! 🪄",
-            "",
-            "검사 결과를 확인하고 수정 부탁드릴게요 💛",
-            "",
-            f"📖 PR #{pullRequest['number']} · {workflowName} "
-            f"{'시간 초과' if conclusion == 'timed_out' else '검사 실패'}",
-        ]
-    )
-    return createDiscordPayload(
-        "🔍 CI 검사에서 확인할 부분이 있어요!",
-        description,
-        RED,
-        workflowRun["html_url"],
-        mention,
-        allowedUserIds,
-    )
-
-
-def githubApiRequest(
-    path: str,
-    method: str = "GET",
-    payload: dict[str, Any] | None = None,
-) -> Any:
-    repository = getRequiredEnvironmentVariable("GITHUB_REPOSITORY")
-    token = getRequiredEnvironmentVariable("GITHUB_TOKEN")
-    url = f"https://api.github.com/repos/{repository}{path}"
-    data = None if payload is None else json.dumps(payload).encode("utf-8")
-    request = urllib.request.Request(
-        url,
-        data=data,
-        method=method,
-        headers={
-            "Accept": "application/vnd.github+json",
-            "Authorization": f"Bearer {token}",
-            "X-GitHub-Api-Version": "2022-11-28",
-            "User-Agent": "ALADIN-GitHub-Actions",
-        },
-    )
-    with urllib.request.urlopen(request, timeout=20) as response:
-        if response.status == 204:
-            return None
-        return json.load(response)
-
-
-def findMergeConflictMarker(pullRequestNumber: int) -> int | None:
-    page = 1
-    while True:
-        comments = githubApiRequest(
-            f"/issues/{pullRequestNumber}/comments?per_page=100&page={page}"
-        )
-        for comment in comments:
-            if comment.get("body", "").strip() == MERGE_CONFLICT_MARKER:
-                return int(comment["id"])
-
-        if len(comments) < 100:
-            return None
-        page += 1
-
-
-def addMergeConflictMarker(pullRequestNumber: int) -> None:
-    githubApiRequest(
-        f"/issues/{pullRequestNumber}/comments",
-        method="POST",
-        payload={"body": MERGE_CONFLICT_MARKER},
-    )
-
-
-def removeMergeConflictMarker(commentId: int) -> None:
-    githubApiRequest(
-        f"/issues/comments/{commentId}",
-        method="DELETE",
-    )
-
-
-def checkMergeConflicts(webhookUrl: str, userMap: dict[str, str]) -> None:
-    pullRequests = githubApiRequest("/pulls?state=open&per_page=100")
-    for summary in pullRequests:
-        try:
-            pullRequest = githubApiRequest(f"/pulls/{summary['number']}")
-            markerId = findMergeConflictMarker(pullRequest["number"])
-            hasConflict = pullRequest.get("mergeable") is False
-
-            if hasConflict and markerId is None:
-                author = pullRequest["user"]["login"]
-                mention, allowedUserIds = getMention(author, userMap)
-                description = "\n".join(
-                    [
-                        "앗! 두 브랜치가 서로 엇갈렸나 봐요 👀",
-                        "",
-                        "충돌한 부분만 확인하고 해결해 주시면 감사하겠습니다!",
-                        "",
-                        f"📖 PR #{pullRequest['number']} · Merge conflict",
-                    ]
-                )
-                payload = createDiscordPayload(
-                    "🧩 머지 충돌이 발견되었어요!",
-                    description,
-                    RED,
-                    pullRequest["html_url"],
-                    mention,
-                    allowedUserIds,
-                )
-                sendNotification(webhookUrl, payload)
-                addMergeConflictMarker(pullRequest["number"])
-            elif not hasConflict and markerId is not None:
-                removeMergeConflictMarker(markerId)
-        except (KeyError, OSError, TypeError, ValueError, RuntimeError) as error:
-            print(
-                f"::warning::PR #{summary.get('number')} 충돌 검사 실패: {error}",
-                file=sys.stderr,
-            )
-
-
 def sendNotification(webhookUrl: str, payload: dict[str, Any]) -> None:
     request = urllib.request.Request(
         webhookUrl,
@@ -377,18 +230,11 @@ def main() -> int:
         userMap = loadDiscordUserMap()
         eventName = getRequiredEnvironmentVariable("DISCORD_EVENT_NAME")
 
-        if eventName in {"schedule", "workflow_dispatch"}:
-            checkMergeConflicts(webhookUrl, userMap)
-            print("머지 충돌 상태를 확인했습니다.")
-            return 0
-
         event = loadEvent()
         if eventName == "review_request":
             payload = createReviewRequestPayload(event, userMap)
         elif eventName == "pull_request_review":
             payload = createReviewPayload(event, userMap)
-        elif eventName == "workflow_run":
-            payload = createCiPayload(event, userMap)
         elif event.get("action") == "closed":
             payload = createMergedPayload(event)
         else:

@@ -7,6 +7,8 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
+    "format": "prettier \"**/*.{js,jsx,ts,tsx,mjs,cjs,mts,cts}\" --write",
+    "format:check": "prettier \"**/*.{js,jsx,ts,tsx,mjs,cjs,mts,cts}\" --check",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -25,6 +27,8 @@
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.7",
     "globals": "^17.13.0",
+    "prettier": "3.9.10",
+    "prettier-plugin-tailwindcss": "0.8.1",
     "tailwindcss": "4.3.5",
     "typescript": "~6.0.3",
     "typescript-eslint": "^8.72.1",

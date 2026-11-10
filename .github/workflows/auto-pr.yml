@@ -8,6 +8,7 @@ on:
     types: [opened, edited, reopened, ready_for_review]
 
 permissions:
+  contents: read
   issues: write
   pull-requests: write
 
@@ -143,6 +144,7 @@ jobs:
 
     steps:
       - name: Request team reviewers
+        id: request-reviewers
         uses: actions/github-script@v7
         with:
           script: |
@@ -226,6 +228,7 @@ jobs:
               core.info(
                 `리뷰어 요청 완료: ${reviewers.join(", ")}`
               );
+              core.setOutput("reviewers", JSON.stringify(reviewers));
             } catch (error) {
               core.warning(
                 `리뷰어 요청 실패: ${error.message}`
@@ -234,3 +237,20 @@ jobs:
                 "팀원의 저장소 권한 및 리뷰어 요청 가능 여부를 확인하세요."
               );
             }
+
+      - name: Checkout trusted base branch
+        if: steps.request-reviewers.outputs.reviewers != ''
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+          persist-credentials: false
+
+      - name: Send Discord review request
+        if: steps.request-reviewers.outputs.reviewers != ''
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          DISCORD_USER_MAP: ${{ vars.DISCORD_USER_MAP }}
+          GITHUB_EVENT_PATH: ${{ github.event_path }}
+          DISCORD_EVENT_NAME: review_request
+          REVIEWERS_JSON: ${{ steps.request-reviewers.outputs.reviewers }}
+        run: python3 "$GITHUB_WORKSPACE/.github/scripts/discordNotify.py"

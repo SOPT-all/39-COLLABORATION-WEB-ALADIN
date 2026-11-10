@@ -1,0 +1,157 @@
+:root {
+  --font-family-pretendard: 'Pretendard Variable', Pretendard, -apple-system,
+    BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+
+  --font-size-display-24: 1.5rem;
+  --font-size-title-20: 1.25rem;
+  --font-size-title-18: 1.125rem;
+  --font-size-body-16: 1rem;
+  --font-size-body-14: 0.875rem;
+  --font-size-label-12: 0.75rem;
+
+  --line-height-display: 1.3;
+  --line-height-title: 1.4;
+  --line-height-body: 1.5;
+
+  --letter-spacing-display: -0.02em;
+  --letter-spacing-title-20: -0.02em;
+  --letter-spacing-title-18: -0.01em;
+  --letter-spacing-default: 0;
+}
+
+@theme inline {
+  --font-pretendard: var(--font-family-pretendard);
+
+  --text-display-24sb: var(--font-size-display-24);
+  --text-display-24sb--line-height: var(--line-height-display);
+  --text-display-24sb--letter-spacing: var(--letter-spacing-display);
+  --text-display-24sb--font-weight: var(--font-weight-semibold);
+
+  --text-title-20sb: var(--font-size-title-20);
+  --text-title-20sb--line-height: var(--line-height-title);
+  --text-title-20sb--letter-spacing: var(--letter-spacing-title-20);
+  --text-title-20sb--font-weight: var(--font-weight-semibold);
+
+  --text-title-18sb: var(--font-size-title-18);
+  --text-title-18sb--line-height: var(--line-height-title);
+  --text-title-18sb--letter-spacing: var(--letter-spacing-title-18);
+  --text-title-18sb--font-weight: var(--font-weight-semibold);
+
+  --text-title-18m: var(--font-size-title-18);
+  --text-title-18m--line-height: var(--line-height-title);
+  --text-title-18m--letter-spacing: var(--letter-spacing-title-18);
+  --text-title-18m--font-weight: var(--font-weight-medium);
+
+  --text-body-16sb: var(--font-size-body-16);
+  --text-body-16sb--line-height: var(--line-height-body);
+  --text-body-16sb--letter-spacing: var(--letter-spacing-default);
+  --text-body-16sb--font-weight: var(--font-weight-semibold);
+
+  --text-body-16m: var(--font-size-body-16);
+  --text-body-16m--line-height: var(--line-height-body);
+  --text-body-16m--letter-spacing: var(--letter-spacing-default);
+  --text-body-16m--font-weight: var(--font-weight-medium);
+
+  --text-body-16r: var(--font-size-body-16);
+  --text-body-16r--line-height: var(--line-height-body);
+  --text-body-16r--letter-spacing: var(--letter-spacing-default);
+  --text-body-16r--font-weight: var(--font-weight-regular);
+
+  --text-body-14sb: var(--font-size-body-14);
+  --text-body-14sb--line-height: var(--line-height-body);
+  --text-body-14sb--letter-spacing: var(--letter-spacing-default);
+  --text-body-14sb--font-weight: var(--font-weight-semibold);
+
+  --text-body-14m: var(--font-size-body-14);
+  --text-body-14m--line-height: var(--line-height-body);
+  --text-body-14m--letter-spacing: var(--letter-spacing-default);
+  --text-body-14m--font-weight: var(--font-weight-medium);
+
+  --text-body-14r: var(--font-size-body-14);
+  --text-body-14r--line-height: var(--line-height-body);
+  --text-body-14r--letter-spacing: var(--letter-spacing-default);
+  --text-body-14r--font-weight: var(--font-weight-regular);
+
+  --text-label-12sb: var(--font-size-label-12);
+  --text-label-12sb--line-height: var(--line-height-body);
+  --text-label-12sb--letter-spacing: var(--letter-spacing-default);
+  --text-label-12sb--font-weight: var(--font-weight-semibold);
+
+  --text-caption-12r: var(--font-size-label-12);
+  --text-caption-12r--line-height: var(--line-height-body);
+  --text-caption-12r--letter-spacing: var(--letter-spacing-default);
+  --text-caption-12r--font-weight: var(--font-weight-regular);
+}
+
+.display24Sb {
+  font-size: var(--font-size-display-24);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-display);
+  letter-spacing: var(--letter-spacing-display);
+}
+
+.title20Sb {
+  font-size: var(--font-size-title-20);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-title);
+  letter-spacing: var(--letter-spacing-title-20);
+}
+
+.title18Sb,
+.title18M {
+  font-size: var(--font-size-title-18);
+  line-height: var(--line-height-title);
+  letter-spacing: var(--letter-spacing-title-18);
+}
+
+.title18Sb {
+  font-weight: var(--font-weight-semibold);
+}
+
+.title18M {
+  font-weight: var(--font-weight-medium);
+}
+
+.body16Sb,
+.body16M,
+.body16R {
+  font-size: var(--font-size-body-16);
+  line-height: var(--line-height-body);
+  letter-spacing: var(--letter-spacing-default);
+}
+
+.body14Sb,
+.body14M,
+.body14R {
+  font-size: var(--font-size-body-14);
+  line-height: var(--line-height-body);
+  letter-spacing: var(--letter-spacing-default);
+}
+
+.body16Sb,
+.body14Sb,
+.label12Sb {
+  font-weight: var(--font-weight-semibold);
+}
+
+.body16M,
+.body14M {
+  font-weight: var(--font-weight-medium);
+}
+
+.body16R,
+.body14R,
+.caption12R {
+  font-weight: var(--font-weight-regular);
+}
+
+.label12Sb,
+.caption12R {
+  font-size: var(--font-size-label-12);
+  line-height: var(--line-height-body);
+  letter-spacing: var(--letter-spacing-default);
+}

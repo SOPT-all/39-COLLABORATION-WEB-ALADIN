@@ -20,9 +20,7 @@ export default defineConfig([
       globals: { ...globals.browser, ...globals.node },
       parserOptions: { ecmaFeatures: { jsx: true } },
     },
-    plugins: {
-      perfectionist,
-    },
+    plugins: { perfectionist },
     rules: {
       // 외부 패키지, path alias, 상대경로, 스타일 순서로 import 자동 정렬
       'perfectionist/sort-imports': [
@@ -41,10 +39,7 @@ export default defineConfig([
             'side-effect',
             'unknown',
           ],
-          tsconfig: {
-            rootDir: '.',
-            filename: 'tsconfig.app.json',
-          },
+          tsconfig: { rootDir: '.', filename: 'tsconfig.app.json' },
         },
       ],
     },
@@ -58,13 +53,8 @@ export default defineConfig([
     files: ['**/*.{jsx,tsx}'],
     // JSX와 TSX에서 Vite Fast Refresh 호환성 및 self-closing 형식 검사
     extends: [reactRefresh.configs.vite],
-    plugins: {
-      '@stylistic': stylistic,
-    },
-    rules: {
-      // children이 없는 JSX 요소는 self-closing 형태로 작성하고 자동 수정
-      '@stylistic/jsx-self-closing-comp': 'error',
-    },
+    plugins: { '@stylistic': stylistic },
+    rules: { '@stylistic/jsx-self-closing-comp': 'error' },
   },
   // 코드 정리는 Prettier에 맡기고, ESLint와 겹치는 규칙은 마지막에 끄기
   prettier,

@@ -7,6 +7,7 @@ import { queryClient } from '@apis/queryClient';
 
 import App from './App.tsx';
 
+import 'pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css';
 import '@styles/global.css';
 
 createRoot(document.getElementById('root')!).render(

@@ -1,10 +1,19 @@
-import { Outlet } from 'react-router';
+import { Outlet, useLocation } from 'react-router';
+
+import Header from '@components/Header';
+import { ROUTES } from '@constants/routes';
 
 const Layout = () => {
+  const { pathname } = useLocation();
+  const isHome = pathname === ROUTES.HOME;
+
   return (
-    <main>
-      <Outlet />
-    </main>
+    <>
+      <Header variant={isHome ? 'home' : 'default'} />
+      <main>
+        <Outlet />
+      </main>
+    </>
   );
 };
 

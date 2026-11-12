@@ -34,17 +34,6 @@ export const router = createBrowserRouter([
           Component: (await import('@pages/cart/CartPage')).default,
         }),
       },
-      ...(import.meta.env.DEV
-        ? [
-            {
-              path: '/components',
-              lazy: async () => ({
-                Component: (await import('@pages/components/ComponentsPage'))
-                  .default,
-              }),
-            },
-          ]
-        : []),
       {
         path: '*',
         lazy: async () => ({

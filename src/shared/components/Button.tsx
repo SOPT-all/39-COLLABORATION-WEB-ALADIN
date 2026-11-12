@@ -3,7 +3,7 @@ import type { ComponentPropsWithRef } from 'react';
 const variantClasses = {
   primary: 'bg-pink-500 text-white enabled:active:bg-pink-600',
   secondary:
-    'text-pink-500 inset-ring inset-ring-pink-500 enabled:active:bg-pink-50',
+    'bg-white text-pink-500 inset-ring inset-ring-pink-500 enabled:active:bg-pink-50',
 };
 
 const sizeClasses = {

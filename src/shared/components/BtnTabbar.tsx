@@ -33,4 +33,3 @@ const BtnTabbar = ({
 };
 
 export default BtnTabbar;
-export type { BtnTabbarProps };

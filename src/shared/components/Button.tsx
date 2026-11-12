@@ -28,7 +28,7 @@ const Button = ({
     <button
       {...props}
       type={type}
-      className={`w-full rounded-4 text-center ${sizeClasses[size]} ${variantClasses[variant]} ${className}`}
+      className={`rounded-4 text-center ${sizeClasses[size]} ${variantClasses[variant]} ${className}`}
     >
       {children}
     </button>

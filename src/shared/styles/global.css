@@ -19,7 +19,7 @@
 
   body {
     color: var(--color-gray-950);
-    background-color: var(--color-white);
+    background-color: var(--color-gray-100);
     font-family: var(--font-family-pretendard);
     font-size: var(--font-size-body-16);
     font-weight: var(--font-weight-regular);
@@ -30,7 +30,10 @@
   }
 
   #root {
+    width: 375px;
     min-height: 100vh;
+    margin-inline: auto;
+    background-color: var(--color-white);
   }
 
   button,

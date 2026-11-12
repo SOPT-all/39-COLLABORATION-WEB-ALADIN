@@ -19,7 +19,7 @@ const BtnTabbar = ({
   ...props
 }: BtnTabbarProps) => {
   const selectedClass = isSelected
-    ? "after:absolute after:bottom-0 after:left-1/2 after:h-1 after:w-[100px] after:-translate-x-1/2 after:bg-pink-500 after:content-['']"
+    ? "after:absolute after:bottom-0 after:left-1/2 after:h-4 after:w-[100px] after:-translate-x-1/2 after:bg-pink-500 after:content-['']"
     : '';
   const labelClass = isSelected ? 'text-pink-500' : 'text-gray-500';
   const countClass = isSelected ? 'text-pink-300' : 'text-gray-500';

@@ -22,7 +22,7 @@ const BtnTabbar = ({
   return (
     <button
       aria-selected={isSelected}
-      className={`relative flex h-[var(--spacing-48)] w-[93px] shrink-0 items-center justify-center overflow-hidden bg-white active:bg-gray-50 ${stateClass} ${className}`}
+      className={`relative flex h-[var(--spacing-48)] shrink-0 items-center justify-center overflow-hidden bg-white active:bg-gray-50 ${stateClass} ${className}`}
       role="tab"
       type={type}
       {...props}

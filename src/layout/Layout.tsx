@@ -1,5 +1,6 @@
 import { Outlet, useLocation } from 'react-router';
 
+import Footer from '@components/Footer';
 import Header from '@components/Header';
 import { ROUTES } from '@constants/routes';
 
@@ -13,6 +14,7 @@ const Layout = () => {
       <main>
         <Outlet />
       </main>
+      <Footer />
     </>
   );
 };

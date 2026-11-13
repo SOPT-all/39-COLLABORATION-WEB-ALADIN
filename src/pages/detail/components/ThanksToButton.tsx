@@ -1,9 +1,7 @@
-import type { MouseEventHandler } from 'react';
-
 interface ThanksToButtonProps {
   className?: string;
   disabled?: boolean;
-  onClick?: MouseEventHandler<HTMLButtonElement>;
+  onClick?: () => void;
 }
 
 const ThanksToButton = ({

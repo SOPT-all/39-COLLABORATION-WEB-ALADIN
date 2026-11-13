@@ -1,5 +1,3 @@
-import type { MouseEventHandler } from 'react';
-
 import IcLike from '@assets/svg/product/IcLike';
 import IcLikeFilled from '@assets/svg/product/IcLikeFilled';
 
@@ -7,7 +5,7 @@ interface LikeButtonProps {
   className?: string;
   disabled?: boolean;
   isLiked: boolean;
-  onClick?: MouseEventHandler<HTMLButtonElement>;
+  onClick?: () => void;
 }
 
 const LikeButton = ({

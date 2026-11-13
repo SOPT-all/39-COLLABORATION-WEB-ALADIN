@@ -11,7 +11,7 @@ const ThanksToButton = ({
 }: ThanksToButtonProps) => (
   <button
     {...props}
-    className={`inline-flex h-32 items-center justify-center gap-4 rounded-4 bg-navy-50 px-8 text-body-14sb text-navy-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy-400 enabled:active:bg-navy-100 ${className}`}
+    className={`inline-flex h-[29px] items-center rounded-4 bg-navy-50 px-8 py-4 text-label-12sb whitespace-nowrap text-navy-300 enabled:active:bg-navy-100 ${className}`}
     type={type}
   >
     Thanks to

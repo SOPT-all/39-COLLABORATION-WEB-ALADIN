@@ -1,24 +1,27 @@
-import type { ComponentPropsWithRef } from 'react';
+import type { MouseEventHandler } from 'react';
 
 import IcLike from '@assets/svg/product/IcLike';
 import IcLikeFilled from '@assets/svg/product/IcLikeFilled';
 
-interface LikeButtonProps extends ComponentPropsWithRef<'button'> {
-  children?: never;
+interface LikeButtonProps {
+  className?: string;
+  disabled?: boolean;
   isLiked: boolean;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
 }
 
 const LikeButton = ({
   className = '',
+  disabled,
   isLiked,
-  type = 'button',
-  ...props
+  onClick,
 }: LikeButtonProps) => (
   <button
-    {...props}
     aria-pressed={isLiked}
     className={`inline-flex w-[61px] items-center justify-center gap-4 rounded-4 bg-navy-50 px-8 py-4 text-label-12sb whitespace-nowrap text-navy-300 ${className}`}
-    type={type}
+    disabled={disabled}
+    onClick={onClick}
+    type="button"
   >
     <span
       aria-hidden="true"

@@ -50,11 +50,7 @@ const Header = ({ variant = 'default' }: HeaderProps) => {
           label="뒤로 가기"
           onClick={handleBackClick}
         />
-        <HeaderIconButton
-          className="-ml-[0.625rem]"
-          icon={<IcHome />}
-          label="홈"
-        />
+        <HeaderIconButton icon={<IcHome />} label="홈" size="narrow" />
       </div>
 
       <SearchField className="flex-1" keyword={SEARCH_KEYWORD} />

@@ -1,9 +1,15 @@
 import type { ComponentPropsWithRef, ReactNode } from 'react';
 
+const BUTTON_WIDTH = {
+  default: 'w-[2.75rem]',
+  narrow: 'w-[2.125rem]',
+} as const;
+
 interface HeaderIconButtonProps extends ComponentPropsWithRef<'button'> {
   badgeCount?: number;
   icon: ReactNode;
   label: string;
+  size?: keyof typeof BUTTON_WIDTH;
 }
 
 const HeaderIconButton = ({
@@ -11,6 +17,7 @@ const HeaderIconButton = ({
   className = '',
   icon,
   label,
+  size = 'default',
   type = 'button',
   ...props
 }: HeaderIconButtonProps) => {
@@ -19,7 +26,7 @@ const HeaderIconButton = ({
       {...props}
       type={type}
       aria-label={label}
-      className={`relative flex h-[3.5rem] w-[2.75rem] shrink-0 items-center justify-center active:bg-gray-50 ${className}`}
+      className={`relative flex h-[3.5rem] ${BUTTON_WIDTH[size]} shrink-0 items-center justify-center active:bg-gray-50 ${className}`}
     >
       {icon}
       {badgeCount > 0 && (

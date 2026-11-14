@@ -15,7 +15,7 @@ const SectionHeader = ({
 }: SectionHeaderProps) => {
   return (
     <div className="w-full bg-white px-(--layout-margin-x) py-12 text-gray-950">
-      <div className="flex w-full items-center justify-between">
+      <div className="flex items-center justify-between">
         <h2 className="text-title-20sb">{title}</h2>
         {time !== undefined && (
           <div className="flex h-[21px] w-[74px] shrink-0 items-center gap-8">

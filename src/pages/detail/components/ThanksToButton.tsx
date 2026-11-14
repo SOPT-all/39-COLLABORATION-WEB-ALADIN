@@ -10,7 +10,7 @@ const ThanksToButton = ({
   onClick,
 }: ThanksToButtonProps) => (
   <button
-    className={`inline-flex h-[29px] items-center rounded-4 bg-navy-50 px-8 py-4 text-label-12sb whitespace-nowrap text-navy-300 enabled:active:bg-navy-100 ${className}`}
+    className={`inline-flex h-[29px] items-center rounded-4 bg-navy-50 px-8 py-4 text-label-12sb whitespace-nowrap text-navy-300 transition-colors duration-300 ease-out enabled:active:bg-navy-100 ${className}`}
     disabled={disabled}
     onClick={onClick}
     type="button"

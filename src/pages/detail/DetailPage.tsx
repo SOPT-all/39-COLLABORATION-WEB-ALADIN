@@ -1,5 +1,3 @@
-import { useParams } from 'react-router';
-
 import ReviewCard from './components/ReviewCard';
 import { mockReviews } from './constants/mockReviews';
 

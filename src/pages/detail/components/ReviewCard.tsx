@@ -39,7 +39,7 @@ const ReviewCard = ({ review }: ReviewCardProps) => (
       <span className="text-body-16m">댓글 ({review.commentCount})</span>
 
       <div className="ml-auto flex items-center gap-4">
-        <LikeButton isLiked={false} />
+        <LikeButton isLiked={false} disabled />
         <ThanksToButton />
         <IcNotice aria-hidden="true" />
       </div>

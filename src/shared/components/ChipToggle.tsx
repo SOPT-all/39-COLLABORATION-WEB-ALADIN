@@ -6,22 +6,22 @@ const STATE_CLASSES = {
 };
 
 interface ChipToggleProps {
+  isSelected: boolean;
   label: string;
   onClick: () => void;
-  selected: boolean;
 }
 
-const ChipToggle = ({ label, onClick, selected }: ChipToggleProps) => {
-  const state = selected ? 'selected' : 'unselected';
+const ChipToggle = ({ isSelected, label, onClick }: ChipToggleProps) => {
+  const state = isSelected ? 'selected' : 'unselected';
 
   return (
     <button
       type="button"
       onClick={onClick}
-      aria-pressed={selected}
+      aria-pressed={isSelected}
       className={`inline-flex items-center justify-center gap-4 rounded-full px-12 py-4 text-label-12sb ${STATE_CLASSES[state]}`}
     >
-      {selected && (
+      {isSelected && (
         <IcCheckBlue
           aria-hidden="true"
           className="shrink-0 [&_path]:stroke-current"

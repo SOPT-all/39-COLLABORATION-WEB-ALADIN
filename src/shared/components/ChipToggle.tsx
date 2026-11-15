@@ -1,6 +1,6 @@
 import IcCheckBlue from '@assets/svg/cart/IcCheckBlue';
 
-const stateClasses = {
+const STATE_CLASSES = {
   selected: 'bg-sky text-white',
   unselected: 'bg-gray-50 text-gray-500',
 };
@@ -19,7 +19,7 @@ const ChipToggle = ({ label, onClick, selected }: ChipToggleProps) => {
       type="button"
       onClick={onClick}
       aria-pressed={selected}
-      className={`inline-flex items-center justify-center gap-4 rounded-full px-12 py-4 text-label-12sb ${stateClasses[state]}`}
+      className={`inline-flex items-center justify-center gap-4 rounded-full px-12 py-4 text-label-12sb ${STATE_CLASSES[state]}`}
     >
       {selected && (
         <IcCheckBlue

@@ -4,7 +4,9 @@ interface RankChangeProps {
 
 const RankChange = ({ change }: RankChangeProps) => {
   return (
-    <span className="inline-flex h-[24px] w-[21px] shrink-0 items-center justify-center">
+    <span
+      className={`inline-flex h-24 w-[21px] shrink-0 items-center ${change === 'same' ? 'justify-end' : 'justify-center'}`}
+    >
       {change === 'hot' ? (
         <span className="text-body-14r text-pink-500">hot</span>
       ) : (

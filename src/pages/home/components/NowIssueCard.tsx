@@ -21,7 +21,7 @@ const NowIssueCard = ({
         className="h-[160px] w-[112px] shrink-0 object-cover"
       />
       <div className="flex min-w-0 flex-1 flex-col gap-12 text-gray-950">
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-8">
           <span className="inline-flex h-[22px] w-[71px] shrink-0 items-center justify-center rounded-full bg-white text-label-12sb whitespace-nowrap text-navy-500 ring-1 ring-gray-200 ring-inset">
             {badge}
           </span>

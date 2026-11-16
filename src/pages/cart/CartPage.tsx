@@ -1,7 +1,8 @@
 import { useState } from 'react';
 
-import SegmentCart from '@components/SegmentCart';
 import TabBar from '@components/TabBar';
+
+import SegmentCart from './components/SegmentCart';
 
 const CART_TABS = [
   { label: '장바구니', value: 'cart' },

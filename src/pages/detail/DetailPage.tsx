@@ -1,11 +1,11 @@
 import ReviewCard from './components/ReviewCard';
-import { mockReviews } from './constants/mockReviews';
+import { MOCK_REVIEWS } from './constants/mockReviews';
 
 const DetailPage = () => {
   return (
     <div className="px-(--layout-margin-x)">
       <ul className="flex flex-col gap-24 py-12">
-        {mockReviews.map((review) => (
+        {MOCK_REVIEWS.map((review) => (
           <li key={review.id}>
             <ReviewCard review={review} />
           </li>

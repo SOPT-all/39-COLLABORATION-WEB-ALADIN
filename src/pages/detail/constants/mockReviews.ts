@@ -1,12 +1,6 @@
-export interface Review {
-  id: string;
-  author: string;
-  createdAt: string;
-  content: string;
-  commentCount: number;
-}
+import type { Review } from '../types/review';
 
-export const mockReviews: Review[] = [
+export const MOCK_REVIEWS: Review[] = [
   {
     id: 'review-1',
     author: '김하치와레',

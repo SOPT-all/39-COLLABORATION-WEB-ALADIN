@@ -4,7 +4,7 @@ import IcNotice from '@assets/svg/status/IcNotice';
 import IcPurchaseBadge from '@assets/svg/status/IcPurchaseBadge';
 import IcStar5 from '@assets/svg/status/IcStar5';
 
-import type { Review } from '../constants/mockReviews';
+import type { Review } from '../types/review';
 
 import LikeButton from './LikeButton';
 import ThanksToButton from './ThanksToButton';

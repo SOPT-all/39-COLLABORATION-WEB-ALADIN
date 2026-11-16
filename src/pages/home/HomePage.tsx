@@ -1,5 +1,7 @@
+import EditorPickSection from './components/EditorPickSection';
+
 const HomePage = () => {
-  return <h1>Home</h1>;
+  return <EditorPickSection />;
 };
 
 export default HomePage;

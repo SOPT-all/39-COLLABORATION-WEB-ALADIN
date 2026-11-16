@@ -1,5 +1,7 @@
+import HomeShortcutSection from './components/HomeShortcutSection';
+
 const HomePage = () => {
-  return <h1>Home</h1>;
+  return <HomeShortcutSection />;
 };
 
 export default HomePage;

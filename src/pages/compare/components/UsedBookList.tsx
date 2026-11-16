@@ -8,7 +8,7 @@ interface UsedBookListProps {
 }
 
 const UsedBookList = ({ onItemClick, usedBooks }: UsedBookListProps) => (
-  <ul className="divide-y divide-gray-200">
+  <ul>
     {usedBooks.map((usedBook) => (
       <li key={usedBook.id}>
         <UsedBookItem

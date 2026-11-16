@@ -1,11 +1,7 @@
 import NowIssueSection from './components/NowIssueSection';
 
 const HomePage = () => {
-  return (
-    <main>
-      <NowIssueSection />
-    </main>
-  );
+  return <NowIssueSection />;
 };
 
 export default HomePage;

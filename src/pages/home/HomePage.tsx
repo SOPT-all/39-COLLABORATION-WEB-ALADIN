@@ -1,5 +1,11 @@
+import NowIssueSection from './components/NowIssueSection';
+
 const HomePage = () => {
-  return <h1>Home</h1>;
+  return (
+    <main>
+      <NowIssueSection />
+    </main>
+  );
 };
 
 export default HomePage;

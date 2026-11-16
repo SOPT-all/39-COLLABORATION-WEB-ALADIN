@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 const NAV_ITEMS = [
   { label: 'HOME', width: 41 },
   { label: '중고도서', width: 49 },
@@ -59,4 +61,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-import { useState } from 'react';

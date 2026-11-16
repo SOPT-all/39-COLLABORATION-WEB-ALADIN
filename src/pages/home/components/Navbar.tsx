@@ -30,12 +30,22 @@ const Navbar = () => {
               aria-current={index === 0 ? 'page' : undefined}
               className={`flex h-full shrink-0 items-center whitespace-nowrap ${
                 index === 0
-                  ? 'text-body-14sb shadow-[inset_0_-2px_0_var(--color-gray-950)]'
+                  ? 'text-body-14sb'
                   : 'text-body-14m'
               } ${label === '중고도서' ? 'text-pink-500' : 'text-gray-950'}`}
               style={{ width }}
             >
-              {label}
+              {index === 0 ? (
+                <button
+                  type="button"
+                  aria-current="page"
+                  className="flex h-full w-full items-center shadow-[inset_0_-2px_0_var(--color-gray-950)] active:bg-gray-50"
+                >
+                  {label}
+                </button>
+              ) : (
+                label
+              )}
             </li>
           ))}
         </ul>

@@ -15,8 +15,12 @@ const BookCard = ({ imageSrc, title, author }: BookCardProps) => {
         className="h-[184px] w-full object-cover object-top"
       />
       <div className="flex flex-col gap-2">
-        <h3 className="text-title-18m break-words text-gray-950">{title}</h3>
-        <p className="text-caption-12r break-words text-gray-700">{author}</p>
+        <h3 className="text-title-18m wrap-break-word text-gray-950">
+          {title}
+        </h3>
+        <p className="text-caption-12r wrap-break-word text-gray-700">
+          {author}
+        </p>
       </div>
     </article>
   );

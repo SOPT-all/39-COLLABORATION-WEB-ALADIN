@@ -13,9 +13,6 @@ const CART_TABS = [
 
 const CartPage = () => {
   const [selectedCartTab, setSelectedCartTab] = useState('cart');
-  const [selectedDeliveryMethod, setSelectedDeliveryMethod] = useState<
-    'delivery' | 'halfPrice'
-  >('delivery');
 
   return (
     <section aria-label="장바구니">
@@ -26,13 +23,8 @@ const CartPage = () => {
           onValueChange={setSelectedCartTab}
         />
 
-        <div className="p-16">
-          <SegmentCart
-            deliveryCount={5}
-            halfPriceCount={1}
-            selectedValue={selectedDeliveryMethod}
-            onValueChange={setSelectedDeliveryMethod}
-          />
+        <div className="px-12 py-16">
+          <SegmentCart deliveryCount={5} halfPriceCount={1} />
         </div>
       </div>
     </section>

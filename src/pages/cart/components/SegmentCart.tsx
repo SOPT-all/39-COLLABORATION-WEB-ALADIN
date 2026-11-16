@@ -1,37 +1,26 @@
-const SEGMENT_OPTIONS = [
-  { label: '택배 배송', value: 'delivery' },
-  { label: '반값택배', value: 'halfPrice' },
-] as const;
+import { useState } from 'react';
 
-type SegmentValue = (typeof SEGMENT_OPTIONS)[number]['value'];
+type SegmentValue = 'delivery' | 'halfPrice';
 
 interface SegmentCartProps {
-  className?: string;
   deliveryCount: number;
   halfPriceCount: number;
-  onValueChange: (value: SegmentValue) => void;
-  selectedValue: SegmentValue;
 }
 
-const SegmentCart = ({
-  className = '',
-  deliveryCount,
-  halfPriceCount,
-  onValueChange,
-  selectedValue,
-}: SegmentCartProps) => {
-  const counts: Record<SegmentValue, number> = {
-    delivery: deliveryCount,
-    halfPrice: halfPriceCount,
-  };
+const SegmentCart = ({ deliveryCount, halfPriceCount }: SegmentCartProps) => {
+  const [selectedValue, setSelectedValue] = useState<SegmentValue>('delivery');
+  const segmentOptions = [
+    { count: deliveryCount, label: '택배 배송', value: 'delivery' },
+    { count: halfPriceCount, label: '반값택배', value: 'halfPrice' },
+  ] as const;
 
   return (
     <div
       aria-label="배송 방식"
-      className={`flex h-[44px] w-full items-center gap-[3px] rounded-8 bg-pink-50 p-4 ${className}`}
+      className="flex h-[44px] items-center gap-[3px] rounded-8 bg-pink-50 p-4"
       role="tablist"
     >
-      {SEGMENT_OPTIONS.map(({ label, value }) => {
+      {segmentOptions.map(({ count, label, value }) => {
         const isSelected = selectedValue === value;
         const selectedClass = isSelected
           ? 'bg-pink-500 text-white'
@@ -45,10 +34,10 @@ const SegmentCart = ({
             className={`flex h-[36px] min-w-0 flex-1 items-center justify-center gap-2 rounded-4 px-8 ${selectedClass}`}
             role="tab"
             type="button"
-            onClick={() => onValueChange(value)}
+            onClick={() => setSelectedValue(value)}
           >
             <span className={labelClass}>{label}</span>
-            <span className="text-body-14r">{counts[value]}</span>
+            <span className="text-body-14r">{count}</span>
           </button>
         );
       })}

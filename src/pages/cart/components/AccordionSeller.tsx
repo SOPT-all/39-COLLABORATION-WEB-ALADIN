@@ -11,7 +11,7 @@ const AccordionSeller = ({ sellerName }: AccordionSellerProps) => {
   const [isArrowUp, setIsArrowUp] = useState(true);
 
   return (
-    <div className="flex h-[59px] items-end justify-between border-b border-gray-200 bg-white p-16">
+    <div className="flex h-[59px] items-end justify-between gap-12 border-b border-gray-200 bg-white p-16">
       <div className="flex min-w-0 items-center gap-12">
         <IcCheckOutline aria-hidden="true" className="shrink-0" />
 

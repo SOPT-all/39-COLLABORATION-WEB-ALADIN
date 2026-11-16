@@ -9,12 +9,12 @@ const Stepper = ({ label }: StepperProps) => {
   return (
     <div
       aria-label={`${label} 수량 조절`}
-      className="inline-flex overflow-hidden rounded-sm inset-ring inset-ring-gray-200"
+      className="inline-flex h-[30px] w-[90px] overflow-hidden rounded-4 bg-gray-50 text-gray-500 inset-ring inset-ring-gray-200 [&_path]:stroke-current"
       role="group"
     >
       <button
         aria-label={`${label} 수량 줄이기`}
-        className="flex size-7 items-center justify-center bg-gray-50 text-gray-500 inset-ring inset-ring-gray-200 disabled:cursor-default [&_path]:stroke-current"
+        className="flex size-[30px] items-center justify-center disabled:cursor-default"
         disabled
         type="button"
       >
@@ -23,14 +23,14 @@ const Stepper = ({ label }: StepperProps) => {
 
       <output
         aria-label={`${label} 현재 수량`}
-        className="flex size-7 items-center justify-center bg-gray-50 text-body-16r text-gray-500 inset-ring inset-ring-gray-200"
+        className="flex size-[30px] items-center justify-center border-l border-gray-200 text-body-16r"
       >
         1
       </output>
 
       <button
         aria-label={`${label} 수량 늘리기`}
-        className="flex size-7 items-center justify-center bg-gray-50 text-gray-500 inset-ring inset-ring-gray-200 disabled:cursor-default [&_path]:stroke-current"
+        className="flex size-[30px] items-center justify-center border-l border-gray-200 disabled:cursor-default"
         disabled
         type="button"
       >

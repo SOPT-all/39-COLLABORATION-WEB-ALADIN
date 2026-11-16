@@ -16,15 +16,15 @@ const NowIssueSection = () => {
     <section aria-label="지금, 화제의 책" className="bg-white pb-24">
       <SectionHeader title="지금, 화제의 책" />
       <div className="flex flex-col items-center gap-24">
-        <div className="relative flex w-full justify-center overflow-hidden">
+        <div className="flex w-full justify-center gap-8 overflow-hidden">
           <div
             aria-hidden="true"
-            className="absolute top-0 right-[calc(50%+179.5px)] h-[192px] w-[343px] rounded-8 bg-gray-50"
+            className="h-[192px] w-[343px] shrink-0 rounded-8 bg-gray-50"
           />
           <NowIssueCard {...NOW_ISSUE_BOOK} />
           <div
             aria-hidden="true"
-            className="absolute top-0 left-[calc(50%+179.5px)] h-[192px] w-[343px] rounded-8 bg-gray-50"
+            className="h-[192px] w-[343px] shrink-0 rounded-8 bg-gray-50"
           />
         </div>
         <BarIndicator />

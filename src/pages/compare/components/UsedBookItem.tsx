@@ -46,7 +46,7 @@ const UsedBookItem = ({ onClick, usedBook }: UsedBookItemProps) => {
 
           <div className="flex items-center gap-16">
             <span className={LABEL_CLASS}>상태</span>
-            <span className="flex items-center gap-4 text-body-16r text-gray-700">
+            <span className="flex items-center gap-8 text-body-16r text-gray-700">
               {BOOK_CONDITION_LABEL[condition]}
               <ChipLink
                 label="상태 자세히"
@@ -81,7 +81,7 @@ const UsedBookItem = ({ onClick, usedBook }: UsedBookItemProps) => {
           aria-label="보관함에 담기"
           className="flex size-[37px] shrink-0 items-center justify-center rounded-4 border border-gray-300 active:bg-gray-50"
         >
-          <IcCabinetOutline />
+          <IcCabinetOutline aria-hidden="true" />
         </button>
         <Button className="flex-1">장바구니</Button>
         <Button className="flex-1" variant="secondary">

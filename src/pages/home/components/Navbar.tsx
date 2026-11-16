@@ -29,9 +29,7 @@ const Navbar = () => {
               key={label}
               aria-current={index === 0 ? 'page' : undefined}
               className={`flex h-full shrink-0 items-center whitespace-nowrap ${
-                index === 0
-                  ? 'text-body-14sb'
-                  : 'text-body-14m'
+                index === 0 ? 'text-body-14sb' : 'text-body-14m'
               } ${label === '중고도서' ? 'text-pink-500' : 'text-gray-950'}`}
               style={{ width }}
             >

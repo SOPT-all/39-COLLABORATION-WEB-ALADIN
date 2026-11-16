@@ -9,7 +9,7 @@ const SortDropdownButton = ({ label, onClick }: SortDropdownButtonProps) => (
   <button
     type="button"
     aria-haspopup="dialog"
-    className="inline-flex items-center gap-4 text-body-14r text-gray-700 [&_path]:stroke-current"
+    className="inline-flex items-center gap-4 text-body-14m text-gray-700 [&_path]:stroke-current"
     onClick={onClick}
   >
     {label}

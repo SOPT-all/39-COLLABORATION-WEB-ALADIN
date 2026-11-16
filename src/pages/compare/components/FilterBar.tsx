@@ -19,7 +19,7 @@ const FilterBar = ({
   onSortClick,
   sortLabel,
 }: FilterBarProps) => (
-  <div className="flex items-center justify-between border-b border-gray-200 bg-white px-(--layout-margin-x) py-12">
+  <div className="flex items-center justify-between bg-white py-12">
     <div className="flex items-center gap-12">
       <SortDropdownButton label={sortLabel} onClick={onSortClick} />
       <SortDropdownButton label={gradeLabel} onClick={onGradeClick} />

@@ -1,4 +1,5 @@
 import IcCheckOutline from '@assets/svg/cart/IcCheckOutline';
+import IcCheckPink from '@assets/svg/cart/IcCheckPink';
 import IcClose from '@assets/svg/close/IcClose';
 
 import CartKeepButton from './CartKeepButton';
@@ -8,6 +9,8 @@ interface CartListItemProps {
   condition: string;
   discountRate: number;
   imageSrc: string;
+  isSelected: boolean;
+  onSelect: () => void;
   originalPrice: number;
   price: number;
   title: string;
@@ -17,6 +20,8 @@ const CartListItem = ({
   condition,
   discountRate,
   imageSrc,
+  isSelected,
+  onSelect,
   originalPrice,
   price,
   title,
@@ -24,7 +29,19 @@ const CartListItem = ({
   return (
     <article className="relative flex bg-white px-16 pt-16 pb-24">
       <div className="flex min-w-0 flex-1 items-start gap-16">
-        <IcCheckOutline aria-hidden="true" className="shrink-0" />
+        <button
+          type="button"
+          aria-label={`${title} 선택`}
+          aria-pressed={isSelected}
+          className="shrink-0"
+          onClick={onSelect}
+        >
+          {isSelected ? (
+            <IcCheckPink aria-hidden="true" />
+          ) : (
+            <IcCheckOutline aria-hidden="true" />
+          )}
+        </button>
 
         <div className="flex min-w-0 flex-1 items-start gap-8">
           <img

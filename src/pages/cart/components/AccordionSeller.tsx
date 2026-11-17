@@ -26,7 +26,7 @@ const AccordionSeller = ({ sellerName }: AccordionSellerProps) => {
       </div>
 
       <button
-        aria-label={`판매자 상품 화살표 ${isArrowUp ? '아래로' : '위로'} 전환`}
+        aria-label={`${sellerName} 상품 화살표 ${isArrowUp ? '아래로' : '위로'} 전환`}
         className="flex size-24 shrink-0 items-center justify-center text-gray-950 [&_path]:stroke-current"
         type="button"
         onClick={() => setIsArrowUp((previous) => !previous)}

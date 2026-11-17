@@ -40,9 +40,7 @@ const UsedBookPurchaseInfo = ({ purchaseInfo }: UsedBookPurchaseInfoProps) => {
               {formatNumber(salePrice)}
               <span className="text-title-18m">원</span>
             </span>
-            <s className="text-body-14r text-gray-500">
-              {formatNumber(listPrice)}원
-            </s>
+            <s className="text-gray-500">{formatNumber(listPrice)}원</s>
           </dd>
         </div>
 
@@ -65,9 +63,7 @@ const UsedBookPurchaseInfo = ({ purchaseInfo }: UsedBookPurchaseInfoProps) => {
         <div className="col-span-full grid grid-cols-subgrid items-center py-px">
           <dt className="text-body-14sb">새상품</dt>
           <dd className="flex flex-wrap items-center gap-x-8 text-gray-700">
-            <s className="text-body-14r text-gray-500">
-              {formatNumber(listPrice)}원
-            </s>
+            <s className="text-gray-500">{formatNumber(listPrice)}원</s>
             <span>
               {formatNumber(newBookSalePrice)}원 (+
               {formatNumber(newBookMileage)}

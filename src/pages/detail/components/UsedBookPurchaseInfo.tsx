@@ -6,6 +6,9 @@ interface UsedBookPurchaseInfoProps {
   purchaseInfo: UsedBookPurchaseInfoData;
 }
 
+const PAYMENT_DIVIDER_CLASSES =
+  'relative py-8 before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-gray-200 after:absolute after:inset-x-0 after:top-full after:h-px after:bg-gray-200';
+
 const formatNumber = (value: number) => value.toLocaleString('ko-KR');
 
 const UsedBookPurchaseInfo = ({ purchaseInfo }: UsedBookPurchaseInfoProps) => {
@@ -23,6 +26,7 @@ const UsedBookPurchaseInfo = ({ purchaseInfo }: UsedBookPurchaseInfoProps) => {
     sellerName,
     qualityGradeLabel,
   } = purchaseInfo;
+  const formattedListPrice = `${formatNumber(listPrice)}원`;
 
   return (
     <section
@@ -40,19 +44,21 @@ const UsedBookPurchaseInfo = ({ purchaseInfo }: UsedBookPurchaseInfoProps) => {
               {formatNumber(salePrice)}
               <span className="text-title-18m">원</span>
             </span>
-            <s className="text-gray-500">{formatNumber(listPrice)}원</s>
+            <s className="text-gray-500">{formattedListPrice}</s>
           </dd>
         </div>
 
         <div className="col-span-full grid grid-cols-subgrid items-center">
           <dt className="text-body-14sb">배송료</dt>
-          <dd className="text-body-14r">
+          <dd>
             택배 {formatNumber(shippingFee)}원, 도서/산간{' '}
             {formatNumber(remoteShippingFee)}원
           </dd>
         </div>
 
-        <div className="relative col-span-full grid grid-cols-subgrid items-center py-8 before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-gray-200 after:absolute after:inset-x-0 after:top-full after:h-px after:bg-gray-200">
+        <div
+          className={`col-span-full grid grid-cols-subgrid items-center ${PAYMENT_DIVIDER_CLASSES}`}
+        >
           <dt className="text-body-14sb">예상 결제액</dt>
           <dd className="flex items-center text-title-20sb">
             {formatNumber(estimatedPaymentAmount)}
@@ -63,11 +69,9 @@ const UsedBookPurchaseInfo = ({ purchaseInfo }: UsedBookPurchaseInfoProps) => {
         <div className="col-span-full grid grid-cols-subgrid items-center py-px">
           <dt className="text-body-14sb">새상품</dt>
           <dd className="flex flex-wrap items-center gap-x-8 text-gray-700">
-            <s className="text-gray-500">{formatNumber(listPrice)}원</s>
+            <s className="text-gray-500">{formattedListPrice}</s>
             <span>
-              {formatNumber(newBookSalePrice)}원 (+
-              {formatNumber(newBookMileage)}
-              원)
+              {`${formatNumber(newBookSalePrice)}원 (+${formatNumber(newBookMileage)}원)`}
             </span>
             <IcChevronRightCircle aria-hidden="true" />
           </dd>

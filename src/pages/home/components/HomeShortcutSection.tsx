@@ -4,7 +4,7 @@ import IcGenres from '@assets/svg/category/IcGenres';
 import IcNewBooks from '@assets/svg/category/IcNewBooks';
 import IcUsedBooks from '@assets/svg/category/IcUsedBooks';
 
-const shortcuts = [
+const SHORTCUTS = [
   { label: '중고도서', Icon: IcUsedBooks },
   { label: '베스트', Icon: IcBestseller },
   { label: '신간', Icon: IcNewBooks },
@@ -18,7 +18,7 @@ const HomeShortcutSection = () => {
       className="w-full bg-white px-(--layout-margin-x) pb-12 text-caption-12r text-gray-950"
     >
       <ul className="flex justify-between pb-8">
-        {shortcuts.map(({ label, Icon }) => (
+        {SHORTCUTS.map(({ label, Icon }) => (
           <li key={label} className="flex w-[70px] flex-col items-center">
             <div className="flex h-[30px] w-[50px] items-center justify-center">
               <Icon

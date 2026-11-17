@@ -1,12 +1,23 @@
 import IcChevronRightSmall from '@assets/svg/arrow/IcChevronRightSmall';
 import IcNotice from '@assets/svg/status/IcNotice';
+import { formatPrice } from '@utils/formatPrice';
 
-const SummarySeller = () => {
+interface SummarySellerProps {
+  freeShippingRemaining: number;
+  shippingFee: number;
+  totalPrice: number;
+}
+
+const SummarySeller = ({
+  freeShippingRemaining,
+  shippingFee,
+  totalPrice,
+}: SummarySellerProps) => {
   return (
-    <div className="flex w-full flex-col gap-12 bg-white p-16">
+    <div className="flex flex-col gap-12 bg-white p-16">
       <div className="flex items-center justify-between rounded-8 bg-gray-50 py-8 pr-4 pl-8">
         <p className="text-caption-12r text-gray-700">
-          76,600원 더 담으면{' '}
+          {formatPrice(freeShippingRemaining)}원 더 담으면{' '}
           <strong className="text-label-12sb text-pink-500">배송비 무료</strong>
         </p>
 
@@ -25,18 +36,22 @@ const SummarySeller = () => {
           <span aria-hidden="true" className="text-caption-12r">
             ·
           </span>
-          <span className="text-caption-12r">배송비 3,500원</span>
+          <span className="text-caption-12r">
+            배송비 {formatPrice(shippingFee)}원
+          </span>
           <span
             aria-hidden="true"
             className="flex size-[14px] items-center justify-center"
           >
-            <IcNotice className="max-w-none scale-[0.7778]" />
+            <IcNotice width={14} height={14} />
           </span>
         </div>
 
         <dl className="flex shrink-0 items-end gap-4">
           <dt className="text-body-16r text-gray-700">합계</dt>
-          <dd className="text-body-16sb text-gray-950">26,900원</dd>
+          <dd className="text-body-16sb text-gray-950">
+            {formatPrice(totalPrice)}원
+          </dd>
         </dl>
       </div>
     </div>

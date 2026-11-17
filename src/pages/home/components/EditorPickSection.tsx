@@ -19,40 +19,44 @@ const EditorPickSection = () => {
     <section className="flex w-full flex-col gap-12 bg-white pb-24">
       <SectionHeader title="편집장의 선택" />
       <div className="flex flex-col gap-16">
-        <div className="relative flex h-[224px] w-full items-center justify-between px-16">
-          <img
-            src={leftCover}
-            alt="이천이십오년 젊은작가상 수상작품집 표지"
-            width={88}
-            height={134}
-            className="h-[134px] w-[88px] shrink-0 object-contain opacity-60"
-          />
+        <div className="flex h-[224px] w-full items-center justify-between px-16">
+          <div className="relative h-[134px] w-[88px] shrink-0">
+            <img
+              src={leftCover}
+              alt="이천이십오년 젊은작가상 수상작품집 표지"
+              width={88}
+              height={134}
+              className="h-[134px] w-[88px] shrink-0 object-cover opacity-60"
+            />
+            <IcChevronLeft
+              aria-hidden="true"
+              width={10}
+              height={18}
+              className="absolute top-1/2 left-0 -translate-y-1/2"
+            />
+          </div>
           <img
             src={centerCover}
             alt={`${EDITOR_PICK.title} 표지`}
             width={154}
             height={224}
-            className="h-[224px] w-[154px] shrink-0 object-contain shadow-card"
+            className="h-[224px] w-[154px] shrink-0 object-cover shadow-card"
           />
-          <img
-            src={rightCover}
-            alt="돈으로 자유를 사라 표지"
-            width={88}
-            height={124}
-            className="h-[124px] w-[88px] shrink-0 object-contain opacity-60"
-          />
-          <IcChevronLeft
-            aria-hidden="true"
-            width={10}
-            height={18}
-            className="absolute top-1/2 left-16 -translate-y-1/2"
-          />
-          <IcChevronRight
-            aria-hidden="true"
-            width={10}
-            height={18}
-            className="absolute top-1/2 right-16 -translate-y-1/2"
-          />
+          <div className="relative h-[124px] w-[88px] shrink-0">
+            <img
+              src={rightCover}
+              alt="돈으로 자유를 사라 표지"
+              width={88}
+              height={124}
+              className="h-[124px] w-[88px] shrink-0 object-cover opacity-60"
+            />
+            <IcChevronRight
+              aria-hidden="true"
+              width={10}
+              height={18}
+              className="absolute top-1/2 right-0 -translate-y-1/2"
+            />
+          </div>
         </div>
         <div className="mx-16 flex flex-col items-center gap-8 text-center">
           <div className="flex w-full flex-col gap-2">

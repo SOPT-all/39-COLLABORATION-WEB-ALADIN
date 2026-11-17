@@ -53,7 +53,7 @@ const Navbar = () => {
       {!isAtEnd && (
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute top-0 right-0 h-40 w-[46px] bg-linear-to-r from-white/0 to-white"
+          className="pointer-events-none absolute top-0 right-0 h-40 w-[46px] bg-linear-to-l from-white from-[16px] to-white/0"
         />
       )}
     </div>

@@ -2,6 +2,7 @@ import bookCover from '@assets/images/book-sentence/thumbnail-01.webp';
 import SearchField from '@components/SearchField';
 
 import BookSentence from './components/BookSentence';
+import EditorPickSection from './components/EditorPickSection';
 import HomeShortcutSection from './components/HomeShortcutSection';
 import Navbar from './components/Navbar';
 import NowIssueSection from './components/NowIssueSection';
@@ -19,6 +20,7 @@ const HomePage = () => {
         <TopBannerAd />
       </div>
       <HomeShortcutSection />
+      <EditorPickSection />
       <NowIssueSection />
       <SectionHeader title="이 책의 한 문장" showArrow />
       <div className="py-24">

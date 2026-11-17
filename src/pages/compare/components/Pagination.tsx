@@ -16,10 +16,20 @@ const Pagination = ({ currentPage, totalPage }: PaginationProps) => (
       {currentPage} / {totalPage}
     </p>
     <div className="flex flex-1 justify-end gap-4">
-      <button type="button" aria-label="다음 페이지">
+      <button
+        type="button"
+        aria-label="다음 페이지"
+        disabled
+        className="disabled:cursor-default"
+      >
         <IcChevronNext aria-hidden="true" />
       </button>
-      <button type="button" aria-label="마지막 페이지">
+      <button
+        type="button"
+        aria-label="마지막 페이지"
+        disabled
+        className="disabled:cursor-default"
+      >
         <IcChevronLast aria-hidden="true" />
       </button>
     </div>

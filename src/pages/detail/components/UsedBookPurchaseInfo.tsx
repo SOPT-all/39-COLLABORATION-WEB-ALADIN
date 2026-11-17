@@ -1,4 +1,5 @@
 import IcChevronRightCircle from '@assets/svg/arrow/IcChevronRightCircle';
+import { formatPrice } from '@utils/formatPrice';
 
 import type { UsedBookPurchaseInfoData } from '../types/usedBookPurchaseInfo';
 
@@ -8,8 +9,6 @@ interface UsedBookPurchaseInfoProps {
 
 const PAYMENT_DIVIDER_CLASSES =
   'relative py-8 before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-gray-200 after:absolute after:inset-x-0 after:top-full after:h-px after:bg-gray-200';
-
-const formatNumber = (value: number) => value.toLocaleString('ko-KR');
 
 const UsedBookPurchaseInfo = ({ purchaseInfo }: UsedBookPurchaseInfoProps) => {
   const {
@@ -26,7 +25,7 @@ const UsedBookPurchaseInfo = ({ purchaseInfo }: UsedBookPurchaseInfoProps) => {
     sellerName,
     qualityGradeLabel,
   } = purchaseInfo;
-  const formattedListPrice = `${formatNumber(listPrice)}원`;
+  const formattedListPrice = `${formatPrice(listPrice)}원`;
 
   return (
     <section
@@ -41,7 +40,7 @@ const UsedBookPurchaseInfo = ({ purchaseInfo }: UsedBookPurchaseInfoProps) => {
               {discountRate}%
             </span>
             <span className="flex items-center text-display-24sb">
-              {formatNumber(salePrice)}
+              {formatPrice(salePrice)}
               <span className="text-title-18m">원</span>
             </span>
             <s className="text-gray-500">{formattedListPrice}</s>
@@ -51,8 +50,8 @@ const UsedBookPurchaseInfo = ({ purchaseInfo }: UsedBookPurchaseInfoProps) => {
         <div className="col-span-full grid grid-cols-subgrid items-center">
           <dt className="text-body-14sb">배송료</dt>
           <dd>
-            택배 {formatNumber(shippingFee)}원, 도서/산간{' '}
-            {formatNumber(remoteShippingFee)}원
+            택배 {formatPrice(shippingFee)}원, 도서/산간{' '}
+            {formatPrice(remoteShippingFee)}원
           </dd>
         </div>
 
@@ -61,7 +60,7 @@ const UsedBookPurchaseInfo = ({ purchaseInfo }: UsedBookPurchaseInfoProps) => {
         >
           <dt className="text-body-14sb">예상 결제액</dt>
           <dd className="flex items-center text-title-20sb">
-            {formatNumber(estimatedPaymentAmount)}
+            {formatPrice(estimatedPaymentAmount)}
             <span className="text-body-16m">원~</span>
           </dd>
         </div>
@@ -70,8 +69,8 @@ const UsedBookPurchaseInfo = ({ purchaseInfo }: UsedBookPurchaseInfoProps) => {
           <dt className="text-body-14sb">새상품</dt>
           <dd className="flex flex-wrap items-center gap-x-8 text-gray-700">
             <s className="text-gray-500">{formattedListPrice}</s>
-            <span>
-              {`${formatNumber(newBookSalePrice)}원 (+${formatNumber(newBookMileage)}원)`}
+            <span className="text-body-14m">
+              {`${formatPrice(newBookSalePrice)}원 (+${formatPrice(newBookMileage)}원)`}
             </span>
             <IcChevronRightCircle aria-hidden="true" />
           </dd>
@@ -91,7 +90,7 @@ const UsedBookPurchaseInfo = ({ purchaseInfo }: UsedBookPurchaseInfoProps) => {
         <div className="col-span-full grid grid-cols-subgrid items-center">
           <dt className="text-body-14sb">최소주문금액</dt>
           <dd className="text-gray-700">
-            {minimumOrderAmount !== null && formatNumber(minimumOrderAmount)}원
+            {minimumOrderAmount !== null && formatPrice(minimumOrderAmount)}원
           </dd>
         </div>
 

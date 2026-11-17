@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import IcChevronDownGray from '@assets/svg/arrow/IcChevronDownGray';
+import IcChevronDown from '@assets/svg/arrow/IcChevronDown';
 import IcCheckOutline from '@assets/svg/cart/IcCheckOutline';
 
 interface AccordionSellerProps {
@@ -31,7 +31,7 @@ const AccordionSeller = ({ sellerName }: AccordionSellerProps) => {
         type="button"
         onClick={() => setIsArrowUp((previous) => !previous)}
       >
-        <IcChevronDownGray
+        <IcChevronDown
           aria-hidden="true"
           className={isArrowUp ? 'rotate-180' : ''}
         />

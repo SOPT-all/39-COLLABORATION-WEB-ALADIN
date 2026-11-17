@@ -54,9 +54,9 @@ const CartListItem = ({
                       {price.toLocaleString('ko-KR')}
                       <span className="text-body-16r">원</span>
                     </span>
-                    <span className="text-body-14r text-gray-500 line-through">
+                    <s className="text-body-14r text-gray-500">
                       {originalPrice.toLocaleString('ko-KR')}원
-                    </span>
+                    </s>
                   </div>
                 </div>
               </div>

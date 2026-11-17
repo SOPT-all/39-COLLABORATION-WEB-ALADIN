@@ -4,7 +4,11 @@ import ChipToggle from '@components/ChipToggle';
 
 import type { FilterTab } from '../types/filter';
 
-import { FILTER_OPTIONS, FILTER_TABS } from '../constants/filterOptions';
+import {
+  FILTER_OPTIONS,
+  FILTER_TABS,
+  PRICE_SORT_OPTIONS,
+} from '../constants/filterOptions';
 import FilterOptionItem from './FilterOptionItem';
 
 interface FilterBottomSheetProps {
@@ -13,7 +17,9 @@ interface FilterBottomSheetProps {
   onApply: () => void;
   onClose: () => void;
   onHalfPriceToggle: () => void;
+  onSortOptionClick: (option: string) => void;
   onTabClick: (tab: FilterTab) => void;
+  selectedSort: string;
   selectedTab: FilterTab;
 }
 
@@ -22,8 +28,10 @@ const FilterBottomSheet = ({
   isOpen,
   onApply,
   onClose,
-  onTabClick,
   onHalfPriceToggle,
+  onSortOptionClick,
+  onTabClick,
+  selectedSort,
   selectedTab,
 }: FilterBottomSheetProps) => (
   <div inert={!isOpen} className="fixed inset-0 z-30">
@@ -63,8 +71,15 @@ const FilterBottomSheet = ({
         {FILTER_OPTIONS[selectedTab].map((option, index) => (
           <FilterOptionItem
             key={option}
-            isSelected={index === 0}
+            isSelected={
+              selectedTab === 'sort' ? option === selectedSort : index === 0
+            }
             label={option}
+            onClick={
+              PRICE_SORT_OPTIONS.includes(option)
+                ? () => onSortOptionClick(option)
+                : undefined
+            }
           />
         ))}
       </ul>

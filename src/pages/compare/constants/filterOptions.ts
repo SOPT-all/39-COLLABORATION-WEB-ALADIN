@@ -21,6 +21,8 @@ export const SORT_OPTIONS = [
   '등록일순',
 ];
 
+export const PRICE_SORT_OPTIONS = ['저가격순', '고가격순'];
+
 export const FILTER_OPTIONS: Record<FilterTab, string[]> = {
   quality: QUALITY_GRADE_OPTIONS,
   sort: SORT_OPTIONS,

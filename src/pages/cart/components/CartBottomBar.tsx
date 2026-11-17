@@ -1,4 +1,5 @@
 import Button from '@components/Button';
+import { formatPrice } from '@utils/formatPrice';
 
 interface CartBottomBarProps {
   selectedBookCount: number;
@@ -25,7 +26,7 @@ const CartBottomBar = ({
           </span>
           <span aria-hidden="true">·</span>
           <strong className="text-body-14sb text-gray-950">
-            {totalPrice.toLocaleString('ko-KR')}원
+            {formatPrice(totalPrice)}원
           </strong>
         </p>
       </div>

@@ -25,21 +25,21 @@ const EditorPickSection = () => {
             alt="이천이십오년 젊은작가상 수상작품집 표지"
             width={88}
             height={134}
-            className="h-[134px] w-[88px] shrink-0 object-fill opacity-60"
+            className="h-[134px] w-[88px] shrink-0 object-contain opacity-60"
           />
           <img
             src={centerCover}
             alt={`${editorPick.title} 표지`}
             width={154}
             height={224}
-            className="h-[224px] w-[154px] shrink-0 object-fill shadow-card"
+            className="h-[224px] w-[154px] shrink-0 object-contain shadow-card"
           />
           <img
             src={rightCover}
             alt="돈으로 자유를 사라 표지"
             width={88}
             height={124}
-            className="h-[124px] w-[88px] shrink-0 object-fill opacity-60"
+            className="h-[124px] w-[88px] shrink-0 object-contain opacity-60"
           />
           <IcChevronLeft
             aria-hidden="true"

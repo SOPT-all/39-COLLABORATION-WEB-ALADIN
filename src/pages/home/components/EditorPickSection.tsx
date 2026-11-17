@@ -7,7 +7,7 @@ import IcChevronRightSmall from '@assets/svg/arrow/IcChevronRightSmall';
 
 import SectionHeader from './SectionHeader';
 
-const editorPick = {
+const EDITOR_PICK = {
   title: '언젠가 이발관',
   subtitle: '노래에 머무른 순간들',
   description:
@@ -29,7 +29,7 @@ const EditorPickSection = () => {
           />
           <img
             src={centerCover}
-            alt={`${editorPick.title} 표지`}
+            alt={`${EDITOR_PICK.title} 표지`}
             width={154}
             height={224}
             className="h-[224px] w-[154px] shrink-0 object-contain shadow-card"
@@ -57,12 +57,14 @@ const EditorPickSection = () => {
         <div className="mx-16 flex flex-col items-center gap-8 text-center">
           <div className="flex w-full flex-col gap-2">
             <h3 className="text-title-20sb text-gray-950">
-              {editorPick.title}
+              {EDITOR_PICK.title}
             </h3>
-            <p className="text-body-14m text-navy-500">{editorPick.subtitle}</p>
+            <p className="text-body-14m text-navy-500">
+              {EDITOR_PICK.subtitle}
+            </p>
           </div>
           <p className="line-clamp-2 h-[44px] w-[301px] max-w-full text-body-14r text-gray-950">
-            {editorPick.description}
+            {EDITOR_PICK.description}
           </p>
           <span className="flex items-center gap-8 text-caption-12r text-gray-500">
             자세히 보기

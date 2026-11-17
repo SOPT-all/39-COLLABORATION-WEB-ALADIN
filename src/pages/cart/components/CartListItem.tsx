@@ -1,5 +1,5 @@
-import IcCheckOutline from '@assets/svg/cart/IcCheckOutline';
 import IcCheckFilled from '@assets/svg/cart/IcCheckFilled';
+import IcCheckOutline from '@assets/svg/cart/IcCheckOutline';
 import IcClose from '@assets/svg/close/IcClose';
 
 import CartKeepButton from './CartKeepButton';

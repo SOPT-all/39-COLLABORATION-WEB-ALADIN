@@ -16,21 +16,21 @@ const PriceSummary = ({
   onNewBookClick,
   salePrice,
 }: PriceSummaryProps) => (
-  <section className="flex flex-col gap-8 bg-white px-(--layout-margin-x) py-16">
+  <dl className="flex flex-col gap-8 bg-white px-(--layout-margin-x) py-16">
     <div className="flex items-center gap-16">
-      <span className={LABEL_CLASS}>정가</span>
-      <span className="flex items-center gap-8 text-body-16m text-gray-700">
+      <dt className={LABEL_CLASS}>정가</dt>
+      <dd className="flex items-center gap-8 text-body-16m text-gray-700">
         {formatPrice(listPrice)}원
         <ChipLink label="새상품 보기" onClick={onNewBookClick} />
-      </span>
+      </dd>
     </div>
     <div className="flex items-center gap-16">
-      <span className={LABEL_CLASS}>판매가</span>
-      <span className="text-body-16m text-gray-700">
+      <dt className={LABEL_CLASS}>판매가</dt>
+      <dd className="text-body-16m text-gray-700">
         {formatPrice(salePrice)}원 + 마일리지 {formatPrice(mileage)}점
-      </span>
+      </dd>
     </div>
-  </section>
+  </dl>
 );
 
 export default PriceSummary;

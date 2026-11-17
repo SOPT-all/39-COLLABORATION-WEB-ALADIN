@@ -15,7 +15,7 @@ const BookInfo = ({
 }: BookInfoProps) => (
   <div className="flex flex-col gap-8">
     <div className="flex flex-col">
-      <h2 className="text-title-20sb text-gray-950">{title}</h2>
+      <h1 className="text-title-20sb text-gray-950">{title}</h1>
       {subtitle && <p className="text-body-16r text-gray-950">{subtitle}</p>}
     </div>
     <p className="flex items-center gap-4 text-body-14m text-gray-700">

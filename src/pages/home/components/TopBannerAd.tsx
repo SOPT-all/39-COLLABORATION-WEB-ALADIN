@@ -1,12 +1,7 @@
-import { useState } from 'react';
-
 import bannerImage from '@assets/images/top-banner-ad/thumbnail-01.webp';
 import IcPause from '@assets/svg/banner/IcPause';
-import IcPlay from '@assets/svg/banner/IcPlay';
 
 const TopBannerAd = () => {
-  const [isPlaying, setIsPlaying] = useState(false);
-
   return (
     <section
       aria-label="상단 광고 배너"
@@ -20,18 +15,9 @@ const TopBannerAd = () => {
         className="h-full w-full rounded-12 object-cover"
       />
       <div className="absolute right-8 bottom-8 flex items-center gap-4">
-        <button
-          type="button"
-          aria-label={isPlaying ? '배너 일시정지' : '배너 재생'}
-          onClick={() => setIsPlaying((previous) => !previous)}
-          className="size-[24px] rounded-full [-webkit-tap-highlight-color:transparent]"
-        >
-          {isPlaying ? (
-            <IcPause aria-hidden="true" />
-          ) : (
-            <IcPlay aria-hidden="true" />
-          )}
-        </button>
+        <span aria-hidden="true" className="size-[24px] rounded-full">
+          <IcPause />
+        </span>
         <div className="flex h-[24px] w-[56px] items-center gap-4 rounded-full bg-dim-30 px-8 py-2 text-caption-12r text-white">
           <span aria-label="전체 17개 중 4번째 배너" className="shrink-0">
             4/17

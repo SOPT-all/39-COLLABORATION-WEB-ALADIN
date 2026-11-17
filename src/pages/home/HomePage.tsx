@@ -3,6 +3,7 @@ import SearchField from '@components/SearchField';
 
 import BookSentence from './components/BookSentence';
 import EditorPickSection from './components/EditorPickSection';
+import HomeShortcutSection from './components/HomeShortcutSection';
 import Navbar from './components/Navbar';
 import NowIssueSection from './components/NowIssueSection';
 import SectionHeader from './components/SectionHeader';
@@ -18,6 +19,7 @@ const HomePage = () => {
       <div className="px-(--layout-margin-x) py-16">
         <TopBannerAd />
       </div>
+      <HomeShortcutSection />
       <EditorPickSection />
       <NowIssueSection />
       <SectionHeader title="이 책의 한 문장" showArrow />

@@ -11,3 +11,17 @@ export const FILTER_TABS: FilterTabItem[] = [
 ];
 
 export const QUALITY_GRADE_OPTIONS = ['모든 품질등급', '최상', '상', '중'];
+
+export const SORT_OPTIONS = [
+  '저가격순',
+  '고가격순',
+  '품질등급순',
+  '판매자등급순',
+  '판매자명순',
+  '등록일순',
+];
+
+export const FILTER_OPTIONS: Record<FilterTab, string[]> = {
+  quality: QUALITY_GRADE_OPTIONS,
+  sort: SORT_OPTIONS,
+};

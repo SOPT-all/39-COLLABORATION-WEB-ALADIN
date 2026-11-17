@@ -4,7 +4,7 @@ import ChipToggle from '@components/ChipToggle';
 
 import type { FilterTab } from '../types/filter';
 
-import { FILTER_TABS } from '../constants/filterOptions';
+import { FILTER_OPTIONS, FILTER_TABS } from '../constants/filterOptions';
 import FilterOptionItem from './FilterOptionItem';
 
 interface FilterBottomSheetProps {
@@ -13,11 +13,7 @@ interface FilterBottomSheetProps {
   onApply: () => void;
   onClose: () => void;
   onHalfPriceToggle: () => void;
-  onOptionClick: (option: string) => void;
-  onReset: () => void;
   onTabClick: (tab: FilterTab) => void;
-  options: string[];
-  selectedOption: string;
   selectedTab: FilterTab;
 }
 
@@ -26,12 +22,8 @@ const FilterBottomSheet = ({
   isOpen,
   onApply,
   onClose,
-  onHalfPriceToggle,
-  onOptionClick,
-  onReset,
   onTabClick,
-  options,
-  selectedOption,
+  onHalfPriceToggle,
   selectedTab,
 }: FilterBottomSheetProps) => (
   <div inert={!isOpen} className="fixed inset-0 z-30">
@@ -68,12 +60,11 @@ const FilterBottomSheet = ({
       </div>
 
       <ul className="h-[294px]">
-        {options.map((option) => (
+        {FILTER_OPTIONS[selectedTab].map((option, index) => (
           <FilterOptionItem
             key={option}
-            isSelected={option === selectedOption}
+            isSelected={index === 0}
             label={option}
-            onClick={() => onOptionClick(option)}
           />
         ))}
       </ul>
@@ -81,8 +72,8 @@ const FilterBottomSheet = ({
       <div className="flex items-center gap-16 border-t border-gray-200 px-16 pt-16 pb-40">
         <button
           type="button"
-          className="flex items-center gap-4 text-body-14m text-gray-700"
-          onClick={onReset}
+          disabled
+          className="flex items-center gap-4 text-body-14m text-gray-700 disabled:cursor-default"
         >
           초기화
           <IcReset aria-hidden="true" />

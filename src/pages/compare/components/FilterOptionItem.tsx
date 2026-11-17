@@ -3,21 +3,11 @@ import IcCheckPink from '@assets/svg/cart/IcCheckPink';
 interface FilterOptionItemProps {
   isSelected: boolean;
   label: string;
-  onClick: () => void;
 }
 
-const FilterOptionItem = ({
-  isSelected,
-  label,
-  onClick,
-}: FilterOptionItemProps) => (
+const FilterOptionItem = ({ isSelected, label }: FilterOptionItemProps) => (
   <li className="border-b border-gray-200">
-    <button
-      type="button"
-      aria-pressed={isSelected}
-      className="flex h-[48px] w-full items-center justify-between py-12 pr-12 pl-16"
-      onClick={onClick}
-    >
+    <div className="flex h-[48px] items-center justify-between py-12 pr-12 pl-16">
       <span
         className={
           isSelected
@@ -28,7 +18,7 @@ const FilterOptionItem = ({
         {label}
       </span>
       {isSelected && <IcCheckPink aria-hidden="true" />}
-    </button>
+    </div>
   </li>
 );
 

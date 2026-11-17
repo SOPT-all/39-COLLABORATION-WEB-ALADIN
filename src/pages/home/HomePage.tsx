@@ -1,12 +1,22 @@
 import bookCover from '@assets/images/book-sentence/thumbnail-01.webp';
+import SearchField from '@components/SearchField';
 
 import BookSentence from './components/BookSentence';
+import Navbar from './components/Navbar';
 import NowIssueSection from './components/NowIssueSection';
 import SectionHeader from './components/SectionHeader';
+import TopBannerAd from './components/TopBannerAd';
 
 const HomePage = () => {
   return (
-    <div>
+    <div className="pb-40">
+      <div className="px-(--layout-margin-x)">
+        <SearchField keyword="알라딘 만권당 삼성카드" variant="home" />
+      </div>
+      <Navbar />
+      <div className="px-(--layout-margin-x) py-16">
+        <TopBannerAd />
+      </div>
       <NowIssueSection />
       <SectionHeader title="이 책의 한 문장" showArrow />
       <div className="py-24">

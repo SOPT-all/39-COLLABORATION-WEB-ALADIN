@@ -1,11 +1,13 @@
 import bookCover from '@assets/images/book-sentence/thumbnail-01.webp';
 
 import BookSentence from './components/BookSentence';
+import NowIssueSection from './components/NowIssueSection';
 import SectionHeader from './components/SectionHeader';
 
 const HomePage = () => {
   return (
     <div>
+      <NowIssueSection />
       <SectionHeader title="이 책의 한 문장" showArrow />
       <div className="py-24">
         <BookSentence

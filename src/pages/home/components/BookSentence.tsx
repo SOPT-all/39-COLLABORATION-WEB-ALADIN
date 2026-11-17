@@ -32,7 +32,7 @@ const BookSentence = ({ sentence, title, imageSrc }: BookSentenceProps) => {
             alt={`${title} 표지`}
             width={72}
             height={112}
-            className="h-[112px] w-[72px] shrink-0 object-cover"
+            className="h-[112px] w-[72px] shrink-0 object-contain"
           />
           <div className="flex w-[141px] flex-col items-start gap-16">
             <h3 className="line-clamp-2 text-body-16sb wrap-break-word">

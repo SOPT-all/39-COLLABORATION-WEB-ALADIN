@@ -1,4 +1,4 @@
-const variantClasses = {
+const VARIANT_CLASSES = {
   detail: 'bg-light-blue text-bluegray',
   summary: 'bg-pink-100 text-pink-500',
 };
@@ -13,7 +13,7 @@ const BookConditionChip = ({
   variant = 'detail',
 }: BookConditionChipProps) => (
   <span
-    className={`inline-flex items-center rounded-full px-8 py-4 text-label-12sb whitespace-nowrap ${variantClasses[variant]}`}
+    className={`inline-flex items-center rounded-full px-8 py-4 text-label-12sb whitespace-nowrap ${VARIANT_CLASSES[variant]}`}
   >
     {label}
   </span>

@@ -4,7 +4,7 @@ const CartBottomBar = () => {
   return (
     <aside
       aria-label="선택 상품 주문"
-      className="fixed bottom-0 z-10 flex w-[375px] flex-col gap-12 overflow-hidden rounded-t-8 bg-white px-(--layout-margin-x) pt-12 pb-16 shadow-bar"
+      className="fixed bottom-0 left-1/2 z-10 flex w-[375px] -translate-x-1/2 flex-col gap-12 overflow-hidden rounded-t-8 bg-white px-(--layout-margin-x) pt-12 pb-16 shadow-bar"
     >
       <div className="flex items-start justify-between text-body-14r text-gray-700">
         <span>선택 상품</span>

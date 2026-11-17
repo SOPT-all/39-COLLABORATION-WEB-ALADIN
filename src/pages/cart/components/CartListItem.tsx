@@ -1,5 +1,5 @@
 import IcCheckOutline from '@assets/svg/cart/IcCheckOutline';
-import IcCheckPink from '@assets/svg/cart/IcCheckPink';
+import IcCheckFilled from '@assets/svg/cart/IcCheckFilled';
 import IcClose from '@assets/svg/close/IcClose';
 
 import CartKeepButton from './CartKeepButton';
@@ -37,7 +37,7 @@ const CartListItem = ({
           onClick={onSelect}
         >
           {isSelected ? (
-            <IcCheckPink aria-hidden="true" />
+            <IcCheckFilled aria-hidden="true" className="shrink-0" />
           ) : (
             <IcCheckOutline aria-hidden="true" />
           )}

@@ -12,7 +12,7 @@ const TopBannerAd = () => {
         alt="토스 퀵계좌이체 0.3% 즉시 할인, 매 주문마다 적용 가능"
         width={343}
         height={128}
-        className="h-full w-full rounded-12 object-cover"
+        className="h-full w-full rounded-8 object-cover"
       />
       <div className="absolute right-8 bottom-8 flex items-center gap-4">
         <span aria-hidden="true" className="size-[24px] rounded-full">

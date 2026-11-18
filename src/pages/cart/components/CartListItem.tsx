@@ -30,7 +30,7 @@ const CartListItem = ({
   title,
 }: CartListItemProps) => {
   return (
-    <article className="relative flex bg-white px-16 pt-16 pb-24">
+    <article className="relative flex items-start justify-between bg-white px-16 pt-16 pb-24">
       <div className="flex min-w-0 flex-1 items-start gap-16">
         <button
           type="button"

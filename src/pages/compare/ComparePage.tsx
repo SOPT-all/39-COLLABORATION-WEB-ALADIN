@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { generatePath, useNavigate } from 'react-router';
 
+import bookCover from '@assets/images/books/thumbnail-01.webp';
+import BookInfo from '@components/BookInfo';
 import TabBar from '@components/TabBar';
 import { ROUTES } from '@constants/routes';
 
@@ -10,7 +12,11 @@ import FilterBar from './components/FilterBar';
 import Pagination from './components/Pagination';
 import PriceSummary from './components/PriceSummary';
 import UsedBookList from './components/UsedBookList';
-import { MOCK_BOOK_PRICE, MOCK_USED_BOOKS } from './constants/mockUsedBooks';
+import {
+  MOCK_BOOK_INFO,
+  MOCK_BOOK_PRICE,
+  MOCK_USED_BOOKS,
+} from './constants/mockUsedBooks';
 import { SELLER_TABS } from './constants/sellerTabs';
 
 const ComparePage = () => {
@@ -25,6 +31,19 @@ const ComparePage = () => {
 
   return (
     <div className="flex flex-col gap-8 bg-gray-50">
+      <section
+        aria-label="도서 정보"
+        className="flex flex-col gap-24 bg-white px-(--layout-margin-x) py-24"
+      >
+        <img
+          src={bookCover}
+          alt={`${MOCK_BOOK_INFO.title} 표지`}
+          width={280}
+          height={400}
+          className="mx-auto h-[400px] w-[280px] object-cover"
+        />
+        <BookInfo {...MOCK_BOOK_INFO} />
+      </section>
       <PriceSummary
         listPrice={MOCK_BOOK_PRICE.listPrice}
         mileage={MOCK_BOOK_PRICE.mileage}

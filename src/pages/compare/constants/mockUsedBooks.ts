@@ -8,7 +8,7 @@ export const MOCK_BOOK_PRICE: BookPrice = {
 
 export const MOCK_USED_BOOKS: UsedBook[] = [
   {
-    id: 1,
+    id: 103,
     title: '[중고] 소년이 온다',
     sellerName: '우나야하',
     sellerGrade: 'professional',

@@ -36,7 +36,7 @@ const UsedBookItem = ({ onClick, usedBook }: UsedBookItemProps) => {
         <h3 className="text-title-18sb text-gray-950">{title}</h3>
 
         <div className="flex flex-col gap-8">
-          <div className="flex items-center gap-16">
+          <div className="flex h-24 items-center gap-16">
             <span className={LABEL_CLASS}>판매자</span>
             <span className="flex items-center gap-4 text-body-16r text-gray-700">
               {sellerName}

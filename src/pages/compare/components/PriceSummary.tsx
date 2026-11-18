@@ -17,7 +17,7 @@ const PriceSummary = ({
   salePrice,
 }: PriceSummaryProps) => (
   <dl className="flex flex-col gap-8 bg-white px-(--layout-margin-x) py-16">
-    <div className="flex items-center gap-16">
+    <div className="flex h-24 items-center gap-16">
       <dt className={LABEL_CLASS}>정가</dt>
       <dd className="flex items-center gap-8 text-body-16m text-gray-700">
         {formatPrice(listPrice)}원

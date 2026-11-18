@@ -28,6 +28,9 @@ const CartPaymentSummary = forwardRef<HTMLElement, CartPaymentSummaryProps>(
     },
     ref,
   ) => {
+    const discountLabel =
+      discountAmount === 0 ? '0원' : `−${formatPrice(discountAmount)}원`;
+
     const paymentDetails = [
       {
         label: '상품 수',
@@ -39,7 +42,7 @@ const CartPaymentSummary = forwardRef<HTMLElement, CartPaymentSummaryProps>(
       },
       {
         label: '할인 금액',
-        value: `−${formatPrice(discountAmount)}원`,
+        value: discountLabel,
         valueClassName: 'text-pink-500',
       },
       {

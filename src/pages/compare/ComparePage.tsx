@@ -14,7 +14,11 @@ import FilterBottomSheet from './components/FilterBottomSheet';
 import Pagination from './components/Pagination';
 import PriceSummary from './components/PriceSummary';
 import UsedBookList from './components/UsedBookList';
-import { QUALITY_GRADE_OPTIONS, SORT_OPTIONS } from './constants/filterOptions';
+import {
+  PRICE_SORT_OPTIONS,
+  QUALITY_GRADE_OPTIONS,
+  SORT_OPTIONS,
+} from './constants/filterOptions';
 import {
   MOCK_BOOK_INFO,
   MOCK_BOOK_PRICE,
@@ -29,6 +33,7 @@ const ComparePage = () => {
   const [isFilterSheetOpen, setIsFilterSheetOpen] = useState(false);
   const [selectedFilterTab, setSelectedFilterTab] = useState<FilterTab>('sort');
   const [selectedSort, setSelectedSort] = useState(SORT_OPTIONS[0]);
+  const [appliedSort, setAppliedSort] = useState(SORT_OPTIONS[0]);
   const [selectedQuality, setSelectedQuality] = useState(
     QUALITY_GRADE_OPTIONS[0],
   );
@@ -39,7 +44,24 @@ const ComparePage = () => {
   };
 
   const closeFilterSheet = () => setIsFilterSheetOpen(false);
+  const handleFilterApply = () => {
+    const nextSort = PRICE_SORT_OPTIONS.includes(selectedSort)
+      ? selectedSort
+      : appliedSort;
 
+    setAppliedSort(nextSort);
+    setSelectedSort(nextSort);
+    closeFilterSheet();
+  };
+
+  const handleFilterClose = () => {
+    setSelectedSort(appliedSort);
+    closeFilterSheet();
+  };
+
+  const sortedUsedBooks = [...MOCK_USED_BOOKS].sort((a, b) =>
+    appliedSort === '고가격순' ? b.price - a.price : a.price - b.price,
+  );
   const handleUsedBookClick = (usedBook: UsedBook) => {
     if (usedBook.id !== MOCK_USED_BOOKS[0].id) return;
     navigate(generatePath(ROUTES.DETAIL, { bookId: String(usedBook.id) }));
@@ -78,7 +100,7 @@ const ComparePage = () => {
             <FilterBar
               gradeLabel="모든 품질 등급"
               isHalfPriceOnly={isHalfPriceOnly}
-              sortLabel="저가격순"
+              sortLabel={appliedSort}
               onGradeClick={() => openFilterSheet('quality')}
               onHalfPriceToggle={() => setIsHalfPriceOnly((prev) => !prev)}
               onSortClick={() => openFilterSheet('sort')}
@@ -87,7 +109,7 @@ const ComparePage = () => {
         </div>
 
         <UsedBookList
-          usedBooks={MOCK_USED_BOOKS}
+          usedBooks={sortedUsedBooks}
           onItemClick={handleUsedBookClick}
         />
         <Pagination currentPage={1} totalPage={23} />
@@ -98,8 +120,8 @@ const ComparePage = () => {
         selectedQuality={selectedQuality}
         selectedSort={selectedSort}
         selectedTab={selectedFilterTab}
-        onApply={closeFilterSheet}
-        onClose={closeFilterSheet}
+        onApply={handleFilterApply}
+        onClose={handleFilterClose}
         onHalfPriceToggle={() => setIsHalfPriceOnly((prev) => !prev)}
         onQualityOptionClick={setSelectedQuality}
         onSortOptionClick={setSelectedSort}

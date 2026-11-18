@@ -1,7 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 
-import sonyeonCover from '@assets/images/books/thumbnail-01.webp';
-import iliasCover from '@assets/images/books/thumbnail-03.webp';
 import TabBar from '@components/TabBar';
 
 import AccordionSeller from './components/AccordionSeller';
@@ -11,6 +9,7 @@ import CartPaymentSummary from './components/CartPaymentSummary';
 import CartSelectionToolbar from './components/CartSelectionToolbar';
 import SegmentCart from './components/SegmentCart';
 import SummarySeller from './components/SummarySeller';
+import { CART_ITEMS, FREE_SHIPPING_THRESHOLD, SELLERS } from './constants/mockCart';
 
 const CART_TABS = [
   { label: '장바구니', value: 'cart' },
@@ -18,34 +17,6 @@ const CART_TABS = [
   { label: '구매함', value: 'purchase' },
   { label: '오늘 본 상품', value: 'recent' },
 ] as const;
-
-const CART_ITEMS = [
-  {
-    condition: '중',
-    discountRate: 64,
-    id: 1,
-    imageSrc: sonyeonCover,
-    originalPrice: 15000,
-    price: 5400,
-    quantity: 1,
-    sellerId: 1,
-    title: '소년이 온다',
-  },
-  {
-    condition: '최상',
-    discountRate: 45,
-    id: 2,
-    imageSrc: iliasCover,
-    originalPrice: 33000,
-    price: 18000,
-    quantity: 1,
-    sellerId: 1,
-    title: '일리아스',
-  },
-] as const;
-
-const FREE_SHIPPING_THRESHOLD = 100000;
-const SELLERS = [{ id: 1, shippingFee: 3500 }] as const;
 
 const CartPage = () => {
   const [selectedCartTab, setSelectedCartTab] = useState('cart');

@@ -142,7 +142,7 @@ const CartPage = () => {
         </div>
       </div>
 
-      <div className="mt-16">
+      <div className="my-16">
         <AccordionSeller
           isSelected={isAllSelected}
           sellerName="우나야하"

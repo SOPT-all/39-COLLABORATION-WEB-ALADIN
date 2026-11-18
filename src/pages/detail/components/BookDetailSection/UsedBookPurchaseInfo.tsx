@@ -10,6 +10,9 @@ interface UsedBookPurchaseInfoProps {
 const PAYMENT_DIVIDER_CLASSES =
   'relative py-8 before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-gray-200 after:absolute after:inset-x-0 after:top-full after:h-px after:bg-gray-200';
 
+const formatWon = (price?: number) =>
+  price == null ? '—' : `${formatPrice(price)}원`;
+
 const UsedBookPurchaseInfo = ({ purchaseInfo }: UsedBookPurchaseInfoProps) => {
   const {
     listPrice,
@@ -40,8 +43,8 @@ const UsedBookPurchaseInfo = ({ purchaseInfo }: UsedBookPurchaseInfoProps) => {
               {discountRate}%
             </span>
             <span className="flex items-center text-display-24sb">
-              {formatPrice(salePrice)}
-              <span className="text-title-18m">원</span>
+              {salePrice == null ? '—' : formatPrice(salePrice)}
+              {salePrice != null && <span className="text-title-18m">원</span>}
             </span>
             <s className="text-gray-500">{formattedListPrice}</s>
           </dd>
@@ -50,8 +53,8 @@ const UsedBookPurchaseInfo = ({ purchaseInfo }: UsedBookPurchaseInfoProps) => {
         <div className="col-span-full grid grid-cols-subgrid items-center">
           <dt className="text-body-14sb">배송료</dt>
           <dd>
-            택배 {formatPrice(shippingFee)}원, 도서/산간{' '}
-            {formatPrice(remoteShippingFee)}원
+            택배 {formatWon(shippingFee)}, 도서/산간{' '}
+            {formatWon(remoteShippingFee)}
           </dd>
         </div>
 
@@ -60,8 +63,12 @@ const UsedBookPurchaseInfo = ({ purchaseInfo }: UsedBookPurchaseInfoProps) => {
         >
           <dt className="text-body-14sb">예상 결제액</dt>
           <dd className="flex items-center text-title-20sb">
-            {formatPrice(estimatedPaymentAmount)}
-            <span className="text-body-16m">원~</span>
+            {estimatedPaymentAmount == null
+              ? '—'
+              : formatPrice(estimatedPaymentAmount)}
+            {estimatedPaymentAmount != null && (
+              <span className="text-body-16m">원~</span>
+            )}
           </dd>
         </div>
 
@@ -97,7 +104,7 @@ const UsedBookPurchaseInfo = ({ purchaseInfo }: UsedBookPurchaseInfoProps) => {
         <div className="col-span-full grid grid-cols-subgrid items-center">
           <dt className="text-body-14sb">판매자</dt>
           <dd className="flex items-center gap-8 text-gray-700">
-            <span>{sellerName}</span>
+            <span>{sellerName ?? '—'}</span>
             <IcChevronRightCircle aria-hidden="true" />
           </dd>
         </div>

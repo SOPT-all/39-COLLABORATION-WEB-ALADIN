@@ -20,7 +20,7 @@ interface CartSnackbarState {
 }
 
 const getCartErrorSnackbar = (error: unknown): CartSnackbarState => {
-  const code =  
+  const code =
     isHTTPError<CommonResponseVoid>(error) && typeof error.data === 'object'
       ? error.data.code
       : undefined;

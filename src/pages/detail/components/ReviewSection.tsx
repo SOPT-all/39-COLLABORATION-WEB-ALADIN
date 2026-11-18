@@ -52,7 +52,7 @@ const ReviewSection = ({ reviews }: ReviewSectionProps) => (
         ))}
       </ul>
 
-      <p className="flex items-center justify-center gap-4 px-16 py-8 text-body-14r text-gray-700">
+      <p className="flex items-center justify-center gap-4 px-16 py-8 text-body-14m text-gray-700">
         더 보기
         <IcChevronDownGray aria-hidden="true" />
       </p>

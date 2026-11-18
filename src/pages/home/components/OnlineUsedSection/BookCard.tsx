@@ -5,7 +5,12 @@ interface BookCardProps {
   hasShadow?: boolean;
 }
 
-const BookCard = ({ imageSrc, title, author, hasShadow = false }: BookCardProps) => {
+const BookCard = ({
+  imageSrc,
+  title,
+  author,
+  hasShadow = false,
+}: BookCardProps) => {
   return (
     <article
       className={`flex w-[130px] shrink-0 flex-col gap-16 ${hasShadow ? 'shadow-card' : ''}`}

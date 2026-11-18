@@ -9,9 +9,19 @@ import SectionHeader from '../SectionHeader';
 import BookCard from './BookCard';
 
 const BOOKS = [
-  { imageSrc: firstCover, title: '소년이 온다', author: '한강', hasShadow: true },
+  {
+    imageSrc: firstCover,
+    title: '소년이 온다',
+    author: '한강',
+    hasShadow: true,
+  },
   { imageSrc: secondCover, title: '에로스, 달콤씁쓸한', author: '앤 카슨' },
-  { imageSrc: thirdCover, title: '일리아스', author: '호메로스', hasShadow: true },
+  {
+    imageSrc: thirdCover,
+    title: '일리아스',
+    author: '호메로스',
+    hasShadow: true,
+  },
 ];
 
 const OnlineUsedSection = () => (

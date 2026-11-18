@@ -9,7 +9,12 @@ import CartPaymentSummary from './components/CartPaymentSummary';
 import CartSelectionToolbar from './components/CartSelectionToolbar';
 import SegmentCart from './components/SegmentCart';
 import SummarySeller from './components/SummarySeller';
-import { CART_ITEMS, FREE_SHIPPING_THRESHOLD, SELLERS } from './constants/mockCart';
+import {
+  CART_ITEMS,
+  FREE_SHIPPING_THRESHOLD,
+  SELLERS,
+} from './constants/mockCart';
+import { calculateCartTotals } from './utils/calculateCartTotals';
 
 const CART_TABS = [
   { label: '장바구니', value: 'cart' },
@@ -30,37 +35,24 @@ const CartPage = () => {
     () => CART_ITEMS.filter(({ id }) => selectedIds.includes(id)),
     [selectedIds],
   );
-  const selectedTypeCount = selectedItems.length;
-  const selectedBookCount = selectedItems.reduce(
-    (sum, { quantity }) => sum + quantity,
-    0,
-  );
-  const itemAmount = selectedItems.reduce(
-    (sum, { originalPrice, quantity }) => sum + originalPrice * quantity,
-    0,
-  );
-  const saleAmount = selectedItems.reduce(
-    (sum, { price, quantity }) => sum + price * quantity,
-    0,
-  );
-  const cartSaleAmount = CART_ITEMS.reduce(
-    (sum, { price, quantity }) => sum + price * quantity,
-    0,
-  );
-  const discountAmount = itemAmount - saleAmount;
-  const selectedSellerIds = new Set(
-    selectedItems.map(({ sellerId }) => sellerId),
-  );
-  const selectedSellerCount = selectedSellerIds.size;
-  const shippingFee = SELLERS.reduce(
-    (sum, { id, shippingFee: sellerShippingFee }) =>
-      selectedSellerIds.has(id) ? sum + sellerShippingFee : sum,
-    0,
-  );
-  const totalPrice = saleAmount + shippingFee;
-  const freeShippingRemaining = Math.max(
-    FREE_SHIPPING_THRESHOLD - cartSaleAmount,
-    0,
+  const {
+    discountAmount,
+    freeShippingRemaining,
+    itemAmount,
+    selectedBookCount,
+    selectedSellerCount,
+    selectedTypeCount,
+    shippingFee,
+    totalPrice,
+  } = useMemo(
+    () =>
+      calculateCartTotals(
+        selectedItems,
+        CART_ITEMS,
+        SELLERS,
+        FREE_SHIPPING_THRESHOLD,
+      ),
+    [selectedItems],
   );
   const isAllSelected = selectedIds.length === CART_ITEMS.length;
 

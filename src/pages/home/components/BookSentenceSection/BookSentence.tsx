@@ -11,10 +11,7 @@ interface BookSentenceProps {
 
 const BookSentence = ({ sentence, title, imageSrc }: BookSentenceProps) => {
   return (
-    <section
-      aria-label="이 책의 한 문장"
-      className="flex w-full flex-col gap-16 px-16 text-gray-950"
-    >
+    <div className="flex w-full flex-col gap-16 px-16 text-gray-950">
       <div className="flex flex-col items-center gap-24">
         <IcQuotationMark aria-hidden="true" width={40} height={28} />
         <blockquote className="m-0 w-full text-center text-body-16m">
@@ -54,7 +51,7 @@ const BookSentence = ({ sentence, title, imageSrc }: BookSentenceProps) => {
           className="absolute right-0 shrink-0"
         />
       </div>
-    </section>
+    </div>
   );
 };
 

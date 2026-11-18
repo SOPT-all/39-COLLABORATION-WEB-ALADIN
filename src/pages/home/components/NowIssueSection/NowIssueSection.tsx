@@ -1,8 +1,8 @@
 import bookCover from '@assets/images/now-issue/thumbnail-01.webp';
 
+import SectionHeader from '../SectionHeader';
 import BarIndicator from './BarIndicator';
 import NowIssueCard from './NowIssueCard';
-import SectionHeader from './SectionHeader';
 
 const NOW_ISSUE_BOOK = {
   coverSrc: bookCover,

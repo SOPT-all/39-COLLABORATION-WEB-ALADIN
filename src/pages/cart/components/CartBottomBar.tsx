@@ -19,6 +19,7 @@ const CartBottomBar = ({
     >
       <div className="flex items-start justify-between text-body-14r text-gray-700">
         <span>선택 상품</span>
+
         <p className="flex items-start gap-4">
           <span>
             총 {selectedTypeCount}종 {selectedBookCount}개

@@ -1,5 +1,5 @@
 import IcCheckFilled from '@assets/svg/cart/IcCheckFilled';
-import IcCheckOutline from '@assets/svg/cart/IcCheckOutline';
+import IcCheckUnselected from '@assets/svg/cart/IcCheckUnselected';
 
 interface CartSelectionToolbarProps {
   isAllSelected: boolean;
@@ -29,7 +29,7 @@ const CartSelectionToolbar = ({
         {isAllSelected ? (
           <IcCheckFilled aria-hidden="true" />
         ) : (
-          <IcCheckOutline aria-hidden="true" />
+          <IcCheckUnselected aria-hidden="true" />
         )}
         <span className="text-body-16sb text-gray-950">전체 선택</span>
         <span className="text-body-14r text-gray-700">

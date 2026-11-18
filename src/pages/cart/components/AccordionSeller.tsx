@@ -1,8 +1,8 @@
 import { useState, type ReactNode } from 'react';
 
 import IcChevronDown from '@assets/svg/arrow/IcChevronDown';
-import IcCheckFilled from '@assets/svg/cart/IcCheckFilled';
 import IcCheckOutline from '@assets/svg/cart/IcCheckOutline';
+import IcCheckUnselected from '@assets/svg/cart/IcCheckUnselected';
 
 interface AccordionSellerProps {
   children: ReactNode;
@@ -31,9 +31,9 @@ const AccordionSeller = ({
             onClick={onSelect}
           >
             {isSelected ? (
-              <IcCheckFilled aria-hidden="true" />
-            ) : (
               <IcCheckOutline aria-hidden="true" />
+            ) : (
+              <IcCheckUnselected aria-hidden="true" />
             )}
           </button>
 

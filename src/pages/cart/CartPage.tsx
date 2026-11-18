@@ -6,6 +6,7 @@ import TabBar from '@components/TabBar';
 
 import AccordionSeller from './components/AccordionSeller';
 import CartListItem from './components/CartListItem';
+import CartPaymentSummary from './components/CartPaymentSummary';
 import CartSelectionToolbar from './components/CartSelectionToolbar';
 import SegmentCart from './components/SegmentCart';
 import SummarySeller from './components/SummarySeller';
@@ -51,14 +52,19 @@ const CartPage = () => {
     () => CART_ITEMS.filter(({ id }) => selectedIds.includes(id)),
     [selectedIds],
   );
-  const selectedItemAmount = selectedItems.reduce(
+  const itemAmount = selectedItems.reduce(
+    (sum, { originalPrice }) => sum + originalPrice,
+    0,
+  );
+  const saleAmount = selectedItems.reduce(
     (sum, { price }) => sum + price,
     0,
   );
+  const discountAmount = itemAmount - saleAmount;
   const shippingFee = selectedItems.length > 0 ? SHIPPING_FEE : 0;
-  const totalPrice = selectedItemAmount + shippingFee;
+  const totalPrice = saleAmount + shippingFee;
   const freeShippingRemaining = Math.max(
-    FREE_SHIPPING_THRESHOLD - selectedItemAmount,
+    FREE_SHIPPING_THRESHOLD - saleAmount,
     0,
   );
   const isAllSelected = selectedIds.length === CART_ITEMS.length;
@@ -119,6 +125,15 @@ const CartPage = () => {
           />
         </AccordionSeller>
       </div>
+
+      <CartPaymentSummary
+        discountAmount={discountAmount}
+        itemAmount={itemAmount}
+        selectedBookCount={selectedItems.length}
+        selectedTypeCount={selectedItems.length}
+        shippingFee={shippingFee}
+        totalPrice={totalPrice}
+      />
     </section>
   );
 };

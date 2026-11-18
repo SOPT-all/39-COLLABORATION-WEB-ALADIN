@@ -2,6 +2,9 @@ import { useState } from 'react';
 
 import TabBar from '@components/TabBar';
 
+import CartSelectionToolbar from './components/CartSelectionToolbar';
+import SegmentCart from './components/SegmentCart';
+
 const CART_TABS = [
   { label: '장바구니', value: 'cart' },
   { label: '보관함', value: 'storage' },
@@ -20,6 +23,17 @@ const CartPage = () => {
         selectedValue={selectedCartTab}
         onValueChange={setSelectedCartTab}
       />
+
+      <div className="flex flex-col gap-12 bg-white py-16">
+        <div className="mx-12">
+          <SegmentCart deliveryCount={5} halfPriceCount={1} />
+        </div>
+        <CartSelectionToolbar
+          isAllSelected
+          selectedCount={2}
+          totalCount={2}
+        />
+      </div>
     </section>
   );
 };

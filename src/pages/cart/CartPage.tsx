@@ -14,6 +14,9 @@ const CART_TABS = [
 
 const CartPage = () => {
   const [selectedCartTab, setSelectedCartTab] = useState('cart');
+  const [selectedCount, setSelectedCount] = useState(2);
+
+  const isAllSelected = selectedCount === 2;
 
   return (
     <section aria-label="장바구니">
@@ -29,9 +32,12 @@ const CartPage = () => {
           <SegmentCart deliveryCount={5} halfPriceCount={1} />
         </div>
         <CartSelectionToolbar
-          isAllSelected
-          selectedCount={2}
+          isAllSelected={isAllSelected}
+          selectedCount={selectedCount}
           totalCount={2}
+          onMoveToKeep={() => undefined}
+          onRemoveSelected={() => undefined}
+          onSelectAll={() => setSelectedCount(isAllSelected ? 0 : 2)}
         />
       </div>
     </section>

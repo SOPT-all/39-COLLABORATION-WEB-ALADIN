@@ -1,6 +1,7 @@
 import IcCheckFilled from '@assets/svg/cart/IcCheckFilled';
 import IcCheckOutline from '@assets/svg/cart/IcCheckOutline';
 import IcClose from '@assets/svg/close/IcClose';
+import { formatPrice } from '@utils/formatPrice';
 
 import CartKeepButton from './CartKeepButton';
 import Stepper from './Stepper';
@@ -10,6 +11,7 @@ interface CartListItemProps {
   discountRate: number;
   imageSrc: string;
   isSelected: boolean;
+  onRemove?: () => void;
   onSelect: () => void;
   originalPrice: number;
   price: number;
@@ -21,6 +23,7 @@ const CartListItem = ({
   discountRate,
   imageSrc,
   isSelected,
+  onRemove,
   onSelect,
   originalPrice,
   price,
@@ -68,11 +71,11 @@ const CartListItem = ({
                   </span>
                   <div className="flex items-end gap-2">
                     <span className="text-body-16sb text-gray-950">
-                      {price.toLocaleString('ko-KR')}
+                      {formatPrice(price)}
                       <span className="text-body-16r">원</span>
                     </span>
                     <s className="text-body-14r text-gray-500">
-                      {originalPrice.toLocaleString('ko-KR')}원
+                      {formatPrice(originalPrice)}원
                     </s>
                   </div>
                 </div>
@@ -87,7 +90,14 @@ const CartListItem = ({
         </div>
       </div>
 
-      <IcClose aria-hidden="true" className="shrink-0" />
+      <button
+        type="button"
+        aria-label={`${title} 삭제`}
+        className="shrink-0"
+        onClick={onRemove}
+      >
+        <IcClose aria-hidden="true" />
+      </button>
       <div className="absolute right-16 bottom-0 left-16 border-b border-gray-200" />
     </article>
   );

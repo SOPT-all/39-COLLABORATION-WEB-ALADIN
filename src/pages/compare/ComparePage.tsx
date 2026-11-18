@@ -4,6 +4,7 @@ import { generatePath, useNavigate } from 'react-router';
 import bookCover from '@assets/images/books/thumbnail-01.webp';
 import BookInfo from '@components/BookInfo';
 import TabBar from '@components/TabBar';
+import { MOCK_BOOK_INFO } from '@constants/mockBookInfo';
 import { ROUTES } from '@constants/routes';
 
 import type { FilterTab } from './types/filter';
@@ -19,11 +20,7 @@ import {
   QUALITY_GRADE_OPTIONS,
   SORT_OPTIONS,
 } from './constants/filterOptions';
-import {
-  MOCK_BOOK_INFO,
-  MOCK_BOOK_PRICE,
-  MOCK_USED_BOOKS,
-} from './constants/mockUsedBooks';
+import { MOCK_BOOK_PRICE, MOCK_USED_BOOKS } from './constants/mockUsedBooks';
 import { SELLER_TABS } from './constants/sellerTabs';
 
 const ComparePage = () => {

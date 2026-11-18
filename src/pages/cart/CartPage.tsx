@@ -106,7 +106,7 @@ const CartPage = () => {
     return () => observer.disconnect();
   }, []);
 
-  const toggleItem = (id: number) => {
+  const handleToggleItem = (id: number) => {
     setSelectedIds((currentIds) =>
       currentIds.includes(id)
         ? currentIds.filter((selectedId) => selectedId !== id)
@@ -114,7 +114,7 @@ const CartPage = () => {
     );
   };
 
-  const toggleAll = () => {
+  const handleToggleAll = () => {
     setSelectedIds(isAllSelected ? [] : CART_ITEMS.map(({ id }) => id));
   };
 
@@ -137,7 +137,7 @@ const CartPage = () => {
             totalCount={CART_ITEMS.length}
             onMoveToKeep={() => undefined}
             onRemoveSelected={() => undefined}
-            onSelectAll={toggleAll}
+            onSelectAll={handleToggleAll}
           />
         </div>
       </div>
@@ -146,14 +146,14 @@ const CartPage = () => {
         <AccordionSeller
           isSelected={isAllSelected}
           sellerName="우나야하"
-          onSelect={toggleAll}
+          onSelect={handleToggleAll}
         >
           {CART_ITEMS.map((item) => (
             <CartListItem
               key={item.id}
               {...item}
               isSelected={selectedIds.includes(item.id)}
-              onSelect={() => toggleItem(item.id)}
+              onSelect={() => handleToggleItem(item.id)}
             />
           ))}
           <SummarySeller

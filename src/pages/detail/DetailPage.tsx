@@ -1,5 +1,5 @@
 import BookConditionSection from './components/BookConditionSection/BookConditionSection';
-import ReviewCard from './components/ReviewCard';
+import ReviewSection from './components/ReviewSection';
 import SaleAlertSection from './components/SaleAlertSection/SaleAlertSection';
 import { MOCK_BOOK_CONDITION } from './constants/mockBookCondition';
 import { MOCK_REVIEWS } from './constants/mockReviews';
@@ -14,15 +14,7 @@ const DetailPage = () => (
       <SaleAlertSection />
     </div>
 
-    <div className="px-(--layout-margin-x)">
-      <ul className="flex flex-col gap-24 py-12">
-        {MOCK_REVIEWS.map((review) => (
-          <li key={review.id}>
-            <ReviewCard review={review} />
-          </li>
-        ))}
-      </ul>
-    </div>
+    <ReviewSection reviews={MOCK_REVIEWS} />
   </>
 );
 

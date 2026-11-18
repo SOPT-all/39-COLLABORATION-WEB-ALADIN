@@ -1,4 +1,4 @@
-import IcUi from '@assets/svg/arrow/group/IcUi';
+import IcReviewSortArrow from '@assets/svg/arrow/group/IcReviewSortArrow';
 import IcChevronDownGray from '@assets/svg/arrow/IcChevronDownGray';
 import IcMagic from '@assets/svg/product/IcMagic';
 
@@ -40,7 +40,7 @@ const ReviewSection = ({ reviews }: ReviewSectionProps) => (
 
         <span className="inline-flex min-h-[28px] shrink-0 items-stretch border border-gray-200 text-caption-12r text-gray-700">
           <span className="flex items-center p-2">공감순</span>
-          <IcUi aria-hidden="true" className="shrink-0" />
+          <IcReviewSortArrow aria-hidden="true" className="shrink-0" />
         </span>
       </div>
 

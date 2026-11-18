@@ -6,12 +6,15 @@ import BookInfo from '@components/BookInfo';
 import TabBar from '@components/TabBar';
 import { ROUTES } from '@constants/routes';
 
+import type { FilterTab } from './types/filter';
 import type { UsedBook } from './types/usedBook';
 
 import FilterBar from './components/FilterBar';
+import FilterBottomSheet from './components/FilterBottomSheet';
 import Pagination from './components/Pagination';
 import PriceSummary from './components/PriceSummary';
 import UsedBookList from './components/UsedBookList';
+import { QUALITY_GRADE_OPTIONS, SORT_OPTIONS } from './constants/filterOptions';
 import {
   MOCK_BOOK_INFO,
   MOCK_BOOK_PRICE,
@@ -23,6 +26,19 @@ const ComparePage = () => {
   const navigate = useNavigate();
   const [selectedSellerTab, setSelectedSellerTab] = useState('all');
   const [isHalfPriceOnly, setIsHalfPriceOnly] = useState(false);
+  const [isFilterSheetOpen, setIsFilterSheetOpen] = useState(false);
+  const [selectedFilterTab, setSelectedFilterTab] = useState<FilterTab>('sort');
+  const [selectedSort, setSelectedSort] = useState(SORT_OPTIONS[0]);
+  const [selectedQuality, setSelectedQuality] = useState(
+    QUALITY_GRADE_OPTIONS[0],
+  );
+
+  const openFilterSheet = (tab: FilterTab) => {
+    setSelectedFilterTab(tab);
+    setIsFilterSheetOpen(true);
+  };
+
+  const closeFilterSheet = () => setIsFilterSheetOpen(false);
 
   const handleUsedBookClick = (usedBook: UsedBook) => {
     if (usedBook.id !== MOCK_USED_BOOKS[0].id) return;
@@ -63,7 +79,9 @@ const ComparePage = () => {
               gradeLabel="모든 품질 등급"
               isHalfPriceOnly={isHalfPriceOnly}
               sortLabel="저가격순"
+              onGradeClick={() => openFilterSheet('quality')}
               onHalfPriceToggle={() => setIsHalfPriceOnly((prev) => !prev)}
+              onSortClick={() => openFilterSheet('sort')}
             />
           </div>
         </div>
@@ -74,6 +92,19 @@ const ComparePage = () => {
         />
         <Pagination currentPage={1} totalPage={23} />
       </section>
+      <FilterBottomSheet
+        isHalfPriceOnly={isHalfPriceOnly}
+        isOpen={isFilterSheetOpen}
+        selectedQuality={selectedQuality}
+        selectedSort={selectedSort}
+        selectedTab={selectedFilterTab}
+        onApply={closeFilterSheet}
+        onClose={closeFilterSheet}
+        onHalfPriceToggle={() => setIsHalfPriceOnly((prev) => !prev)}
+        onQualityOptionClick={setSelectedQuality}
+        onSortOptionClick={setSelectedSort}
+        onTabClick={setSelectedFilterTab}
+      />
     </div>
   );
 };

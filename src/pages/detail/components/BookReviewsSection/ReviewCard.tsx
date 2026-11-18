@@ -8,6 +8,7 @@ import IcStar5 from '@assets/svg/status/IcStar5';
 
 import type { Review } from '../../types/review';
 
+import { useToggleReviewLike } from '../../hooks/useToggleReviewLike';
 import LikeButton from './LikeButton';
 import ThanksToButton from './ThanksToButton';
 
@@ -17,9 +18,14 @@ interface ReviewCardProps {
 
 const ReviewCard = ({ review }: ReviewCardProps) => {
   const [isLiked, setIsLiked] = useState(false);
+  const { mutate, isPending } = useToggleReviewLike(review.id);
 
   const handleLikeClick = () => {
-    setIsLiked((wasLiked) => !wasLiked);
+    if (isPending) return;
+
+    mutate(undefined, {
+      onSuccess: (data) => setIsLiked(data.isLiked),
+    });
   };
 
   return (
@@ -50,7 +56,11 @@ const ReviewCard = ({ review }: ReviewCardProps) => {
         <span className="text-body-16m">댓글 ({review.commentCount})</span>
 
         <div className="ml-auto flex items-center gap-4">
-          <LikeButton isLiked={isLiked} onClick={handleLikeClick} />
+          <LikeButton
+            disabled={isPending}
+            isLiked={isLiked}
+            onClick={handleLikeClick}
+          />
           <ThanksToButton />
           <IcNotice aria-hidden="true" />
         </div>

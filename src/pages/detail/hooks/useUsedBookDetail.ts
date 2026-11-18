@@ -11,5 +11,4 @@ export const useUsedBookDetail = (salesPostId: number | undefined) =>
       salesPostId === undefined
         ? skipToken
         : ({ signal }) => getUsedBookDetail(salesPostId, signal),
-    retry: false,
   });

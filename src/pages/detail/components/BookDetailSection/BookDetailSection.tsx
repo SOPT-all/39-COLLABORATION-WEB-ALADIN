@@ -1,3 +1,4 @@
+import type { SalesPostDetailResponse } from '@apis/generated/dataContracts';
 import BookInfo from '@components/BookInfo';
 
 import { MOCK_BOOK_CONDITION } from '../../constants/mockBookCondition';
@@ -7,31 +8,58 @@ import BookConditionSection from './BookConditionSection';
 import SaleAlertSection from './SaleAlertSection';
 import UsedBookPurchaseInfo from './UsedBookPurchaseInfo';
 
-const BookDetailSection = () => (
-  <>
-    <section
-      aria-label="도서 정보"
-      className="flex flex-col gap-24 bg-white px-(--layout-margin-x) py-24"
-    >
-      <img
-        src={MOCK_DETAIL_BOOK.coverSrc}
-        alt={`${MOCK_DETAIL_BOOK.info.title} 표지`}
-        width={260}
-        height={375}
-        className="mx-auto h-[400px] w-auto"
-      />
-      <BookInfo {...MOCK_DETAIL_BOOK.info} />
-    </section>
+const QUALITY_GRADE_LABELS: Record<
+  NonNullable<SalesPostDetailResponse['qualityGrade']>,
+  string
+> = {
+  EXCELLENT: '최상',
+  GOOD: '상',
+  FAIR: '중',
+};
 
-    <div className="flex flex-col gap-8 bg-gray-50 py-8">
-      <UsedBookPurchaseInfo purchaseInfo={MOCK_USED_BOOK_PURCHASE_INFO} />
-      <BookConditionSection
-        grade={MOCK_BOOK_CONDITION.grade}
-        groups={MOCK_BOOK_CONDITION.groups}
-      />
-      <SaleAlertSection />
-    </div>
-  </>
-);
+interface BookDetailSectionProps {
+  salesPost: SalesPostDetailResponse;
+}
+
+const BookDetailSection = ({ salesPost }: BookDetailSectionProps) => {
+  const { qualityGrade } = salesPost;
+  const gradeLabel = qualityGrade ? QUALITY_GRADE_LABELS[qualityGrade] : '—';
+  const purchaseInfo = {
+    ...MOCK_USED_BOOK_PURCHASE_INFO,
+    salePrice: salesPost.salePrice,
+    shippingFee: salesPost.shippingFee,
+    remoteShippingFee: salesPost.remoteShippingFee,
+    estimatedPaymentAmount: salesPost.estimatedPaymentAmount,
+    sellerName: salesPost.sellerName,
+    qualityGradeLabel: gradeLabel,
+  };
+
+  return (
+    <>
+      <section
+        aria-label="도서 정보"
+        className="flex flex-col gap-24 bg-white px-(--layout-margin-x) py-24"
+      >
+        <img
+          src={MOCK_DETAIL_BOOK.coverSrc}
+          alt={`${MOCK_DETAIL_BOOK.info.title} 표지`}
+          width={260}
+          height={375}
+          className="mx-auto h-[400px] w-auto"
+        />
+        <BookInfo {...MOCK_DETAIL_BOOK.info} />
+      </section>
+
+      <div className="flex flex-col gap-8 bg-gray-50 py-8">
+        <UsedBookPurchaseInfo purchaseInfo={purchaseInfo} />
+        <BookConditionSection
+          grade={gradeLabel}
+          groups={MOCK_BOOK_CONDITION.groups}
+        />
+        <SaleAlertSection />
+      </div>
+    </>
+  );
+};
 
 export default BookDetailSection;

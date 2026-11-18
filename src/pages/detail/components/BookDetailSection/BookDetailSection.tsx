@@ -3,8 +3,8 @@ import BookInfo from '@components/BookInfo';
 import { MOCK_BOOK_CONDITION } from '../../constants/mockBookCondition';
 import { MOCK_DETAIL_BOOK } from '../../constants/mockDetailBook';
 import { MOCK_USED_BOOK_PURCHASE_INFO } from '../../constants/mockUsedBookPurchaseInfo';
-import BookConditionSection from './BookConditionSection/BookConditionSection';
-import SaleAlertSection from './SaleAlertSection/SaleAlertSection';
+import BookConditionSection from './BookConditionSection';
+import SaleAlertSection from './SaleAlertSection';
 import UsedBookPurchaseInfo from './UsedBookPurchaseInfo';
 
 const BookDetailSection = () => (

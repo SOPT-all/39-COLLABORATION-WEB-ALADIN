@@ -1,4 +1,4 @@
-import RegisterButton from '../../RegisterButton';
+import RegisterButton from '../RegisterButton';
 import SellButton from './SellButton';
 
 const SaleAlertSection = () => (

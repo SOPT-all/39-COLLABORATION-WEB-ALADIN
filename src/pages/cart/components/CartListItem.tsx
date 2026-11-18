@@ -9,7 +9,7 @@ import Stepper from './Stepper';
 interface CartListItemProps {
   condition: string;
   discountRate: number;
-  imageSrc: string;
+  imageSrc?: string;
   isSelected: boolean;
   onRemove?: () => void;
   onSelect: () => void;
@@ -47,13 +47,23 @@ const CartListItem = ({
         </button>
 
         <div className="flex min-w-0 flex-1 items-start gap-8">
-          <img
-            alt={`${title} 표지`}
-            className="h-[120px] w-[80px] shrink-0 object-cover"
-            height={120}
-            src={imageSrc}
-            width={80}
-          />
+          {imageSrc ? (
+            <img
+              alt={`${title} 표지`}
+              className="h-[120px] w-[80px] shrink-0 object-cover"
+              height={120}
+              src={imageSrc}
+              width={80}
+            />
+          ) : (
+            <div
+              role="img"
+              aria-label={`${title} 표지 없음`}
+              className="flex h-[120px] w-[80px] shrink-0 items-center justify-center bg-gray-50 text-caption-12r text-gray-700"
+            >
+              표지 없음
+            </div>
+          )}
 
           <div className="flex h-[120px] min-w-0 flex-1 flex-col items-start justify-between">
             <div className="flex min-w-0 flex-col items-start gap-4 self-stretch">

@@ -7,7 +7,7 @@ import BookRankItem from './BookRankItem';
 const RealtimeRankSection = () => (
   <section aria-label="실시간 클릭 Top 10" className="pb-24">
     <SectionHeader title="실시간 클릭 Top 10" time="10:02" />
-    <ul>
+    <ul className="flex flex-col gap-2 pt-2">
       <li>
         <BookRankItem
           imageSrc={firstCover}

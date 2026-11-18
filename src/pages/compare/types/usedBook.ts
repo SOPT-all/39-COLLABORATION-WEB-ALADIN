@@ -12,7 +12,7 @@ export interface UsedBook {
   id: number;
   title: string;
   sellerName: string;
-  sellerGrade: SellerGrade;
+  sellerGrade?: SellerGrade;
   condition: BookCondition;
   discountRate: number;
   price: number;

@@ -5,7 +5,7 @@ import Button from '@components/Button';
 
 import CartSnackbar from './CartSnackbar';
 
-const CART_SNACKBAR_DURATION_MS = 3000;
+const CART_SNACKBAR_DURATION_MS = 4000;
 
 const DetailPurchaseBar = () => {
   const [isSnackbarVisible, setIsSnackbarVisible] = useState(false);

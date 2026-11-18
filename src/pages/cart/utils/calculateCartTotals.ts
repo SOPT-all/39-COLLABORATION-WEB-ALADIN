@@ -46,10 +46,7 @@ export const calculateCartTotals = (
 
   return {
     discountAmount: itemAmount - saleAmount,
-    freeShippingRemaining: Math.max(
-      freeShippingThreshold - cartSaleAmount,
-      0,
-    ),
+    freeShippingRemaining: Math.max(freeShippingThreshold - cartSaleAmount, 0),
     itemAmount,
     saleAmount,
     selectedBookCount,

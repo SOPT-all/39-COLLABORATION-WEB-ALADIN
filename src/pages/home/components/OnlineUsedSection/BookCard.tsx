@@ -2,11 +2,14 @@ interface BookCardProps {
   imageSrc: string;
   title: string;
   author: string;
+  hasShadow?: boolean;
 }
 
-const BookCard = ({ imageSrc, title, author }: BookCardProps) => {
+const BookCard = ({ imageSrc, title, author, hasShadow = false }: BookCardProps) => {
   return (
-    <article className="flex w-[130px] shrink-0 flex-col gap-16">
+    <article
+      className={`flex w-[130px] shrink-0 flex-col gap-16 ${hasShadow ? 'shadow-card' : ''}`}
+    >
       <img
         src={imageSrc}
         alt={`${title} 표지`}

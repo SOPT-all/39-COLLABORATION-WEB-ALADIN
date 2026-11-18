@@ -1,4 +1,4 @@
-import { Outlet, useLocation } from 'react-router';
+import { Outlet, ScrollRestoration, useLocation } from 'react-router';
 
 import Footer from '@components/Footer';
 import Header from '@components/Header';
@@ -15,6 +15,7 @@ const Layout = () => {
         <Outlet />
       </main>
       <Footer />
+      <ScrollRestoration />
     </>
   );
 };

@@ -65,9 +65,16 @@ const ComparePage = () => {
   const sortedUsedBooks = [...MOCK_USED_BOOKS].sort((a, b) =>
     appliedSort === '고가격순' ? b.price - a.price : a.price - b.price,
   );
+
+  const getUsedBookDetailPath = (usedBook: UsedBook) =>
+    usedBook.id === MOCK_USED_BOOKS[0].id
+      ? generatePath(ROUTES.DETAIL, { bookId: String(usedBook.id) })
+      : undefined;
+
   const handleUsedBookClick = (usedBook: UsedBook) => {
-    if (usedBook.id !== MOCK_USED_BOOKS[0].id) return;
-    navigate(generatePath(ROUTES.DETAIL, { bookId: String(usedBook.id) }));
+    const detailPath = getUsedBookDetailPath(usedBook);
+
+    if (detailPath) navigate(detailPath);
   };
 
   return (
@@ -112,6 +119,7 @@ const ComparePage = () => {
         </div>
 
         <UsedBookList
+          getDetailPath={getUsedBookDetailPath}
           usedBooks={sortedUsedBooks}
           onItemClick={handleUsedBookClick}
         />

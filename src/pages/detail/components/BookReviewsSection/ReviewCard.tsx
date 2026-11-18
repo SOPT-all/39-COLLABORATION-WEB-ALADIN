@@ -1,3 +1,4 @@
+import { isHTTPError } from 'ky';
 import { useState } from 'react';
 
 import IcMore from '@assets/svg/product/IcMore';
@@ -18,7 +19,7 @@ interface ReviewCardProps {
 
 const ReviewCard = ({ review }: ReviewCardProps) => {
   const [isLiked, setIsLiked] = useState(false);
-  const { mutate, isPending } = useToggleReviewLike(review.id);
+  const { mutate, isPending, isError, error } = useToggleReviewLike(review.id);
 
   const handleLikeClick = () => {
     if (isPending) return;
@@ -65,6 +66,13 @@ const ReviewCard = ({ review }: ReviewCardProps) => {
           <IcNotice aria-hidden="true" />
         </div>
       </footer>
+      {isError && (
+        <p className="sr-only" role="alert">
+          {isHTTPError(error) && error.response.status === 404
+            ? '리뷰를 찾을 수 없습니다.'
+            : '리뷰 공감 상태를 변경하지 못했습니다.'}
+        </p>
+      )}
     </article>
   );
 };

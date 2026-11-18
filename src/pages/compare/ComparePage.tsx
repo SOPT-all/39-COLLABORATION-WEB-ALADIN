@@ -44,6 +44,9 @@ const ComparePage = () => {
   };
 
   const closeFilterSheet = () => setIsFilterSheetOpen(false);
+
+  const handleHalfPriceToggle = () => setIsHalfPriceOnly((prev) => !prev);
+
   const handleFilterApply = () => {
     const nextSort = PRICE_SORT_OPTIONS.includes(selectedSort)
       ? selectedSort
@@ -102,7 +105,7 @@ const ComparePage = () => {
               isHalfPriceOnly={isHalfPriceOnly}
               sortLabel={appliedSort}
               onGradeClick={() => openFilterSheet('quality')}
-              onHalfPriceToggle={() => setIsHalfPriceOnly((prev) => !prev)}
+              onHalfPriceToggle={handleHalfPriceToggle}
               onSortClick={() => openFilterSheet('sort')}
             />
           </div>
@@ -122,7 +125,7 @@ const ComparePage = () => {
         selectedTab={selectedFilterTab}
         onApply={handleFilterApply}
         onClose={handleFilterClose}
-        onHalfPriceToggle={() => setIsHalfPriceOnly((prev) => !prev)}
+        onHalfPriceToggle={handleHalfPriceToggle}
         onQualityOptionClick={setSelectedQuality}
         onSortOptionClick={setSelectedSort}
         onTabClick={setSelectedFilterTab}

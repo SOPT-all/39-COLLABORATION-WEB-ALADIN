@@ -9,6 +9,7 @@ interface CartPaymentSummaryProps {
   discountAmount: number;
   itemAmount: number;
   selectedBookCount: number;
+  selectedSellerCount: number;
   selectedTypeCount: number;
   shippingFee: number;
   totalPrice: number;
@@ -20,6 +21,7 @@ const CartPaymentSummary = forwardRef<HTMLElement, CartPaymentSummaryProps>(
       discountAmount,
       itemAmount,
       selectedBookCount,
+      selectedSellerCount,
       selectedTypeCount,
       shippingFee,
       totalPrice,
@@ -42,7 +44,7 @@ const CartPaymentSummary = forwardRef<HTMLElement, CartPaymentSummaryProps>(
       },
       {
         label: '배송비',
-        note: '판매자 1곳',
+        note: `판매자 ${selectedSellerCount}곳`,
         value: `${formatPrice(shippingFee)}원`,
       },
     ];
@@ -66,9 +68,7 @@ const CartPaymentSummary = forwardRef<HTMLElement, CartPaymentSummaryProps>(
               <dt className="flex items-center gap-4 text-gray-700">
                 {label}
                 {note && (
-                  <span className="text-caption-12r text-gray-500">
-                    {note}
-                  </span>
+                  <span className="text-caption-12r text-gray-500">{note}</span>
                 )}
               </dt>
               <dd
@@ -107,7 +107,11 @@ const CartPaymentSummary = forwardRef<HTMLElement, CartPaymentSummaryProps>(
           </div>
         </div>
 
-        <Button className="w-full" size="large">
+        <Button
+          className="w-full disabled:cursor-default disabled:bg-gray-300"
+          disabled={selectedBookCount === 0}
+          size="large"
+        >
           {selectedBookCount}권 · {formatPrice(totalPrice)}원 주문하기
         </Button>
 

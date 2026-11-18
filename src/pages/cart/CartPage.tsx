@@ -1,10 +1,11 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
 import sonyeonCover from '@assets/images/books/thumbnail-01.webp';
 import iliasCover from '@assets/images/books/thumbnail-03.webp';
 import TabBar from '@components/TabBar';
 
 import AccordionSeller from './components/AccordionSeller';
+import CartBottomBar from './components/CartBottomBar';
 import CartListItem from './components/CartListItem';
 import CartPaymentSummary from './components/CartPaymentSummary';
 import CartSelectionToolbar from './components/CartSelectionToolbar';
@@ -26,6 +27,8 @@ const CART_ITEMS = [
     imageSrc: sonyeonCover,
     originalPrice: 15000,
     price: 5400,
+    quantity: 1,
+    sellerId: 1,
     title: '소년이 온다',
   },
   {
@@ -35,39 +38,73 @@ const CART_ITEMS = [
     imageSrc: iliasCover,
     originalPrice: 33000,
     price: 18000,
+    quantity: 1,
+    sellerId: 1,
     title: '일리아스',
   },
 ] as const;
 
 const FREE_SHIPPING_THRESHOLD = 100000;
-const SHIPPING_FEE = 3500;
+const SELLERS = [{ id: 1, shippingFee: 3500 }] as const;
 
 const CartPage = () => {
   const [selectedCartTab, setSelectedCartTab] = useState('cart');
   const [selectedIds, setSelectedIds] = useState<number[]>(
     CART_ITEMS.map(({ id }) => id),
   );
+  const [isPaymentVisible, setIsPaymentVisible] = useState(false);
+  const paymentSummaryRef = useRef<HTMLElement>(null);
 
   const selectedItems = useMemo(
     () => CART_ITEMS.filter(({ id }) => selectedIds.includes(id)),
     [selectedIds],
   );
+  const selectedTypeCount = selectedItems.length;
+  const selectedBookCount = selectedItems.reduce(
+    (sum, { quantity }) => sum + quantity,
+    0,
+  );
   const itemAmount = selectedItems.reduce(
-    (sum, { originalPrice }) => sum + originalPrice,
+    (sum, { originalPrice, quantity }) => sum + originalPrice * quantity,
     0,
   );
   const saleAmount = selectedItems.reduce(
-    (sum, { price }) => sum + price,
+    (sum, { price, quantity }) => sum + price * quantity,
+    0,
+  );
+  const cartSaleAmount = CART_ITEMS.reduce(
+    (sum, { price, quantity }) => sum + price * quantity,
     0,
   );
   const discountAmount = itemAmount - saleAmount;
-  const shippingFee = selectedItems.length > 0 ? SHIPPING_FEE : 0;
+  const selectedSellerIds = new Set(
+    selectedItems.map(({ sellerId }) => sellerId),
+  );
+  const selectedSellerCount = selectedSellerIds.size;
+  const shippingFee = SELLERS.reduce(
+    (sum, { id, shippingFee: sellerShippingFee }) =>
+      selectedSellerIds.has(id) ? sum + sellerShippingFee : sum,
+    0,
+  );
   const totalPrice = saleAmount + shippingFee;
   const freeShippingRemaining = Math.max(
-    FREE_SHIPPING_THRESHOLD - saleAmount,
+    FREE_SHIPPING_THRESHOLD - cartSaleAmount,
     0,
   );
   const isAllSelected = selectedIds.length === CART_ITEMS.length;
+
+  useEffect(() => {
+    const paymentSummary = paymentSummaryRef.current;
+    if (!paymentSummary) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsPaymentVisible(entry.isIntersecting),
+      { threshold: 0.1 },
+    );
+
+    observer.observe(paymentSummary);
+    return () => observer.disconnect();
+  }, []);
 
   const toggleItem = (id: number) => {
     setSelectedIds((currentIds) =>
@@ -83,25 +120,26 @@ const CartPage = () => {
 
   return (
     <section aria-label="장바구니" className="bg-gray-100">
-      <TabBar
-        className="sticky top-[3.5rem] z-[9]"
-        items={CART_TABS}
-        selectedValue={selectedCartTab}
-        onValueChange={setSelectedCartTab}
-      />
-
-      <div className="flex flex-col gap-12 bg-white py-16">
-        <div className="mx-12">
-          <SegmentCart deliveryCount={5} halfPriceCount={1} />
-        </div>
-        <CartSelectionToolbar
-          isAllSelected={isAllSelected}
-          selectedCount={selectedIds.length}
-          totalCount={CART_ITEMS.length}
-          onMoveToKeep={() => undefined}
-          onRemoveSelected={() => undefined}
-          onSelectAll={toggleAll}
+      <div className="sticky top-[3.5rem] z-[9]">
+        <TabBar
+          items={CART_TABS}
+          selectedValue={selectedCartTab}
+          onValueChange={setSelectedCartTab}
         />
+
+        <div className="flex flex-col gap-12 bg-white py-16">
+          <div className="mx-12">
+            <SegmentCart deliveryCount={5} halfPriceCount={1} />
+          </div>
+          <CartSelectionToolbar
+            isAllSelected={isAllSelected}
+            selectedCount={selectedTypeCount}
+            totalCount={CART_ITEMS.length}
+            onMoveToKeep={() => undefined}
+            onRemoveSelected={() => undefined}
+            onSelectAll={toggleAll}
+          />
+        </div>
       </div>
 
       <div className="mt-16">
@@ -127,13 +165,23 @@ const CartPage = () => {
       </div>
 
       <CartPaymentSummary
+        ref={paymentSummaryRef}
         discountAmount={discountAmount}
         itemAmount={itemAmount}
-        selectedBookCount={selectedItems.length}
-        selectedTypeCount={selectedItems.length}
+        selectedBookCount={selectedBookCount}
+        selectedSellerCount={selectedSellerCount}
+        selectedTypeCount={selectedTypeCount}
         shippingFee={shippingFee}
         totalPrice={totalPrice}
       />
+
+      {!isPaymentVisible && selectedBookCount > 0 && (
+        <CartBottomBar
+          selectedBookCount={selectedBookCount}
+          selectedTypeCount={selectedTypeCount}
+          totalPrice={totalPrice}
+        />
+      )}
     </section>
   );
 };

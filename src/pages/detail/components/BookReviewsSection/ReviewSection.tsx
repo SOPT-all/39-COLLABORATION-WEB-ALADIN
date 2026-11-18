@@ -2,7 +2,7 @@ import IcReviewSortArrow from '@assets/svg/arrow/group/IcReviewSortArrow';
 import IcChevronDownGray from '@assets/svg/arrow/IcChevronDownGray';
 import IcMagic from '@assets/svg/product/IcMagic';
 
-import type { Review } from '../types/review';
+import type { Review } from '../../types/review';
 
 import ReviewCard from './ReviewCard';
 

@@ -1,7 +1,7 @@
 import IcChevronRightCircle from '@assets/svg/arrow/IcChevronRightCircle';
 import { formatPrice } from '@utils/formatPrice';
 
-import type { UsedBookPurchaseInfoData } from '../types/usedBookPurchaseInfo';
+import type { UsedBookPurchaseInfoData } from '../../types/usedBookPurchaseInfo';
 
 interface UsedBookPurchaseInfoProps {
   purchaseInfo: UsedBookPurchaseInfoData;

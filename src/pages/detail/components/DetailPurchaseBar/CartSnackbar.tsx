@@ -12,7 +12,7 @@ const CartSnackbar = ({ isVisible }: CartSnackbarProps) => {
     <div
       className={
         isVisible
-          ? 'fixed inset-x-0 bottom-24 z-20 mx-auto flex h-[52px] w-[343px] max-w-full items-center justify-between rounded-12 bg-gray-950 px-16 py-12'
+          ? 'absolute inset-x-(--layout-margin-x) bottom-full mb-24 flex h-[52px] items-center justify-between rounded-12 bg-gray-950 px-16 py-12'
           : 'sr-only'
       }
     >

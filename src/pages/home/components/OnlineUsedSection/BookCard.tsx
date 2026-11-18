@@ -12,15 +12,13 @@ const BookCard = ({
   hasShadow = false,
 }: BookCardProps) => {
   return (
-    <article
-      className={`flex w-[130px] shrink-0 flex-col gap-16 ${hasShadow ? 'shadow-card' : ''}`}
-    >
+    <article className="flex w-[130px] shrink-0 flex-col gap-16">
       <img
         src={imageSrc}
         alt={`${title} 표지`}
         width={130}
         height={184}
-        className="h-[184px] w-full object-cover object-top"
+        className={`h-[184px] w-full object-cover object-top ${hasShadow ? 'shadow-card' : ''}`}
       />
       <div className="flex flex-col gap-2">
         <h3 className="text-title-18m wrap-break-word text-gray-950">

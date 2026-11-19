@@ -7,5 +7,5 @@ import { getCart } from '../apis/getCart';
 export const useCart = (cartId: number) =>
   useQuery({
     queryKey: cartKeys.detail(cartId),
-    queryFn: () => getCart({ cartId }),
+    queryFn: ({ signal }) => getCart({ cartId }, signal),
   });

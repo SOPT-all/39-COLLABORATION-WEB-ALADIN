@@ -43,8 +43,7 @@ const CartPage = () => {
   const [selectedIds, setSelectedIds] = useState<string[] | null>(null);
   const [isPaymentVisible, setIsPaymentVisible] = useState(false);
   const paymentSummaryRef = useRef<HTMLElement>(null);
-  const { data: cartResponse, isError, isPending, refetch } = useCart(CART_ID);
-  const cartData = cartResponse?.data;
+  const { data: cartData, isError, isPending, refetch } = useCart(CART_ID);
   const sellerGroups = cartData?.sellerGroups ?? EMPTY_SELLER_GROUPS;
 
   const cartSellers = useMemo<CartSellerView[]>(
@@ -92,7 +91,7 @@ const CartPage = () => {
     () => cartSellers.flatMap(({ items }) => items),
     [cartSellers],
   );
-  const isCartReady = !isPending && !isError && cartData !== undefined;
+  const isCartReady = !isPending && cartData !== undefined;
 
   const activeSelectedIds = useMemo(
     () => selectedIds ?? cartItems.map(({ id }) => id),
@@ -210,7 +209,7 @@ const CartPage = () => {
           >
             장바구니를 불러오는 중입니다.
           </p>
-        ) : isError ? (
+        ) : isError && !cartData ? (
           <div
             role="alert"
             className="flex flex-col items-start gap-8 bg-white px-16 py-24 text-body-14r text-gray-700"

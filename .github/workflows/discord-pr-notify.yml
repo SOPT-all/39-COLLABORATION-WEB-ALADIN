@@ -1,0 +1,43 @@
+name: Discord PR Notification
+
+on:
+  pull_request_target:
+    types: [closed]
+  pull_request_review:
+    types: [submitted, dismissed]
+
+permissions: {}
+
+concurrency:
+  group: discord-pr-notify-${{ github.event_name }}-${{ github.event.pull_request.number }}-${{ github.event.action }}
+  cancel-in-progress: false
+
+jobs:
+  notify:
+    if: >-
+      (github.event_name == 'pull_request_target' &&
+      github.event.pull_request.merged == true) ||
+      (github.event_name == 'pull_request_review' &&
+      (github.event.action == 'dismissed' ||
+      github.event.review.state == 'approved' ||
+      github.event.review.state == 'changes_requested'))
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      pull-requests: read
+
+    steps:
+      - name: Checkout trusted base branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+          persist-credentials: false
+
+      - name: Send Discord notification
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          DISCORD_USER_MAP: ${{ vars.DISCORD_USER_MAP }}
+          GITHUB_EVENT_PATH: ${{ github.event_path }}
+          DISCORD_EVENT_NAME: ${{ github.event_name }}
+        run: python3 "$GITHUB_WORKSPACE/.github/scripts/discordNotify.py"

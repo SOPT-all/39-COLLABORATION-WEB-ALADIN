@@ -1,0 +1,10 @@
+{
+  // 파일을 저장하면 코드 모양도 자동으로 정리
+  "editor.formatOnSave": true,
+  // 코드 정리는 Prettier로 하기
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": {
+    // 직접 저장할 때 ESLint가 고칠 수 있는 문제도 자동으로 수정
+    "source.fixAll.eslint": "explicit"
+  }
+}

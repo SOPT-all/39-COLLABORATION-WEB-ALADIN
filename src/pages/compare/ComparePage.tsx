@@ -1,3 +1,4 @@
+import { isHTTPError } from 'ky';
 import { useState } from 'react';
 import { generatePath, useNavigate, useSearchParams } from 'react-router';
 
@@ -75,11 +76,13 @@ const ComparePage = () => {
 
   const bookId = parseBookId(searchParams.get('bookId'));
   const priceSort = appliedSort === '고가격순' ? 'HIGHEST' : 'LOWEST';
-  const { data, isError, isPending, refetch } = useBookSellers({
+  const { data, error, isError, isPending, refetch } = useBookSellers({
     bookId,
     priceSort,
   });
   const usedBooks = data?.data ? mapBookSellers(data.data) : [];
+
+  const isBookNotFound = isHTTPError(error) && error.response.status === 404;
 
   const getUsedBookDetailPath = (usedBook: UsedBook) =>
     usedBook.id === DETAIL_USED_BOOK_ID
@@ -140,19 +143,25 @@ const ComparePage = () => {
           >
             판매 목록을 불러오는 중입니다.
           </p>
-        ) : isError ? (
+        ) : isError && !data ? (
           <div
             role="alert"
             className="flex flex-col items-start gap-8 bg-white px-(--layout-margin-x) py-24 text-body-14r text-gray-700"
           >
-            <p>판매 목록을 불러오지 못했습니다.</p>
-            <button
-              type="button"
-              className="underline"
-              onClick={() => void refetch()}
-            >
-              다시 시도
-            </button>
+            <p>
+              {isBookNotFound
+                ? '도서 정보를 찾을 수 없습니다.'
+                : '판매 목록을 불러오지 못했습니다.'}
+            </p>
+            {!isBookNotFound && (
+              <button
+                type="button"
+                className="underline"
+                onClick={() => void refetch()}
+              >
+                다시 시도
+              </button>
+            )}
           </div>
         ) : usedBooks.length === 0 ? (
           <p

@@ -1,21 +1,8 @@
-interface CartItem {
-  id: number;
-  originalPrice: number;
-  price: number;
-  quantity: number;
-  sellerId: number;
-}
-
-interface CartSeller {
-  id: number;
-  shippingFee: number;
-}
+import type { CartItemView, CartSellerView } from '../types/cart';
 
 export const calculateCartTotals = (
-  selectedItems: readonly CartItem[],
-  cartItems: readonly CartItem[],
-  sellers: readonly CartSeller[],
-  freeShippingThreshold: number,
+  selectedItems: readonly CartItemView[],
+  sellers: readonly CartSellerView[],
 ) => {
   const selectedTypeCount = selectedItems.length;
   const selectedBookCount = selectedItems.reduce(
@@ -30,25 +17,45 @@ export const calculateCartTotals = (
     (sum, { price, quantity }) => sum + price * quantity,
     0,
   );
-  const cartSaleAmount = cartItems.reduce(
-    (sum, { price, quantity }) => sum + price * quantity,
-    0,
-  );
-  const selectedSellerIds = new Set(
-    selectedItems.map(({ sellerId }) => sellerId),
-  );
-  const selectedSellerCount = selectedSellerIds.size;
-  const shippingFee = sellers.reduce(
-    (sum, { id, shippingFee: sellerShippingFee }) =>
-      selectedSellerIds.has(id) ? sum + sellerShippingFee : sum,
+  const sellerSummaries = sellers.map((seller) => {
+    const sellerSelectedItems = selectedItems.filter(
+      ({ sellerId }) => sellerId === seller.id,
+    );
+    const sellerSaleAmount = sellerSelectedItems.reduce(
+      (sum, { price, quantity }) => sum + price * quantity,
+      0,
+    );
+    const cartSellerSaleAmount = seller.items.reduce(
+      (sum, { price, quantity }) => sum + price * quantity,
+      0,
+    );
+    const isSelected = sellerSelectedItems.length > 0;
+    const shippingFee = isSelected ? seller.deliveryFee : 0;
+
+    return {
+      freeShippingRemaining: Math.max(
+        seller.freeDeliveryThreshold - cartSellerSaleAmount,
+        0,
+      ),
+      isSelected,
+      sellerId: seller.id,
+      shippingFee,
+      totalPrice: sellerSaleAmount + shippingFee,
+    };
+  });
+  const selectedSellerCount = sellerSummaries.filter(
+    ({ isSelected }) => isSelected,
+  ).length;
+  const shippingFee = sellerSummaries.reduce(
+    (sum, { shippingFee: sellerShippingFee }) => sum + sellerShippingFee,
     0,
   );
 
   return {
     discountAmount: itemAmount - saleAmount,
-    freeShippingRemaining: Math.max(freeShippingThreshold - cartSaleAmount, 0),
     itemAmount,
     saleAmount,
+    sellerSummaries,
     selectedBookCount,
     selectedSellerCount,
     selectedTypeCount,

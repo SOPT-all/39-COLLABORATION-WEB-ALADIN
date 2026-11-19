@@ -6,6 +6,7 @@ import IcCheckUnselected from '@assets/svg/cart/IcCheckUnselected';
 
 interface AccordionSellerProps {
   children: ReactNode;
+  isCvsDelivery: boolean;
   isSelected: boolean;
   onSelect: () => void;
   sellerName: string;
@@ -13,6 +14,7 @@ interface AccordionSellerProps {
 
 const AccordionSeller = ({
   children,
+  isCvsDelivery,
   isSelected,
   onSelect,
   sellerName,
@@ -41,9 +43,11 @@ const AccordionSeller = ({
             <span className="truncate text-title-18sb text-gray-950">
               {sellerName}
             </span>
-            <span className="flex shrink-0 items-center justify-center rounded-full bg-sky px-12 py-4 text-label-12sb text-white">
-              반값택배 가능
-            </span>
+            {isCvsDelivery && (
+              <span className="flex shrink-0 items-center justify-center rounded-full bg-sky px-12 py-4 text-label-12sb text-white">
+                반값택배 가능
+              </span>
+            )}
           </div>
         </div>
 

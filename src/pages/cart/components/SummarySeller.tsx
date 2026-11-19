@@ -17,8 +17,18 @@ const SummarySeller = ({
     <div className="flex flex-col gap-12 bg-white p-16">
       <div className="flex items-center justify-between rounded-8 bg-gray-50 py-8 pr-4 pl-8">
         <p className="text-caption-12r text-gray-700">
-          {formatPrice(freeShippingRemaining)}원 더 담으면{' '}
-          <strong className="text-label-12sb text-pink-500">배송비 무료</strong>
+          {freeShippingRemaining > 0 ? (
+            <>
+              {formatPrice(freeShippingRemaining)}원 더 담으면{' '}
+              <strong className="text-label-12sb text-pink-500">
+                배송비 무료
+              </strong>
+            </>
+          ) : (
+            <strong className="text-label-12sb text-pink-500">
+              배송비 무료
+            </strong>
+          )}
         </p>
 
         <div className="flex shrink-0 items-center text-label-12sb text-navy-400">

@@ -1,12 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 
-import type {
-  CartItemResponse,
-  CartReadResponse,
-} from '@apis/generated/dataContracts';
+import type { CartReadResponse } from '@apis/generated/dataContracts';
 import TabBar from '@components/TabBar';
-
-import type { CartItemView, CartSellerView } from './types/cart';
 
 import AccordionSeller from './components/AccordionSeller';
 import CartBottomBar from './components/CartBottomBar';
@@ -18,6 +13,7 @@ import SummarySeller from './components/SummarySeller';
 import { CART_ID } from './constants/cart';
 import { useCart } from './hooks/useCart';
 import { calculateCartTotals } from './utils/calculateCartTotals';
+import { mapCartSellers } from './utils/mapCartSellers';
 
 const CART_TABS = [
   { label: '장바구니', value: 'cart' },
@@ -27,16 +23,6 @@ const CART_TABS = [
 ] as const;
 
 const EMPTY_SELLER_GROUPS: NonNullable<CartReadResponse['sellerGroups']> = [];
-const DEFAULT_FREE_DELIVERY_THRESHOLD = 100000;
-
-const BOOK_CONDITION_LABELS: Record<
-  NonNullable<CartItemResponse['bookCondition']>,
-  string
-> = {
-  EXCELLENT: '최상',
-  FAIR: '중',
-  GOOD: '상',
-};
 
 const CartPage = () => {
   const [selectedCartTab, setSelectedCartTab] = useState('cart');
@@ -46,44 +32,8 @@ const CartPage = () => {
   const { data: cartData, isError, isPending, refetch } = useCart(CART_ID);
   const sellerGroups = cartData?.sellerGroups ?? EMPTY_SELLER_GROUPS;
 
-  const cartSellers = useMemo<CartSellerView[]>(
-    () =>
-      sellerGroups.map((sellerGroup, sellerIndex) => {
-        const sellerId =
-          sellerGroup.sellerId === undefined
-            ? `seller-${sellerIndex}`
-            : String(sellerGroup.sellerId);
-
-        const items: CartItemView[] = (sellerGroup.items ?? []).map(
-          (item, itemIndex) => ({
-            id:
-              item.cartItemId === undefined
-                ? `${sellerId}-item-${itemIndex}`
-                : String(item.cartItemId),
-            condition: item.bookCondition
-              ? BOOK_CONDITION_LABELS[item.bookCondition]
-              : '정보 없음',
-            discountRate: item.discountRate ?? 0,
-            imageSrc: item.bookImageUrl,
-            originalPrice: item.originalPrice ?? 0,
-            price: item.salePrice ?? 0,
-            quantity: 1,
-            sellerId,
-            title: item.bookTitle || '제목 없음',
-          }),
-        );
-
-        return {
-          id: sellerId,
-          name: sellerGroup.sellerName || '판매자 정보 없음',
-          isCvsDelivery: sellerGroup.isCvsDelivery ?? false,
-          deliveryFee: sellerGroup.deliveryFee ?? 0,
-          freeDeliveryThreshold:
-            sellerGroup.freeDeliveryThreshold ??
-            DEFAULT_FREE_DELIVERY_THRESHOLD,
-          items,
-        };
-      }),
+  const cartSellers = useMemo(
+    () => mapCartSellers(sellerGroups),
     [sellerGroups],
   );
 

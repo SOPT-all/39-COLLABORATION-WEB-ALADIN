@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import IcCheckOutline from '@assets/svg/cart/IcCheckOutline';
 import IcCheckUnselected from '@assets/svg/cart/IcCheckUnselected';
 import IcClose from '@assets/svg/close/IcClose';
@@ -29,6 +31,8 @@ const CartListItem = ({
   price,
   title,
 }: CartListItemProps) => {
+  const [failedImageSrc, setFailedImageSrc] = useState<string | null>(null);
+
   return (
     <article className="relative flex items-start justify-between bg-white px-16 pt-16 pb-24">
       <div className="flex min-w-0 flex-1 items-start gap-16">
@@ -47,13 +51,14 @@ const CartListItem = ({
         </button>
 
         <div className="flex min-w-0 flex-1 items-start gap-8">
-          {imageSrc ? (
+          {imageSrc && failedImageSrc !== imageSrc ? (
             <img
               alt={`${title} 표지`}
               className="h-[120px] w-[80px] shrink-0 object-cover"
               height={120}
               src={imageSrc}
               width={80}
+              onError={() => setFailedImageSrc(imageSrc)}
             />
           ) : (
             <div

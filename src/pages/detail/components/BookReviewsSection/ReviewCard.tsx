@@ -67,10 +67,10 @@ const ReviewCard = ({ review }: ReviewCardProps) => {
         </div>
       </footer>
       {isError && (
-        <p className="sr-only" role="alert">
+        <p className="self-end text-caption-12r text-gray-700" role="alert">
           {isHTTPError(error) && error.response.status === 404
-            ? '리뷰를 찾을 수 없습니다.'
-            : '리뷰 공감 상태를 변경하지 못했습니다.'}
+            ? '리뷰를 찾을 수 없어요.'
+            : '공감을 변경하지 못했어요.'}
         </p>
       )}
     </article>

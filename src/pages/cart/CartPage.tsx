@@ -43,10 +43,7 @@ const CartPage = () => {
   );
   const isCartReady = !isPending && cartData !== undefined;
 
-  const cartItemIds = useMemo(
-    () => cartItems.map(({ id }) => id),
-    [cartItems],
-  );
+  const cartItemIds = useMemo(() => cartItems.map(({ id }) => id), [cartItems]);
   const activeSelectedIds = useMemo(
     () =>
       selectedIds === null

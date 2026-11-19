@@ -1,14 +1,18 @@
-export interface UsedBookPurchaseInfoData {
+import type { SalesPostDetailResponse } from '@apis/generated/dataContracts';
+
+export interface UsedBookPurchaseInfoData extends Pick<
+  SalesPostDetailResponse,
+  | 'salePrice'
+  | 'shippingFee'
+  | 'remoteShippingFee'
+  | 'estimatedPaymentAmount'
+  | 'sellerName'
+> {
   listPrice: number;
-  salePrice: number;
   discountRate: number;
-  shippingFee: number;
-  remoteShippingFee: number;
-  estimatedPaymentAmount: number;
   newBookSalePrice: number;
   newBookMileage: number;
   estimatedDispatchHours: number;
   minimumOrderAmount: number | null;
-  sellerName: string;
   qualityGradeLabel: string;
 }

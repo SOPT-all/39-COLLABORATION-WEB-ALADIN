@@ -20,7 +20,7 @@ const OnlineUsedSection = () => {
         >
           도서 목록을 불러오는 중입니다.
         </p>
-      ) : isError ? (
+      ) : isError && data === undefined ? (
         <div
           role="alert"
           className="flex flex-col items-start gap-8 px-(--layout-margin-x) py-24 text-body-14r text-gray-700"

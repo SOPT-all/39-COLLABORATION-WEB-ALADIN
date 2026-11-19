@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 interface BookCardProps {
   imageSrc?: string;
   title: string;
@@ -11,15 +13,18 @@ const BookCard = ({
   author,
   hasShadow = false,
 }: BookCardProps) => {
+  const [failedImageSrc, setFailedImageSrc] = useState<string>();
+
   return (
     <article className="flex w-[130px] shrink-0 flex-col gap-16">
-      {imageSrc ? (
+      {imageSrc && imageSrc !== failedImageSrc ? (
         <img
           src={imageSrc}
           alt={`${title} 표지`}
           width={130}
           height={184}
           className={`h-[184px] w-full object-cover object-top ${hasShadow ? 'shadow-card' : ''}`}
+          onError={() => setFailedImageSrc(imageSrc)}
         />
       ) : (
         <div

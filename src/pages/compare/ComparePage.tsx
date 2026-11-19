@@ -28,6 +28,14 @@ import { mapBookSellers } from './utils/mapBookSellers';
 const DEFAULT_BOOK_ID = 1;
 const DETAIL_USED_BOOK_ID = 103;
 
+const parseBookId = (value: string | null) => {
+  const bookId = Number(value);
+
+  return /^\d+$/.test(value ?? '') && Number.isSafeInteger(bookId) && bookId > 0
+    ? bookId
+    : DEFAULT_BOOK_ID;
+};
+
 const ComparePage = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
@@ -65,7 +73,7 @@ const ComparePage = () => {
     closeFilterSheet();
   };
 
-  const bookId = Number(searchParams.get('bookId')) || DEFAULT_BOOK_ID;
+  const bookId = parseBookId(searchParams.get('bookId'));
   const priceSort = appliedSort === '고가격순' ? 'HIGHEST' : 'LOWEST';
   const { data, isError, isPending, refetch } = useBookSellers({
     bookId,

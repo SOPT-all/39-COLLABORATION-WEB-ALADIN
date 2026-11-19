@@ -1,5 +1,9 @@
 import type { FindBookSellersParams } from '@apis/generated/dataContracts';
 
+export const bookKeys = {
+  onlineUsed: () => ['books', 'onlineUsed'] as const,
+};
+
 export const cartKeys = {
   detail: (cartId: number) => ['cart', cartId] as const,
 };

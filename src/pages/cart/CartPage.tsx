@@ -68,8 +68,8 @@ const CartPage = () => {
     shippingFee,
     totalPrice,
   } = useMemo(
-    () => calculateCartTotals(selectedItems, cartItems, cartSellers),
-    [cartItems, cartSellers, selectedItems],
+    () => calculateCartTotals(selectedItems, cartSellers),
+    [cartSellers, selectedItems],
   );
   const isAllSelected =
     cartItems.length > 0 &&

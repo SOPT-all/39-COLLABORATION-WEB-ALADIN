@@ -2,7 +2,6 @@ import type { CartItemView, CartSellerView } from '../types/cart';
 
 export const calculateCartTotals = (
   selectedItems: readonly CartItemView[],
-  cartItems: readonly CartItemView[],
   sellers: readonly CartSellerView[],
 ) => {
   const selectedTypeCount = selectedItems.length;
@@ -19,9 +18,6 @@ export const calculateCartTotals = (
     0,
   );
   const sellerSummaries = sellers.map((seller) => {
-    const sellerCartItems = cartItems.filter(
-      ({ sellerId }) => sellerId === seller.id,
-    );
     const sellerSelectedItems = selectedItems.filter(
       ({ sellerId }) => sellerId === seller.id,
     );
@@ -29,7 +25,7 @@ export const calculateCartTotals = (
       (sum, { price, quantity }) => sum + price * quantity,
       0,
     );
-    const cartSellerSaleAmount = sellerCartItems.reduce(
+    const cartSellerSaleAmount = seller.items.reduce(
       (sum, { price, quantity }) => sum + price * quantity,
       0,
     );

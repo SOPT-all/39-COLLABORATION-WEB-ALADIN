@@ -4,7 +4,15 @@ import type {
 } from '@apis/generated/dataContracts';
 import { apiClient } from '@apis/kyClient';
 
-export const getBookSellers = ({ bookId, priceSort }: FindBookSellersParams) =>
+export type GetBookSellersParams = Pick<
+  FindBookSellersParams,
+  'bookId' | 'priceSort'
+>;
+
+export const getBookSellers = (
+  { bookId, priceSort }: GetBookSellersParams,
+  signal?: AbortSignal,
+) =>
   apiClient
-    .get(`v1/books/${bookId}/sellers`, { searchParams: { priceSort } })
+    .get(`v1/books/${bookId}/sellers`, { searchParams: { priceSort }, signal })
     .json<FindBookSellersData>();

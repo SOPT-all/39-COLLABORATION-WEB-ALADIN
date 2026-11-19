@@ -34,8 +34,8 @@ const BOOK_CONDITION_LABELS: Record<
   string
 > = {
   EXCELLENT: '최상',
-  FAIR: '하',
-  GOOD: '중',
+  FAIR: '중',
+  GOOD: '상',
 };
 
 const CartPage = () => {

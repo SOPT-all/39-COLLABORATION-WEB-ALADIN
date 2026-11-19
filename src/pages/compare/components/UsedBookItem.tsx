@@ -51,7 +51,7 @@ const UsedBookItem = ({ detailPath, onClick, usedBook }: UsedBookItemProps) => {
             <span className={LABEL_CLASS}>판매자</span>
             <span className="flex items-center gap-4 text-body-16r text-gray-700">
               {sellerName}
-              <SellerTag grade={sellerGrade} />
+              {sellerGrade && <SellerTag grade={sellerGrade} />}
             </span>
           </div>
 

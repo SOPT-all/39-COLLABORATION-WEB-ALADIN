@@ -1,4 +1,9 @@
-import { matchPath, Outlet, useLocation } from 'react-router';
+import {
+  matchPath,
+  Outlet,
+  ScrollRestoration,
+  useLocation,
+} from 'react-router';
 
 import Footer from '@components/Footer';
 import Header from '@components/Header';
@@ -19,6 +24,7 @@ const Layout = () => {
       {isDetail && (
         <div aria-hidden="true" className="h-(--detail-purchase-bar-height)" />
       )}
+      <ScrollRestoration />
     </>
   );
 };

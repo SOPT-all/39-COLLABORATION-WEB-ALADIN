@@ -43,9 +43,16 @@ const CartPage = () => {
   );
   const isCartReady = !isPending && cartData !== undefined;
 
+  const cartItemIds = useMemo(
+    () => cartItems.map(({ id }) => id),
+    [cartItems],
+  );
   const activeSelectedIds = useMemo(
-    () => selectedIds ?? cartItems.map(({ id }) => id),
-    [cartItems, selectedIds],
+    () =>
+      selectedIds === null
+        ? cartItemIds
+        : selectedIds.filter((id) => cartItemIds.includes(id)),
+    [cartItemIds, selectedIds],
   );
   const selectedItems = useMemo(
     () => cartItems.filter(({ id }) => activeSelectedIds.includes(id)),
@@ -65,7 +72,8 @@ const CartPage = () => {
     [cartItems, cartSellers, selectedItems],
   );
   const isAllSelected =
-    cartItems.length > 0 && activeSelectedIds.length === cartItems.length;
+    cartItems.length > 0 &&
+    cartItems.every(({ id }) => activeSelectedIds.includes(id));
   const deliveryCount = cartItems.length;
   const halfPriceCount = cartSellers.reduce(
     (count, { isCvsDelivery, items }) =>
@@ -90,7 +98,9 @@ const CartPage = () => {
 
   const handleToggleItem = (id: string) => {
     setSelectedIds((currentIds) => {
-      const selectedItemIds = currentIds ?? activeSelectedIds;
+      const selectedItemIds = cartItemIds.filter(
+        (selectedId) => currentIds === null || currentIds.includes(selectedId),
+      );
 
       return selectedItemIds.includes(id)
         ? selectedItemIds.filter((selectedId) => selectedId !== id)
@@ -108,7 +118,9 @@ const CartPage = () => {
       sellerItemIds.every((id) => activeSelectedIds.includes(id));
 
     setSelectedIds((currentIds) => {
-      const selectedItemIds = currentIds ?? activeSelectedIds;
+      const selectedItemIds = cartItemIds.filter(
+        (id) => currentIds === null || currentIds.includes(id),
+      );
 
       if (isSellerSelected) {
         return selectedItemIds.filter((id) => !sellerItemIds.includes(id));

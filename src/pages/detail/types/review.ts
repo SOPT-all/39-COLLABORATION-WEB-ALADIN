@@ -1,7 +1,5 @@
-import type { ToggleReviewLikeParams } from '@apis/generated/dataContracts';
-
 export interface Review {
-  id: ToggleReviewLikeParams['reviewId'];
+  id: number;
   author: string;
   createdAt: string;
   content: string;

@@ -2,7 +2,7 @@ import type { Review } from '../types/review';
 
 export const MOCK_REVIEWS: Review[] = [
   {
-    id: 'review-1',
+    id: 2,
     author: '김하치와레',
     createdAt: '2016-11-18',
     content:
@@ -10,7 +10,7 @@ export const MOCK_REVIEWS: Review[] = [
     commentCount: 9,
   },
   {
-    id: 'review-2',
+    id: 3,
     author: '박치이카와',
     createdAt: '2016-11-18',
     content:

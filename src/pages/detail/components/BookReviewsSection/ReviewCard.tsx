@@ -1,3 +1,4 @@
+import { isHTTPError } from 'ky';
 import { useState } from 'react';
 
 import IcMore from '@assets/svg/product/IcMore';
@@ -8,6 +9,7 @@ import IcStar5 from '@assets/svg/status/IcStar5';
 
 import type { Review } from '../../types/review';
 
+import { useToggleReviewLike } from '../../hooks/useToggleReviewLike';
 import LikeButton from './LikeButton';
 import ThanksToButton from './ThanksToButton';
 
@@ -17,9 +19,14 @@ interface ReviewCardProps {
 
 const ReviewCard = ({ review }: ReviewCardProps) => {
   const [isLiked, setIsLiked] = useState(false);
+  const { mutate, isPending, isError, error } = useToggleReviewLike(review.id);
 
   const handleLikeClick = () => {
-    setIsLiked((wasLiked) => !wasLiked);
+    if (isPending) return;
+
+    mutate(undefined, {
+      onSuccess: (data) => setIsLiked(data.isLiked),
+    });
   };
 
   return (
@@ -50,11 +57,22 @@ const ReviewCard = ({ review }: ReviewCardProps) => {
         <span className="text-body-16m">댓글 ({review.commentCount})</span>
 
         <div className="ml-auto flex items-center gap-4">
-          <LikeButton isLiked={isLiked} onClick={handleLikeClick} />
+          <LikeButton
+            disabled={isPending}
+            isLiked={isLiked}
+            onClick={handleLikeClick}
+          />
           <ThanksToButton />
           <IcNotice aria-hidden="true" />
         </div>
       </footer>
+      {isError && (
+        <p className="self-end text-caption-12r text-gray-700" role="alert">
+          {isHTTPError(error) && error.response.status === 404
+            ? '리뷰를 찾을 수 없어요.'
+            : '공감을 변경하지 못했어요.'}
+        </p>
+      )}
     </article>
   );
 };

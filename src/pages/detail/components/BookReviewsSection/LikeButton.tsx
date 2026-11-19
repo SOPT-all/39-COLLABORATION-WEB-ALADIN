@@ -16,7 +16,7 @@ const LikeButton = ({
 }: LikeButtonProps) => (
   <button
     aria-pressed={isLiked}
-    className={`inline-flex w-[61px] items-center justify-center gap-4 rounded-4 bg-navy-50 px-8 py-4 text-label-12sb whitespace-nowrap text-navy-300 ${className}`}
+    className={`inline-flex w-[61px] items-center justify-center gap-4 rounded-4 bg-navy-50 px-8 py-4 text-label-12sb whitespace-nowrap text-navy-300 disabled:cursor-pointer ${className}`}
     disabled={disabled}
     onClick={onClick}
     type="button"

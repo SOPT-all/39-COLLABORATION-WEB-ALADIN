@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from 'react-router';
 
-import aladinLogo from '@assets/images/ic-aladin_logo.png';
+import IcAladinLogo from '@assets/svg/header/IcAladinLogo';
 import IcBell from '@assets/svg/header/IcBell';
 import IcCart from '@assets/svg/header/IcCart';
 import IcHome from '@assets/svg/header/IcHome';
@@ -32,7 +32,7 @@ const Header = ({ variant = 'default' }: HeaderProps) => {
   if (variant === 'home') {
     return (
       <header className="sticky top-0 z-10 flex h-[3.5rem] items-center justify-between bg-white pr-4 pl-16">
-        <img src={aladinLogo} alt="알라딘" className="h-32 w-auto" />
+        <IcAladinLogo role="img" aria-label="알라딘" />
         <div className="flex gap-2">
           <HeaderIconButton icon={<IcBell />} label="알림" />
           <HeaderIconButton icon={<IcCart />} label="장바구니" />

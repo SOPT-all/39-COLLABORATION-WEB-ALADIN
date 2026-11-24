@@ -13,11 +13,11 @@ const CartSnackbar = ({ hasCartLink, message }: CartSnackbarProps) => {
     <div
       className={
         message
-          ? 'absolute inset-x-(--layout-margin-x) bottom-full mb-24 flex h-[52px] items-center justify-between rounded-12 bg-gray-950 px-16 py-12'
+          ? 'absolute inset-x-(--layout-margin-x) bottom-full mb-12 flex h-[52px] items-center justify-between rounded-12 bg-gray-950 px-16 py-12'
           : 'sr-only'
       }
     >
-      <p className="text-body-14r text-white" role="status">
+      <p className="text-body-14r text-white" role="status" aria-live="polite">
         {message}
       </p>
       {hasCartLink && (

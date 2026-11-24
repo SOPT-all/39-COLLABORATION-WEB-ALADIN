@@ -11,6 +11,7 @@ import CartSnackbar from './CartSnackbar';
 
 const CART_ID = 1;
 const CART_SNACKBAR_DURATION_MS = 4000;
+const CART_TOAST_DURATION_MS = 2500;
 const ALREADY_IN_CART_CODE = 'CART_ITEM_ALREADY_EXISTS';
 const ALREADY_SOLD_CODE = 'SALES_POST_ALREADY_SOLD';
 
@@ -53,7 +54,9 @@ const DetailPurchaseBar = () => {
     setSnackbar(nextSnackbar);
     snackbarTimer.current = window.setTimeout(
       () => setSnackbar(null),
-      CART_SNACKBAR_DURATION_MS,
+      nextSnackbar.hasCartLink
+        ? CART_SNACKBAR_DURATION_MS
+        : CART_TOAST_DURATION_MS,
     );
   };
 

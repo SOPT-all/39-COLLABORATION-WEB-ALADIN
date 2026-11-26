@@ -25,7 +25,14 @@ const DetailPage = () => {
   }
 
   if (isPending) {
-    return <p role="status">중고 상품 정보를 불러오는 중입니다.</p>;
+    return (
+      <>
+        <BookDetailSection />
+        <p role="status" className="min-h-[calc(100svh-3.5rem)]">
+          중고 상품 정보를 불러오는 중입니다.
+        </p>
+      </>
+    );
   }
 
   if (!data) {

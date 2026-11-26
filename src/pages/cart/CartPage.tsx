@@ -147,16 +147,18 @@ const CartPage = () => {
               halfPriceCount={halfPriceCount}
             />
           </div>
-          {isCartReady && (
-            <CartSelectionToolbar
-              isAllSelected={isAllSelected}
-              selectedCount={selectedTypeCount}
-              totalCount={cartItems.length}
-              onMoveToKeep={() => undefined}
-              onRemoveSelected={() => undefined}
-              onSelectAll={handleToggleAll}
-            />
-          )}
+          <div className="min-h-24">
+            {isCartReady && (
+              <CartSelectionToolbar
+                isAllSelected={isAllSelected}
+                selectedCount={selectedTypeCount}
+                totalCount={cartItems.length}
+                onMoveToKeep={() => undefined}
+                onRemoveSelected={() => undefined}
+                onSelectAll={handleToggleAll}
+              />
+            )}
+          </div>
         </div>
       </div>
 
@@ -164,7 +166,7 @@ const CartPage = () => {
         {isPending ? (
           <p
             role="status"
-            className="bg-white px-16 py-24 text-body-14r text-gray-700"
+            className="min-h-[calc(100svh-3.5rem)] bg-white px-16 py-24 text-body-14r text-gray-700"
           >
             장바구니를 불러오는 중입니다.
           </p>

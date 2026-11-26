@@ -139,7 +139,7 @@ const ComparePage = () => {
         {isPending ? (
           <p
             role="status"
-            className="bg-white px-(--layout-margin-x) py-24 text-body-14r text-gray-700"
+            className="min-h-[calc(100svh-3.5rem)] bg-white px-(--layout-margin-x) py-24 text-body-14r text-gray-700"
           >
             판매 목록을 불러오는 중입니다.
           </p>

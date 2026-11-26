@@ -18,21 +18,13 @@ const QUALITY_GRADE_LABELS: Record<
 };
 
 interface BookDetailSectionProps {
-  salesPost: SalesPostDetailResponse;
+  salesPost?: SalesPostDetailResponse;
 }
 
 const BookDetailSection = ({ salesPost }: BookDetailSectionProps) => {
-  const { qualityGrade } = salesPost;
-  const gradeLabel = qualityGrade ? QUALITY_GRADE_LABELS[qualityGrade] : '—';
-  const purchaseInfo = {
-    ...MOCK_USED_BOOK_PURCHASE_INFO,
-    salePrice: salesPost.salePrice,
-    shippingFee: salesPost.shippingFee,
-    remoteShippingFee: salesPost.remoteShippingFee,
-    estimatedPaymentAmount: salesPost.estimatedPaymentAmount,
-    sellerName: salesPost.sellerName,
-    qualityGradeLabel: gradeLabel,
-  };
+  const gradeLabel = salesPost?.qualityGrade
+    ? QUALITY_GRADE_LABELS[salesPost.qualityGrade]
+    : '—';
 
   return (
     <>
@@ -50,14 +42,26 @@ const BookDetailSection = ({ salesPost }: BookDetailSectionProps) => {
         <BookInfo {...MOCK_DETAIL_BOOK.info} />
       </section>
 
-      <div className="flex flex-col gap-8 bg-gray-50 py-8">
-        <UsedBookPurchaseInfo purchaseInfo={purchaseInfo} />
-        <BookConditionSection
-          grade={gradeLabel}
-          groups={MOCK_BOOK_CONDITION.groups}
-        />
-        <SaleAlertSection />
-      </div>
+      {salesPost && (
+        <div className="flex flex-col gap-8 bg-gray-50 py-8">
+          <UsedBookPurchaseInfo
+            purchaseInfo={{
+              ...MOCK_USED_BOOK_PURCHASE_INFO,
+              salePrice: salesPost.salePrice,
+              shippingFee: salesPost.shippingFee,
+              remoteShippingFee: salesPost.remoteShippingFee,
+              estimatedPaymentAmount: salesPost.estimatedPaymentAmount,
+              sellerName: salesPost.sellerName,
+              qualityGradeLabel: gradeLabel,
+            }}
+          />
+          <BookConditionSection
+            grade={gradeLabel}
+            groups={MOCK_BOOK_CONDITION.groups}
+          />
+          <SaleAlertSection />
+        </div>
+      )}
     </>
   );
 };

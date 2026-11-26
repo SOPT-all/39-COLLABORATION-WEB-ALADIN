@@ -23,6 +23,7 @@ const BookCard = ({
           alt={`${title} 표지`}
           width={130}
           height={184}
+          loading="lazy"
           className={`h-[184px] w-full object-cover object-top ${hasShadow ? 'shadow-card' : ''}`}
           onError={() => setFailedImageSrc(imageSrc)}
         />

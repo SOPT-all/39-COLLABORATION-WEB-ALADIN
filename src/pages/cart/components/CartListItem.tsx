@@ -32,6 +32,12 @@ const CartListItem = ({
   title,
 }: CartListItemProps) => {
   const [failedImageSrc, setFailedImageSrc] = useState<string | null>(null);
+  const smallImageSrc = imageSrc?.replace(
+    /^(https:\/\/image\.aladin\.co\.kr\/product\/\d+\/\d+\/)cover500\//,
+    '$1cover200/',
+  );
+  const currentImageSrc =
+    failedImageSrc === smallImageSrc ? imageSrc : smallImageSrc;
 
   return (
     <article className="relative flex items-start justify-between bg-white px-16 pt-16 pb-24">
@@ -56,9 +62,9 @@ const CartListItem = ({
               alt={`${title} 표지`}
               className="h-[120px] w-[80px] shrink-0 object-cover"
               height={120}
-              src={imageSrc}
+              src={currentImageSrc}
               width={80}
-              onError={() => setFailedImageSrc(imageSrc)}
+              onError={() => setFailedImageSrc(currentImageSrc ?? imageSrc)}
             />
           ) : (
             <div

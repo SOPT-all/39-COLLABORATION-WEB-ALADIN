@@ -8,14 +8,19 @@
 
 [배포 사이트](https://39-collaboration-web-aladin.vercel.app/) · [발표 자료](https://www.figma.com/design/LfuQcw27pnKusEyxdoraP1?node-id=0-1)
 
-[프로젝트 소개](#프로젝트-소개) · [구현 화면](#구현-화면) · [구매 여정과 구현 기능](#구매-여정과-구현-기능) · [팀과 역할](#팀과-역할) · [개발 환경](#개발-환경) · [협업 규칙](#협업-규칙)
+[프로젝트 소개](#프로젝트-소개) · [구매 여정과 구현 기능](#구매-여정과-구현-기능) · [구현 화면](#구현-화면) · [팀과 역할](#팀과-역할) · [개발 환경](#개발-환경) · [협업 규칙](#협업-규칙)
+
+<br>
 
 ## 프로젝트 소개
 
 알라딘은 신간과 중고 도서를 탐색하고 구매할 수 있는 온라인 서점입니다.
+
 우리는 알라딘 모바일 웹에서 **중고 도서를 찾고, 판매 조건을 비교하고, 구매할 상품을 선택하는 과정**을 다듬었습니다.
 
 홈의 탐색 진입점부터 판매자별 가격 비교, 책 상태 확인, 장바구니의 결제 요약까지 네 화면을 연결해 구현했습니다.
+
+<br>
 
 ## 구매 여정과 구현 기능
 
@@ -28,6 +33,8 @@
 | 03 · 책 상태 확인 | 상품 상세 | 판매가·배송비·품질 가이드, 리뷰 공감, 장바구니 담기 |
 | 04 · 선택 상품 모아보기 | 장바구니 | 전체·판매자별·개별 선택, 배송비와 결제 예정 금액 계산 |
 
+<br>
+
 ## 구현 화면
 
 발표 장표를 통해 화면별 구현 내용과 담당 영역을 확인할 수 있습니다. 이미지를 클릭하면 크게 볼 수 있습니다.
@@ -39,6 +46,8 @@
 | **상품 상세 · 김유민** | **장바구니 · 조현영** |
 | [![상품 상세 구현 장표](docs/images/presentation/detail.png)](docs/images/presentation/detail.png) | [![장바구니 구현 장표](docs/images/presentation/cart.png)](docs/images/presentation/cart.png) |
 | 상품 상세 조회 · 리뷰 공감 · 장바구니 담기 연결 | 선택 상태에 따른 금액 계산 · 하단 주문 바 |
+
+<br>
 
 ### 화면을 연결하는 API
 
@@ -58,6 +67,8 @@
 
 </details>
 
+<br>
+
 ## 팀과 역할
 
 | 김유민 · 리드 | 김희수 | 조현영 | 최예빈 |
@@ -65,6 +76,8 @@
 | <img src="https://github.com/yumin-kim2.png" width="120" alt="김유민 프로필" /> | <img src="https://github.com/kimxeesoo.png" width="120" alt="김희수 프로필" /> | <img src="https://github.com/hycho04.png" width="120" alt="조현영 프로필" /> | <img src="https://github.com/YeBeenChoi.png" width="120" alt="예빈 프로필" /> |
 | [@yumin-kim2](https://github.com/yumin-kim2) | [@kimxeesoo](https://github.com/kimxeesoo) | [@hycho04](https://github.com/hycho04) | [@YeBeenChoi](https://github.com/YeBeenChoi) |
 | 상품 상세 | 가격 비교 | 장바구니 | 홈 |
+
+<br>
 
 ## 개발 환경
 
@@ -86,6 +99,8 @@
 | Lint · Format | ESLint · Prettier |
 | CI/CD · Deploy | GitHub Actions · Vercel |
 | Collaboration | GitHub · Notion · Figma · Discord |
+
+<br>
 
 ### 폴더 구조
 
@@ -114,6 +129,8 @@ src/
 ```
 
 페이지별 API, 컴포넌트, 훅, 상수, 타입, 유틸리티는 해당 `pages` 폴더 안에서 관리합니다. 여러 페이지에서 사용하는 코드는 `shared`에 둡니다.
+
+<br>
 
 ## 협업 규칙
 

@@ -6,7 +6,7 @@
 
 > 책을 고르는 순간부터, 구매를 결정하는 순간까지.
 
-[배포 사이트](https://39-collaboration-web-aladin.vercel.app/) · [발표 자료](https://www.figma.com/design/qXeUk6zWxJWwO4Uqe09SvA/3-2?node-id=3582-8355)
+[배포 사이트](https://39-collaboration-web-aladin.vercel.app/) · [발표 자료](https://www.figma.com/design/LfuQcw27pnKusEyxdoraP1?node-id=0-1)
 
 [프로젝트 소개](#프로젝트-소개) · [구현 화면](#구현-화면) · [구매 여정과 구현 기능](#구매-여정과-구현-기능) · [팀과 역할](#팀과-역할) · [개발 환경](#개발-환경) · [협업 규칙](#협업-규칙)
 

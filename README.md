@@ -16,7 +16,7 @@
 
 알라딘은 신간과 중고 도서를 탐색하고 구매할 수 있는 온라인 서점입니다.
 
-우리는 알라딘 모바일 웹에서 **중고 도서를 찾고, 판매 조건을 비교하고, 구매할 상품을 선택하는 과정**을 다듬었습니다.
+알라딘 모바일 웹에서 **중고 도서를 찾고, 판매 조건을 비교하고, 구매할 상품을 선택하는 과정**을 다듬었습니다.
 
 홈의 탐색 진입점부터 판매자별 가격 비교, 책 상태 확인, 장바구니의 결제 요약까지 네 화면을 연결해 구현했습니다.
 
@@ -53,7 +53,7 @@
 
 | 기능 | Method | Endpoint | 담당자 |
 | --- | --- | --- | --- |
-| 온라인 중고 도서 목록 조회 | `GET` | `/v1/books/online-used` | 예빈 |
+| 온라인 중고 도서 목록 조회 | `GET` | `/v1/books/online-used` | 최예빈 |
 | 중고 판매 상품 목록 조회 | `GET` | `/v1/books/{bookId}/sellers` | 김희수 |
 | 중고 상품 상세 조회 | `GET` | `/v1/used-book-sales-posts/{salesPostId}` | 김유민 |
 | 리뷰 공감 | `PATCH` | `/v1/reviews/{reviewId}/like` | 김유민 |
@@ -85,20 +85,20 @@
 
 | 구분 | 기술 |
 | --- | --- |
-| UI | React |
-| Language | TypeScript |
-| Build | Vite |
-| Package Manager | pnpm |
-| Routing | React Router |
-| Server State | TanStack Query |
-| HTTP Client | ky |
-| Styling | Tailwind CSS · CSS 디자인 토큰 |
-| Font | Pretendard |
-| SVG | SVGR |
-| API Types | swagger-typescript-api |
-| Lint · Format | ESLint · Prettier |
-| CI/CD · Deploy | GitHub Actions · Vercel |
-| Collaboration | GitHub · Notion · Figma · Discord |
+| UI | <img src="docs/images/tech/react.svg" width="20" height="20" alt="" /> React |
+| Language | <img src="docs/images/tech/typescript.svg" width="20" height="20" alt="" /> TypeScript |
+| Build | <img src="docs/images/tech/vite.svg" width="20" height="20" alt="" /> Vite |
+| Package Manager | <img src="docs/images/tech/pnpm.svg" width="20" height="20" alt="" /> pnpm |
+| Routing | <img src="docs/images/tech/reactrouter.svg" width="20" height="20" alt="" /> React Router |
+| Server State | <img src="docs/images/tech/reactquery.svg" width="20" height="20" alt="" /> TanStack Query |
+| HTTP Client | <img src="docs/images/tech/http.svg" width="20" height="20" alt="" /> ky |
+| Styling | <img src="docs/images/tech/tailwindcss.svg" width="20" height="20" alt="" /> Tailwind CSS · <img src="docs/images/tech/css.svg" width="20" height="20" alt="" /> CSS 디자인 토큰 |
+| Font | <img src="docs/images/tech/font.svg" width="20" height="20" alt="" /> Pretendard |
+| SVG | <img src="docs/images/tech/svg.svg" width="20" height="20" alt="" /> SVGR |
+| API Types | <img src="docs/images/tech/swagger.svg" width="20" height="20" alt="" /> swagger-typescript-api |
+| Lint · Format | <img src="docs/images/tech/eslint.svg" width="20" height="20" alt="" /> ESLint · <img src="docs/images/tech/prettier.svg" width="20" height="20" alt="" /> Prettier |
+| CI/CD · Deploy | <img src="docs/images/tech/githubactions.svg" width="20" height="20" alt="" /> GitHub Actions · <img src="docs/images/tech/vercel.svg" width="20" height="20" alt="" /> Vercel |
+| Collaboration | <img src="docs/images/tech/github.svg" width="20" height="20" alt="" /> GitHub · <img src="docs/images/tech/notion.svg" width="20" height="20" alt="" /> Notion · <img src="docs/images/tech/figma.svg" width="20" height="20" alt="" /> Figma · <img src="docs/images/tech/discord.svg" width="20" height="20" alt="" /> Discord |
 
 <br>
 
